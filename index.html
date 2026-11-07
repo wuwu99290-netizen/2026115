@@ -64,7 +64,19 @@
 <div class="choice-grid" id="charGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="charBackBtn">返回</button></div></div>
 <!-- 雙人模式 -->
 <div class="modal-overlay" id="dualMenu" style="display:none"><div class="modal-title">👥 雙人模式</div><div class="modal-subtitle">單一螢幕，兩位玩家同場作戰</div><div class="menu-buttons"><button class="btn-menu" id="pvpModeBtn">⚔ 雙人 PVP</button><button class="btn-menu" id="coopModeBtn">🗝 雙人副本</button></div><div style="margin-top:16px;color:#b0b5c0;font-size:13px;line-height:1.9"><div>玩家 1：左半螢幕搖桿移動／空白鍵或 F 技能</div><div>玩家 2：右半螢幕搖桿移動／Enter 技能</div><div>（亦可用鍵盤：P1 為 WASD，P2 為方向鍵）</div><div>雙人副本：兩人共用金幣，一起撐過波次；倒地 5 秒後自動復活</div><div>雙人 PVP：把對手打倒即獲勝</div></div><div class="menu-buttons"><button class="btn-menu secondary" id="dualBackBtn">返回</button></div></div>
-<div class="modal-overlay" id="dualLoadoutMenu" style="display:none"><div class="modal-title" id="dualLoadoutTitle">雙人配置</div><div class="dual-cols"><div class="dual-col"><div class="dual-col-title">玩家 1（左搖桿 / WASD）</div><strong>職業</strong><div class="choice-grid small" id="p1ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p1WeaponChoices"></div></div><div class="dual-col"><div class="dual-col-title">玩家 2（右搖桿 / 方向鍵）</div><strong>職業</strong><div class="choice-grid small" id="p2ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p2WeaponChoices"></div></div></div><div class="menu-buttons"><button class="btn-menu" id="dualStartBtn">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="dualLoadoutMenu" style="display:none"><div class="modal-title" id="dualLoadoutTitle">雙人配置</div><div class="dual-cols"><div class="dual-col"><div class="dual-col-title">玩家 1（左搖桿 / WASD）</div><strong>職業</strong><div class="choice-grid small" id="p1ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p1WeaponChoices"></div></div><div class="dual-col"><div class="dual-col-title">玩家 2（右搖桿 / 方向鍵）</div><strong>職業</strong><div class="choice-grid small" id="p2ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p2WeaponChoices"></div></div></div>
+<!-- 双人等级码输入区 -->
+<div style="width:100%;max-width:800px;margin:10px auto;">
+  <div class="code-area" style="margin-bottom:5px;">
+    <div style="color:#0fc;font-weight:bold;min-width:140px;text-align:left;">玩家 1 等级码：</div>
+    <input type="text" id="p1CodeInput" placeholder="留空则武器/角色为1级基础状态">
+  </div>
+  <div class="code-area">
+    <div style="color:#ff6ec7;font-weight:bold;min-width:140px;text-align:left;">玩家 2 等级码：</div>
+    <input type="text" id="p2CodeInput" placeholder="留空则武器/角色为1级基础状态">
+  </div>
+</div>
+<div class="menu-buttons"><button class="btn-menu" id="dualStartBtn">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
 <!-- 設定、暫停、商店與結算選單 -->
 <div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>速度上限</span><input type="number" id="speedCapInput" min="0" max="40" step="0.1"><span id="speedCapText">4.0</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label><div class="menu-buttons"><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
 <div class="modal-overlay" id="pauseMenu" style="display:none"><div class="modal-title">遊戲暫停</div><div class="modal-subtitle">角色能力與對局收益（分項整理）</div><div class="stats-grid" id="statsGrid"></div><div class="menu-buttons"><button class="btn-menu" id="resumeBtn">返回戰鬥</button><button class="btn-menu secondary" id="pauseSettingsBtn">設定</button><button class="btn-menu secondary" id="saveExitBtn">離開</button></div></div>
@@ -91,18 +103,18 @@ const classes=[
 ];
 const weapons=[{id:'knife',name:'🔪刀',desc:'短距離、高頻率。',damage:1.25,range:110,cooldown:24,speed:14,kind:'melee',projectile:4,shape:'slash'},{id:'sword',name:'🗡️劍',desc:'近中距離，均衡輸出。',damage:1.15,range:150,cooldown:30,speed:13,kind:'melee',projectile:5,shape:'slash'},{id:'halberd',name:'🦽長戟',desc:'長距離斬擊，打擊範圍大。',damage:1.55,range:200,cooldown:48,speed:12,kind:'melee',projectile:6,shape:'slash'},{id:'bow',name:'🏹弓',desc:'快速箭矢。',damage:1.05,range:320,cooldown:38,speed:16,kind:'ranged',projectile:4,shape:'arrow'},{id:'crossbow',name:'🏹🏹十字弩',desc:'高傷害穿透。',damage:1.65,range:290,cooldown:55,speed:18,kind:'ranged',projectile:5,shape:'bolt'},{id:'cannon',name:'💣炮',desc:'重型爆炸砲彈。',damage:2.2,range:300,cooldown:72,speed:11,kind:'ranged',projectile:8,shape:'orb',splash:45}];
 
-/* ===== V2：局外成長（武器等級 / 角色等級 / 素材） ===== */
+/* ===== 局外成長（武器等級 / 角色等級 / 素材） ===== */
 const WEAPON_TIER_COLORS=['#b87333','#c0c0c0','#9fb6cd','#ffd700','#7cfc00','#00cfff','#c86bff','#ff6ec7','#ff3366','#ffffff'];
 const WEAPON_TIER_NAMES=['青銅','鋼鐵','白銀','黃金','翡翠','湛藍','紫晶','桃紅','血紅','神話'];
 const meta={weaponMat:0,charMat:0,weaponLevels:{},charLevels:{}};
 function loadMeta(){try{const s=JSON.parse(localStorage.getItem(META_KEY)||'{}');Object.assign(meta,s);meta.weaponLevels=meta.weaponLevels||{};meta.charLevels=meta.charLevels||{};meta.weaponMat=Math.max(0,Number(meta.weaponMat)||0);meta.charMat=Math.max(0,Number(meta.charMat)||0)}catch(e){}}
 function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(meta))}catch(e){}}
-function wLevel(id){return Math.max(1,Math.min(MAX_WLV,Number(meta.weaponLevels[id])||1))}
-function cLevel(id){return Math.max(1,Math.min(MAX_CLV,Number(meta.charLevels[id])||1))}
+function wLevel(id,cl){if(cl&&cl.w)return Math.max(1,Math.min(MAX_WLV,Number(cl.w[id])||1));return Math.max(1,Math.min(MAX_WLV,Number(meta.weaponLevels[id])||1))}
+function cLevel(id,cl){if(cl&&cl.c)return Math.max(1,Math.min(MAX_CLV,Number(cl.c[id])||1));return Math.max(1,Math.min(MAX_CLV,Number(meta.charLevels[id])||1))}
 function weaponUpgradeCost(id){const lv=wLevel(id);return 20+(lv-1)*25}
 function charUpgradeCost(id){const lv=cLevel(id);return 25+(lv-1)*30}
-function weaponStats(w){
-  const lv=wLevel(w.id),k=1+(lv-1)*.15;
+function weaponStats(w,cl){
+  const lv=wLevel(w.id,cl),k=1+(lv-1)*.15;
   return{
     level:lv,
     damage:w.damage*k,
@@ -113,7 +125,7 @@ function weaponStats(w){
     evolved:lv>=MAX_WLV
   }
 }
-function charBonus(id){const lv=cLevel(id)-1;return{hp:1+lv*.08,dmg:1+lv*.06,spd:1+lv*.02}}
+function charBonus(id,cl){const lv=cLevel(id,cl)-1;return{hp:1+lv*.08,dmg:1+lv*.06,spd:1+lv*.02}}
 loadMeta();
 
 /* ===== 皮膚系統 ===== */
@@ -122,47 +134,26 @@ let currentSkinId='default';try{const storedSkin=localStorage.getItem(SKIN_KEY);
 const paperCanvas=document.createElement('canvas');paperCanvas.width=64;paperCanvas.height=90;const pctx=paperCanvas.getContext('2d');
 function renderDetailedSummerSkin(){
   pctx.clearRect(0,0,64,90);
-  pctx.fillStyle='#e63946';
-  pctx.fillRect(18,26,28,32);
-  pctx.fillStyle='#ffe0bd';
-  pctx.fillRect(24,48,6,25);
-  pctx.fillRect(34,48,6,25);
-  pctx.strokeStyle='#2b6cb0';
-  pctx.lineWidth=1.2;
-  pctx.beginPath();
-  pctx.moveTo(24,56);pctx.lineTo(30,61);pctx.moveTo(30,61);pctx.lineTo(24,66);pctx.moveTo(24,66);pctx.lineTo(30,71);
-  pctx.moveTo(34,56);pctx.lineTo(40,61);pctx.moveTo(40,61);pctx.lineTo(34,66);pctx.moveTo(34,66);pctx.lineTo(40,71);
-  pctx.stroke();
-  pctx.fillStyle='#2b6cb0';
-  pctx.fillRect(23,73,8,3);pctx.fillRect(33,73,8,3);
-  pctx.fillStyle='#ffe0bd';
-  pctx.fillRect(23,34,18,16);
-  pctx.fillStyle='rgba(255,255,255,.75)';
-  pctx.fillRect(18,36,5,12);pctx.fillRect(41,36,5,12);
-  pctx.fillStyle='#fff';
-  pctx.fillRect(24,35,16,7);
-  pctx.fillStyle='#1a365d';
-  pctx.fillRect(24,45,16,5);
-  pctx.fillStyle='#2b6cb0';
-  pctx.beginPath();pctx.arc(30,38,2,0,Math.PI*2);pctx.arc(34,38,2,0,Math.PI*2);pctx.fill();
-  pctx.fillRect(31,37,2,3);
-  pctx.fillStyle='#ffe0bd';
-  pctx.beginPath();pctx.arc(32,24,11,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#e63946';
-  pctx.fillRect(21,14,22,11);
-  pctx.fillRect(19,23,5,18);
-  pctx.fillRect(40,23,5,18);
-  pctx.fillStyle='#1a365d';
-  pctx.beginPath();pctx.arc(28,24,1.8,0,Math.PI*2);pctx.arc(36,24,1.8,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#ffb703';
-  pctx.beginPath();pctx.arc(32,9,4.5,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#fb8500';
-  pctx.beginPath();pctx.arc(35,10,1.8,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#e63946';pctx.fillRect(18,26,28,32);
+  pctx.fillStyle='#ffe0bd';pctx.fillRect(24,48,6,25);pctx.fillRect(34,48,6,25);
+  pctx.strokeStyle='#2b6cb0';pctx.lineWidth=1.2;
+  pctx.beginPath();pctx.moveTo(24,56);pctx.lineTo(30,61);pctx.moveTo(30,61);pctx.lineTo(24,66);pctx.moveTo(24,66);pctx.lineTo(30,71);pctx.moveTo(34,56);pctx.lineTo(40,61);pctx.moveTo(40,61);pctx.lineTo(34,66);pctx.moveTo(34,66);pctx.lineTo(40,71);pctx.stroke();
+  pctx.fillStyle='#2b6cb0';pctx.fillRect(23,73,8,3);pctx.fillRect(33,73,8,3);
+  pctx.fillStyle='#ffe0bd';pctx.fillRect(23,34,18,16);
+  pctx.fillStyle='rgba(255,255,255,.75)';pctx.fillRect(18,36,5,12);pctx.fillRect(41,36,5,12);
+  pctx.fillStyle='#fff';pctx.fillRect(24,35,16,7);
+  pctx.fillStyle='#1a365d';pctx.fillRect(24,45,16,5);
+  pctx.fillStyle='#2b6cb0';pctx.beginPath();pctx.arc(30,38,2,0,Math.PI*2);pctx.arc(34,38,2,0,Math.PI*2);pctx.fill();pctx.fillRect(31,37,2,3);
+  pctx.fillStyle='#ffe0bd';pctx.beginPath();pctx.arc(32,24,11,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#e63946';pctx.fillRect(21,14,22,11);pctx.fillRect(19,23,5,18);pctx.fillRect(40,23,5,18);
+  pctx.fillStyle='#1a365d';pctx.beginPath();pctx.arc(28,24,1.8,0,Math.PI*2);pctx.arc(36,24,1.8,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#ffb703';pctx.beginPath();pctx.arc(32,9,4.5,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#fb8500';pctx.beginPath();pctx.arc(35,10,1.8,0,Math.PI*2);pctx.fill();
 }
 renderDetailedSummerSkin();const summerSkinImg=new Image();summerSkinImg.src=paperCanvas.toDataURL();
 function saveSelectedSkin(){try{localStorage.setItem(SKIN_KEY,currentSkinId)}catch(e){}}
 
-/* ===== V2：BOSS 貼圖（效仿皮膚做法，離屏預渲染） ===== */
+/* ===== BOSS 貼圖 ===== */
 const BOSS_DEFS={
   slime:{name:'史萊姆',color:'#4ade80',hpMul:.8,dmgMul:.85,speed:.9},
   boneKing:{name:'骨王',color:'#e5e7eb',hpMul:.95,dmgMul:1,speed:.8},
@@ -245,11 +236,11 @@ function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight}addEve
 /* ===== 對局狀態、玩家與遊戲物件 ===== */
 let gameState='START',wave=1,waveTimer=20,timerInterval=null,kills=0,shootCounter=0,enemySpawnCounter=0,shopChoiceIds=[],shopChoiceIds2=[],purchasedItemIds=[],purchasedItemIds2=[],shopRerollCount=0,classId='archer',weaponId='bow',summonCounter=0,pendingPetUpgrades=0;
 let gameMode='solo',player2=null,dualClassId1='archer',dualWeaponId1='bow',dualClassId2='berserker',dualWeaponId2='sword',pvpWinner=0;
-function newPlayer(cid){
+function newPlayer(cid, customLevels){
   cid=cid||classId;
-  const job=classes.find(c=>c.id===cid)||classes[1],b=charBonus(cid);
+  const job=classes.find(c=>c.id===cid)||classes[1],b=charBonus(cid,customLevels);
   const hp=Math.round(100*b.hp*(job.hpBonus||1));
-  return {x:canvas.width/2,y:canvas.height/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null}
+  return {x:canvas.width/2,y:canvas.height/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,customLevels:customLevels||null}
 }
 let player=newPlayer(),enemies=[],bullets=[],materials=[],particles=[],damageNumbers=[],slashes=[],turrets=[],lightningBeams=[],eliteFlashes=[],bossCircles=[],bossZones=[],bossBeams=[],skillFrame=0,droneCooldowns=[];const keys={};
 const touchData={active:false,vx:0,vy:0};
@@ -320,14 +311,21 @@ function generateCode(){
   try{return btoa(JSON.stringify(data))}catch(e){return ""}
 }
 function importCode(code){
-  if(!code)return;
+  if(!code)return false;
   try{
     const data=JSON.parse(atob(code));
     if(data.w)meta.weaponLevels=data.w;
     if(data.c)meta.charLevels=data.c;
     saveMeta();renderForge();renderChar();
-    alert('等级码导入成功！');
-  }catch(e){alert('无效的等级码')}
+    return true;
+  }catch(e){return false}
+}
+function parseCodeToLevels(code){
+  if(!code)return {w:{},c:{}};
+  try{
+    const data=JSON.parse(atob(code));
+    return {w:data.w||{},c:data.c||{}};
+  }catch(e){return {w:{},c:{}}}
 }
 
 /* ===== 商店道具池 ===== */
@@ -500,11 +498,11 @@ function startGame(){
   enemies=[];bullets=[];materials=[];particles=[];damageNumbers=[];slashes=[];turrets=[];lightningBeams=[];eliteFlashes=[];bossCircles=[];bossZones=[];bossBeams=[];skillFrame=0;droneCooldowns=[];
   clampPlayerSpeed();initWave();showMenu('none');updateStatsDisplay();updateHUD();
 }
-function startDual(mode){
+function startDual(mode, p1Levels, p2Levels){
   initAudio();try{localStorage.removeItem(SAVE_KEY)}catch(e){}
   gameMode=mode;pvpWinner=0;wave=1;kills=0;shootCounter=0;enemySpawnCounter=0;summonCounter=0;shopRerollCount=0;pendingPetUpgrades=0;
-  player=newPlayer(dualClassId1);player.weaponId=dualWeaponId1;
-  player2=newPlayer(dualClassId2);player2.weaponId=dualWeaponId2;
+  player=newPlayer(dualClassId1, p1Levels);player.weaponId=dualWeaponId1;
+  player2=newPlayer(dualClassId2, p2Levels);player2.weaponId=dualWeaponId2;
   player2.speedCap=player.speedCap=4;
   enemies=[];bullets=[];materials=[];particles=[];damageNumbers=[];slashes=[];turrets=[];lightningBeams=[];eliteFlashes=[];bossCircles=[];bossZones=[];bossBeams=[];skillFrame=0;droneCooldowns=[];
   if(mode==='pvp'){
@@ -681,9 +679,9 @@ function petDamageMultiplier(p){p=p||player;return 1+(p.petLevel||0)*.1}
 function updateStatsDisplay(){
   const c=classes.find(x=>x.id===player.classId)||classes[1];
   const w=weapons.find(x=>x.id===player.weaponId)||weapons[3];
-  const ws=weaponStats(w);
+  const ws=weaponStats(w,player.customLevels);
   const rate=60/Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32)),dmg=player.damage*ws.damage*(w.kind==='melee'?c.melee:c.range),critChance=1-(1-clamp(player.critChance,0,1))*(1-clamp(c.crit,0,1)),critMult=player.critDamage+c.critDamage,expected=dmg*(1+critChance*(critMult-1)),finalMultiplier=truthDamageMultiplier(player)*petDamageMultiplier(player);
-  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DEFENSE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
+  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id,player.customLevels)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DEFENSE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
   const metaGroups=[{title:'基本',items:groups.basic},{title:'戰鬥',items:groups.combat},{title:'生存',items:groups.survival},{title:'收益',items:groups.economy}];
   document.getElementById('statsGrid').innerHTML=metaGroups.map(g=>`<div class="stats-group"><div class="stats-group-title">${g.title}</div>${g.items.map(([k,v])=>`<div class="stat-item"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`).join('');
 }
@@ -983,7 +981,7 @@ function playerCombat(p,mx,my,targets){
   if(!p||p.dead)return;
   const wdef=weapons.find(w=>w.id===p.weaponId)||weapons[3];
   const job=classes.find(c=>c.id===p.classId)||classes[1];
-  const ws=weaponStats(wdef);
+  const ws=weaponStats(wdef, p.customLevels);
   const rageDmg=(p.skillActive>0&&job.skill==='rage')?1.6:1;
   const rageAs=(p.skillActive>0&&job.skill==='rage')?.6:1;
   const interval=Math.max(6,Math.round(p.attackSpeed*ws.cooldown/32*rageAs));
@@ -1226,7 +1224,7 @@ function update(){
       if((e.type==='elite'||e.type==='boss')&&wave>=10)pendingPetUpgrades++;
       const gold=(e.type==='boss'?150:e.type==='elite'?80:10)*(1+e.incomeBonus);
       player.gold+=Math.round(gold);
-      if(player2)player2.gold+=Math.round(gold); // 双人模式下双方各自获得金币
+      if(player2)player2.gold+=Math.round(gold); 
       
       const dropW=e.type==='boss'?Math.round(10+Math.random()*10):e.type==='elite'?Math.round(3+Math.random()*4):(Math.random()<.3?1:0);
       const dropC=e.type==='boss'?Math.round(8+Math.random()*8):e.type==='elite'?Math.round(2+Math.random()*3):(Math.random()<.2?1:0);
@@ -1281,7 +1279,14 @@ bind('dualBackBtn',()=>showMenu('startMenu'));
 bind('pvpModeBtn',()=>{document.getElementById('dualLoadoutTitle').textContent='雙人 PVP 配置';renderDualChoices();showMenu('dualLoadoutMenu')});
 bind('coopModeBtn',()=>{document.getElementById('dualLoadoutTitle').textContent='雙人副本配置';renderDualChoices();showMenu('dualLoadoutMenu')});
 bind('dualLoadoutBackBtn',()=>showMenu('dualMenu'));
-bind('dualStartBtn',()=>{const mode=document.getElementById('dualLoadoutTitle').textContent.includes('PVP')?'pvp':'coop';startDual(mode)});
+bind('dualStartBtn',()=>{
+  const mode=document.getElementById('dualLoadoutTitle').textContent.includes('PVP')?'pvp':'coop';
+  const code1=document.getElementById('p1CodeInput').value.trim();
+  const code2=document.getElementById('p2CodeInput').value.trim();
+  const p1Levels=code1?parseCodeToLevels(code1):{w:{},c:{}};
+  const p2Levels=code2?parseCodeToLevels(code2):{w:{},c:{}};
+  startDual(mode, p1Levels, p2Levels);
+});
 bind('openSettingsBtn',()=>{syncSettings();showMenu('settingsMenu')});
 bind('settingsBackBtn',()=>{if(gameState==='PAUSE'){showMenu('pauseMenu')}else{showMenu('startMenu')}});
 bind('pauseBtn',togglePause);
@@ -1303,7 +1308,7 @@ bind('exportCodeBtn',()=>{
 });
 bind('importCodeBtn',()=>{
   const code=document.getElementById('importCodeInput').value.trim();
-  importCode(code);
+  if(importCode(code)) alert('等级码导入成功！');
 });
 bind('exportCodeBtn2',()=>{
   const code=generateCode();
@@ -1311,10 +1316,10 @@ bind('exportCodeBtn2',()=>{
 });
 bind('importCodeBtn2',()=>{
   const code=document.getElementById('importCodeInput2').value.trim();
-  importCode(code);
+  if(importCode(code)) alert('等级码导入成功！');
 });
-document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){importCode(e.target.value.trim())}});
-document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){importCode(e.target.value.trim())}});
+document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim())) alert('等级码导入成功！')}});
+document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim())) alert('等级码导入成功！')}});
 
 function syncSettings(){soundToggle.checked=settings.sound;volumeSlider.value=Math.round(settings.volume*100);volumeText.textContent=`${Math.round(settings.volume*100)}%`;fxSlider.value=Math.round(settings.effects*100);fxText.textContent=`${Math.round(settings.effects*100)}%`;player.speedCap=clamp(Number(player.speedCap)||4,0,PLAYER_SPEED_CAP_MAX);player.speed=clamp(Number(player.speed)||0,0,player.speedCap);speedCapInput.value=player.speedCap;speedCapText.textContent=`${speedValueLabel(player.speedCap)}`;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`}
 function storeSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings))}catch(e){}}
