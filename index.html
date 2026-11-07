@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>馬鈴薯深空戰記 V2</title>
+<title>馬鈴薯深空戰記 V3</title>
 <style>
 /* ===== 全域、遊戲畫布與 HUD ===== */
 *{box-sizing:border-box;user-select:none;-webkit-user-select:none;touch-action:manipulation}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1a1c23;color:#fff;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}canvas{display:block;width:100%;height:100%;background:radial-gradient(circle at center,#252836,#101218)}#ui-layer{position:absolute;inset:0;padding:14px;pointer-events:none;z-index:20}.hud-top{display:flex;justify-content:space-between;align-items:flex-start}.hud-panel{display:flex;gap:14px;flex-wrap:wrap;background:#141923dc;border:2px solid #fc0;border-radius:10px;padding:9px 13px;font-size:13px;line-height:1.5;box-shadow:0 0 15px #fc04}.hud-panel span{color:#fc0;font-weight:bold}.btn-pause{pointer-events:auto;background:#101218;border:2px solid #fc0;color:#fc0;padding:9px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
@@ -16,11 +16,12 @@
   border-color: #ff3366 !important;
   box-shadow: 0 0 12px rgba(255, 51, 102, 0.6) !important;
 }
-/* ===== V2 新增樣式 ===== */
-.skill-btn{position:absolute;right:22px;bottom:96px;width:74px;height:74px;border-radius:50%;background:#0fc2;border:3px solid #0fc;color:#0fc;font-weight:900;font-size:15px;z-index:25;pointer-events:auto;display:none;text-shadow:0 0 8px #0fc}
+/* ===== V3 新增樣式 ===== */
+.skill-btn{position:absolute;bottom:50px;width:74px;height:74px;border-radius:50%;background:#0fc2;border:3px solid #0fc;color:#0fc;font-weight:900;font-size:15px;z-index:25;pointer-events:auto;display:none;text-shadow:0 0 8px #0fc}
 .skill-btn.on{display:block}
 .skill-btn.cool{opacity:.4}
-.skill-btn.p2btn{right:108px;border-color:#ff6ec7;color:#ff6ec7;background:#ff6ec722;text-shadow:0 0 8px #ff6ec7}
+.skill-btn.p1btn{left:36px}
+.skill-btn.p2btn{right:36px;border-color:#ff6ec7;color:#ff6ec7;background:#ff6ec722;text-shadow:0 0 8px #ff6ec7}
 .dual-cols{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:min(1120px,98vw);margin-bottom:10px}
 .dual-col{flex:1;min-width:290px;background:#141923;border:1px solid #fc08;border-radius:12px;padding:10px}
 .dual-col-title{font-size:14px;font-weight:800;color:#0fc;margin-bottom:8px;letter-spacing:1px}
@@ -28,7 +29,11 @@
 .choice-grid.small .choice-card,.weapon-grid.small .weapon-card{width:126px;max-width:46%;padding:8px;font-size:11px;line-height:1.25}
 .choice-grid.small .choice-card strong,.weapon-grid.small .weapon-card strong{font-size:12px;margin-bottom:3px}
 .mat-bar{color:#fc0;font-weight:800;font-size:15px;margin:6px 0}
+.code-area{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin:10px auto;padding:10px;background:#141923;border:1px solid #fc08;border-radius:8px;width:min(800px,96vw)}
+.code-area input{flex:1;min-width:150px;padding:8px;border-radius:6px;border:1px solid #fc08;background:#101218;color:#fff;text-align:center;font-size:13px}
 .pvp-banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:52px;font-weight:900;color:#fc0;text-shadow:0 0 30px #fc0a;z-index:60;pointer-events:none}
+.shop-title-p1{color:#0fc;font-weight:bold;font-size:18px;margin-top:6px}
+.shop-title-p2{color:#ff6ec7;font-weight:bold;font-size:18px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -36,7 +41,8 @@
 <canvas id="gameCanvas"></canvas>
 <div class="low-health-vignette" id="lowHealthVignette"></div>
 <div id="ui-layer"><div class="hud-top"><div class="hud-panel"><div>波次：<span id="hud-wave">1</span></div><div>生命：<span id="hud-hp">100/100</span></div><div>金幣：<span id="hud-gold">15</span></div><div>時間：<span id="hud-timer">30s</span></div></div><button class="btn-pause" id="pauseBtn">⏸</button></div></div>
-<button class="skill-btn" id="skillBtn">技能</button>
+<!-- 技能按鈕：左側P1，右側P2 -->
+<button class="skill-btn p1btn" id="skillBtn">技能</button>
 <button class="skill-btn p2btn" id="skillBtn2">P2技能</button>
 <!-- 手機觸控搖桿（雙搖桿） -->
 <div class="controls-layer" id="controlsLayer">
@@ -44,23 +50,32 @@
   <div class="stick p2" id="joystickBase2"><i id="joystickThumb2"></i></div>
 </div>
 <!-- 開始與配置選單 -->
-<div class="modal-overlay" id="startMenu"><div class="modal-title">馬鈴薯深空戰記</div><div class="modal-subtitle">SPACE SPUD: ARENA SURVIVAL V2</div><div class="menu-buttons"><button class="btn-menu" id="newGameBtn">開始戰鬥</button><button class="btn-menu secondary" id="continueGameBtn" hidden>繼續戰鬥</button><button class="btn-menu secondary" id="openForgeBtn">⚒ 武器工坊</button><button class="btn-menu secondary" id="openCharBtn">🧬 角色訓練</button><button class="btn-menu secondary" id="openDualBtn">👥 雙人模式</button><button class="btn-menu secondary" id="openSkinsBtn">角色皮膚</button><button class="btn-menu secondary" id="openSettingsBtn">設定</button></div></div>
+<div class="modal-overlay" id="startMenu"><div class="modal-title">馬鈴薯深空戰記</div><div class="modal-subtitle">SPACE SPUD: ARENA SURVIVAL V3</div><div class="menu-buttons"><button class="btn-menu" id="newGameBtn">開始戰鬥</button><button class="btn-menu secondary" id="continueGameBtn" hidden>繼續戰鬥</button><button class="btn-menu secondary" id="openForgeBtn">⚒ 武器工坊</button><button class="btn-menu secondary" id="openCharBtn">🧬 角色訓練</button><button class="btn-menu secondary" id="openDualBtn">👥 雙人模式</button><button class="btn-menu secondary" id="openSkinsBtn">角色皮膚</button><button class="btn-menu secondary" id="openSettingsBtn">設定</button></div></div>
 <div class="modal-overlay" id="loadoutMenu" style="display:none"><div class="modal-title">選擇你的戰鬥配置</div><div class="modal-subtitle">選擇職業與武器後進入戰鬥（武器等級與角色等級會自動套用）</div><strong>職業</strong><div class="choice-grid" id="classChoices"></div><strong>武器</strong><div class="weapon-grid" id="weaponChoices"></div><div class="menu-buttons"><button class="btn-menu" id="beginBattleBtn">開始戰鬥</button><button class="btn-menu secondary" id="loadoutBackBtn">返回</button></div></div>
 <!-- 皮膚選擇 UI -->
 <div class="modal-overlay" id="skinMenu" style="display:none"><div class="modal-title">皮膚選擇</div><div class="modal-subtitle">切換角色的外觀與專屬特效；選擇會自動儲存</div><div class="skin-grid" id="skinChoices"></div><div class="menu-buttons"><button class="btn-menu secondary" id="skinBackBtn">返回</button></div></div>
 <!-- 武器工坊 -->
-<div class="modal-overlay" id="forgeMenu" style="display:none"><div class="modal-title">⚒ 武器工坊</div><div class="modal-subtitle">消耗「武器素材」升級武器。升級後傷害、射程、攻速與材質都會改變。</div><div class="mat-bar">武器素材：<span id="forgeMat">0</span></div><div class="weapon-grid" id="forgeGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="forgeBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="forgeMenu" style="display:none"><div class="modal-title">⚒ 武器工坊</div><div class="modal-subtitle">消耗「武器素材」升級武器。升到10級會觸發武器進化特效。</div><div class="mat-bar">武器素材：<span id="forgeMat">0</span></div>
+<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn" style="min-width:100px;padding:6px 12px">导出等级码</button><input type="text" id="importCodeInput" placeholder="输入等级码，回车导入"><button class="btn-menu secondary" id="importCodeBtn" style="min-width:100px;padding:6px 12px">导入</button></div>
+<div class="weapon-grid" id="forgeGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="forgeBackBtn">返回</button></div></div>
 <!-- 角色訓練 -->
-<div class="modal-overlay" id="charMenu" style="display:none"><div class="modal-title">🧬 角色訓練</div><div class="modal-subtitle">消耗「角色靈魂」提升職業等級，永久強化生命、傷害與速度。</div><div class="mat-bar">角色靈魂：<span id="charMat">0</span></div><div class="choice-grid" id="charGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="charBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="charMenu" style="display:none"><div class="modal-title">🧬 角色訓練</div><div class="modal-subtitle">消耗「角色靈魂」提升職業等級，永久強化生命、傷害與速度。</div><div class="mat-bar">角色靈魂：<span id="charMat">0</span></div>
+<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn2" style="min-width:100px;padding:6px 12px">导出等级码</button><input type="text" id="importCodeInput2" placeholder="输入等级码，回车导入"><button class="btn-menu secondary" id="importCodeBtn2" style="min-width:100px;padding:6px 12px">导入</button></div>
+<div class="choice-grid" id="charGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="charBackBtn">返回</button></div></div>
 <!-- 雙人模式 -->
 <div class="modal-overlay" id="dualMenu" style="display:none"><div class="modal-title">👥 雙人模式</div><div class="modal-subtitle">單一螢幕，兩位玩家同場作戰</div><div class="menu-buttons"><button class="btn-menu" id="pvpModeBtn">⚔ 雙人 PVP</button><button class="btn-menu" id="coopModeBtn">🗝 雙人副本</button></div><div style="margin-top:16px;color:#b0b5c0;font-size:13px;line-height:1.9"><div>玩家 1：左半螢幕搖桿移動／空白鍵或 F 技能</div><div>玩家 2：右半螢幕搖桿移動／Enter 技能</div><div>（亦可用鍵盤：P1 為 WASD，P2 為方向鍵）</div><div>雙人副本：兩人共用金幣，一起撐過波次；倒地 5 秒後自動復活</div><div>雙人 PVP：把對手打倒即獲勝</div></div><div class="menu-buttons"><button class="btn-menu secondary" id="dualBackBtn">返回</button></div></div>
 <div class="modal-overlay" id="dualLoadoutMenu" style="display:none"><div class="modal-title" id="dualLoadoutTitle">雙人配置</div><div class="dual-cols"><div class="dual-col"><div class="dual-col-title">玩家 1（左搖桿 / WASD）</div><strong>職業</strong><div class="choice-grid small" id="p1ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p1WeaponChoices"></div></div><div class="dual-col"><div class="dual-col-title">玩家 2（右搖桿 / 方向鍵）</div><strong>職業</strong><div class="choice-grid small" id="p2ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p2WeaponChoices"></div></div></div><div class="menu-buttons"><button class="btn-menu" id="dualStartBtn">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
 <!-- 設定、暫停、商店與結算選單 -->
 <div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>速度上限</span><input type="number" id="speedCapInput" min="0" max="40" step="0.1"><span id="speedCapText">4.0</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label><div class="menu-buttons"><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
 <div class="modal-overlay" id="pauseMenu" style="display:none"><div class="modal-title">遊戲暫停</div><div class="modal-subtitle">角色能力與對局收益（分項整理）</div><div class="stats-grid" id="statsGrid"></div><div class="menu-buttons"><button class="btn-menu" id="resumeBtn">返回戰鬥</button><button class="btn-menu secondary" id="pauseSettingsBtn">設定</button><button class="btn-menu secondary" id="saveExitBtn">離開</button></div></div>
+<!-- 商店 UI -->
 <div class="modal-overlay" id="shopMenu" style="display:none"><div class="modal-title">戰利品商店 (SHOP)</div><div class="modal-subtitle">購買道具強化你的馬鈴薯！</div>
-<div style="color:#fc0;font-size:16px;font-weight:bold;margin:4px 0 10px;">擁有金幣：<span id="shopGold">0</span></div>
-<div class="shop-grid" id="shopGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="rerollShopBtn">刷新獎勵（消耗：10 金幣）</button><button class="btn-menu secondary" id="autoBuyBtn">自動購買（花光金錢）</button><button class="btn-menu secondary" id="petQuickUpgradeBtn" hidden>一鍵升級寵物</button><button class="btn-menu" id="nextWaveBtn">下一波</button></div></div>
+<div style="color:#fc0;font-size:16px;font-weight:bold;margin:4px 0 10px;">P1 金幣：<span id="shopGold1">0</span> <span id="shopGold2Wrap" style="display:none"> | P2 金幣：<span id="shopGold2">0</span></span></div>
+<div class="shop-title-p1" id="shopP1Title" style="display:none">玩家 1 商店</div>
+<div class="shop-grid" id="shopGrid"></div>
+<div class="shop-title-p2" id="shopP2Title" style="display:none">玩家 2 商店</div>
+<div class="shop-grid" id="shopGrid2" style="display:none"></div>
+<div class="menu-buttons"><button class="btn-menu secondary" id="rerollShopBtn">刷新獎勵（消耗：10 金幣）</button><button class="btn-menu secondary" id="autoBuyBtn">自動購買（花光金錢）</button><button class="btn-menu secondary" id="petQuickUpgradeBtn" hidden>一鍵升級寵物</button><button class="btn-menu" id="nextWaveBtn">下一波</button></div></div>
 <div class="modal-overlay" id="gameOverMenu" style="display:none"><div class="modal-title" style="color:#ff3366">馬鈴薯倒下了 (GAME OVER)</div><div class="modal-subtitle" id="gameOverStats"></div><button class="btn-menu" id="restartBtn">重新開始</button></div>
 <script>
 'use strict';
@@ -86,11 +101,22 @@ function wLevel(id){return Math.max(1,Math.min(MAX_WLV,Number(meta.weaponLevels[
 function cLevel(id){return Math.max(1,Math.min(MAX_CLV,Number(meta.charLevels[id])||1))}
 function weaponUpgradeCost(id){const lv=wLevel(id);return 20+(lv-1)*25}
 function charUpgradeCost(id){const lv=cLevel(id);return 25+(lv-1)*30}
-function weaponStats(w){const lv=wLevel(w.id),k=1+(lv-1)*.12;return{level:lv,damage:w.damage*k,range:w.range*(1+(lv-1)*.045),cooldown:Math.max(6,w.cooldown*(1-(lv-1)*.025)),color:WEAPON_TIER_COLORS[Math.min(9,lv-1)],proj:w.projectile+Math.floor((lv-1)/3)}}
+function weaponStats(w){
+  const lv=wLevel(w.id),k=1+(lv-1)*.15;
+  return{
+    level:lv,
+    damage:w.damage*k,
+    range:w.range*(1+(lv-1)*.05),
+    cooldown:Math.max(6,w.cooldown*(1-(lv-1)*.03)),
+    color:WEAPON_TIER_COLORS[Math.min(9,lv-1)],
+    proj:w.projectile+Math.floor((lv-1)/2),
+    evolved:lv>=MAX_WLV
+  }
+}
 function charBonus(id){const lv=cLevel(id)-1;return{hp:1+lv*.08,dmg:1+lv*.06,spd:1+lv*.02}}
 loadMeta();
 
-/* ===== 皮膚系統（保持原版外觀與名字，僅改特效） ===== */
+/* ===== 皮膚系統 ===== */
 const skinList=[{id:'default',name:'預設馬鈴薯',desc:'原本的經典馬鈴薯外觀，金黃色刀光。'},{id:'summer_skin',name:'夏日海灘',desc:'紅髮夏日造型。專屬暗紅華麗斬擊、花瓣劍氣與血色拖尾。'}];
 let currentSkinId='default';try{const storedSkin=localStorage.getItem(SKIN_KEY);if(skinList.some(s=>s.id===storedSkin))currentSkinId=storedSkin}catch(e){}
 const paperCanvas=document.createElement('canvas');paperCanvas.width=64;paperCanvas.height=90;const pctx=paperCanvas.getContext('2d');
@@ -217,7 +243,7 @@ function playSound(type){if(!settings.sound||settings.volume<=0)return;initAudio
 function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight}addEventListener('resize',resizeCanvas);resizeCanvas();
 
 /* ===== 對局狀態、玩家與遊戲物件 ===== */
-let gameState='START',wave=1,waveTimer=20,timerInterval=null,kills=0,shootCounter=0,enemySpawnCounter=0,shopChoiceIds=[],purchasedItemIds=[],shopRerollCount=0,classId='archer',weaponId='bow',summonCounter=0,pendingPetUpgrades=0;
+let gameState='START',wave=1,waveTimer=20,timerInterval=null,kills=0,shootCounter=0,enemySpawnCounter=0,shopChoiceIds=[],shopChoiceIds2=[],purchasedItemIds=[],purchasedItemIds2=[],shopRerollCount=0,classId='archer',weaponId='bow',summonCounter=0,pendingPetUpgrades=0;
 let gameMode='solo',player2=null,dualClassId1='archer',dualWeaponId1='bow',dualClassId2='berserker',dualWeaponId2='sword',pvpWinner=0;
 function newPlayer(cid){
   cid=cid||classId;
@@ -262,8 +288,8 @@ function renderForge(){
   document.getElementById('forgeGrid').innerHTML=weapons.map(w=>{
     const lv=wLevel(w.id),cost=weaponUpgradeCost(w.id),maxed=lv>=MAX_WLV,ws=weaponStats(w);
     return `<button class="weapon-card" data-forge="${w.id}" ${maxed?'disabled':''} style="border-color:${ws.color}">
-      <strong style="color:${ws.color}">${w.name} Lv.${lv} · ${WEAPON_TIER_NAMES[lv-1]}</strong>
-      <small>傷害 x${ws.damage.toFixed(2)}<br>距離 ${Math.round(ws.range)} · 間隔 ${ws.cooldown.toFixed(0)} 幀<br>${maxed?'已達最高等級':'升級需要 '+cost+' 武器素材'}</small></button>`}).join('');
+      <strong style="color:${ws.color}">${w.name} Lv.${lv} ${maxed?'【進化】':'· '+WEAPON_TIER_NAMES[lv-1]}</strong>
+      <small>傷害 x${ws.damage.toFixed(2)}<br>距離 ${Math.round(ws.range)} · 間隔 ${ws.cooldown.toFixed(0)} 幀<br>${maxed?'已達最高等級(進化)':'升級需要 '+cost+' 武器素材'}</small></button>`}).join('');
   document.querySelectorAll('[data-forge]').forEach(b=>b.onclick=()=>{
     const id=b.dataset.forge,lv=wLevel(id);
     if(lv>=MAX_WLV)return;
@@ -286,6 +312,22 @@ function renderChar(){
     if(meta.charMat<cost)return;
     meta.charMat-=cost;meta.charLevels[id]=lv+1;saveMeta();renderChar();playSound('coin');
   })
+}
+
+/* ===== 等级码导入导出 ===== */
+function generateCode(){
+  const data={w:meta.weaponLevels,c:meta.charLevels};
+  try{return btoa(JSON.stringify(data))}catch(e){return ""}
+}
+function importCode(code){
+  if(!code)return;
+  try{
+    const data=JSON.parse(atob(code));
+    if(data.w)meta.weaponLevels=data.w;
+    if(data.c)meta.charLevels=data.c;
+    saveMeta();renderForge();renderChar();
+    alert('等级码导入成功！');
+  }catch(e){alert('无效的等级码')}
 }
 
 /* ===== 商店道具池 ===== */
@@ -318,15 +360,17 @@ function nearestTarget(x,y,r,list){let t=null,b=r;for(const e of (list||enemies)
 function spawnParticles(x,y,color,n=6,spread=1){const s=Math.max(.25,settings.effects);for(let i=0;i<Math.round(n*s);i++){const a=Math.random()*Math.PI*2,v=(Math.random()*3+1)*spread*s;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,color,radius:Math.random()*3+1,decay:.015+Math.random()*.025})}}
 function addDamageNumber(x,y,text,color='#fff',critical=false){damageNumbers.push({x,y,text,life:1,vy:-1.2,color,critical})}
 
-/* ===== 斬擊特效（V2：金黃色劈砍 / 皮膚暗紅華麗斬擊） ===== */
-function addSlash(x,y,angle,length,ttl=.16,width=14,color='#ffd700',type='knife'){
+/* ===== 斬擊特效 ===== */
+function addSlash(x,y,angle,length,ttl=.16,width=14,color='#ffd700',type='knife',evolved=false){
   const isSkin=currentSkinId==='summer_skin';
-  const base=isSkin?'#b3001b':(color||'#ffd700');
-  slashes.push({x,y,angle,length,ttl,life:ttl,isSkin,width,color:base,type:type||'knife',glow:isSkin?'#ff2d55':'#ffea8a'});
+  let base=isSkin?'#b3001b':(color||'#ffd700');
+  let glow=isSkin?'#ff2d55':'#ffea8a';
+  if(evolved){ base='#ffffff'; glow=isSkin?'#ff2d55':'#ffd700'; }
+  slashes.push({x,y,angle,length,ttl,life:ttl,isSkin,width,color:base,type:type||'knife',glow,evolved});
   const arcSpan=type==='halberd'?1.55:type==='sword'?1.15:0.85;
-  const n=Math.round((isSkin?18:13)*Math.max(.25,settings.effects));
+  const n=Math.round((isSkin?18:13)*Math.max(.25,settings.effects))*(evolved?2:1);
   for(let i=0;i<n;i++){
-    const a=angle+(Math.random()-.5)*arcSpan;
+    const a=angle+(Math.random()-.5)*arcSpan*(evolved?1.2:1);
     const r=length*(0.5+Math.random()*0.5);
     const v=Math.random()*5+2;
     particles.push({
@@ -337,13 +381,16 @@ function addSlash(x,y,angle,length,ttl=.16,width=14,color='#ffd700',type='knife'
       radius:Math.random()*3+1.5, decay:.025+Math.random()*.03
     });
   }
+  if(evolved){
+    spawnParticles(x+Math.cos(angle)*length*.5, y+Math.sin(angle)*length*.5, isSkin?'#ff2d55':'#ffd700', 15, 2);
+  }
 }
 function drawSlash(s){
   const p=clamp(s.life/s.ttl,0,1);
   const isSkin=s.isSkin;
-  const glow=isSkin?'#ff2d55':'#ffea8a';
+  const glow=s.glow;
   const core=isSkin?'#ff8fa3':'#fffbe0';
-  const base=isSkin?'#b3001b':(s.color||'#ffd700');
+  const base=s.color;
   const R=s.length*0.72;
   const span=s.type==='halberd'?1.55:s.type==='sword'?1.15:0.85;
   const a0=-span/2,a1=span/2;
@@ -352,34 +399,26 @@ function drawSlash(s){
   ctx.rotate(s.angle);
   ctx.lineCap='round';
   ctx.globalAlpha=p;
-  /* 外層光暈 */
-  ctx.shadowBlur=24;ctx.shadowColor=glow;
-  ctx.strokeStyle=base;
-  ctx.lineWidth=s.width*(0.55+p*0.6);
-  ctx.beginPath();ctx.arc(0,0,R,a0,a1);ctx.stroke();
-  /* 中層亮色 */
-  ctx.strokeStyle=glow;
-  ctx.lineWidth=Math.max(1.5,s.width*0.3*(0.6+p*0.5));
-  ctx.beginPath();ctx.arc(0,0,R,a0*0.96,a1*0.96);ctx.stroke();
-  /* 內層白芯 */
-  ctx.strokeStyle=core;
-  ctx.lineWidth=1.6;
-  ctx.beginPath();ctx.arc(0,0,R,a0*0.85,a1*0.85);ctx.stroke();
-  /* 劍身滑動拖尾 */
+  if(s.evolved){
+    ctx.shadowBlur=40;ctx.shadowColor=glow;
+    ctx.strokeStyle=base;ctx.lineWidth=s.width*1.5;ctx.beginPath();ctx.arc(0,0,R+10,a0,a1);ctx.stroke();
+  }
+  ctx.shadowBlur=s.evolved?35:24;ctx.shadowColor=glow;
+  ctx.strokeStyle=base;ctx.lineWidth=s.width*(0.55+p*0.6);ctx.beginPath();ctx.arc(0,0,R,a0,a1);ctx.stroke();
+  ctx.strokeStyle=glow;ctx.lineWidth=Math.max(1.5,s.width*0.3*(0.6+p*0.5));ctx.beginPath();ctx.arc(0,0,R,a0*0.96,a1*0.96);ctx.stroke();
+  ctx.strokeStyle=core;ctx.lineWidth=s.evolved?3:1.6;ctx.beginPath();ctx.arc(0,0,R,a0*0.85,a1*0.85);ctx.stroke();
   const g=ctx.createLinearGradient(0,0,R,0);
-  g.addColorStop(0,'rgba(0,0,0,0)');
-  g.addColorStop(1,glow);
-  ctx.globalAlpha=p*0.9;
-  ctx.strokeStyle=g;
-  ctx.lineWidth=Math.max(2,s.width*0.35);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,glow);
+  ctx.globalAlpha=p*0.9;ctx.strokeStyle=g;ctx.lineWidth=Math.max(2,s.width*0.35);
   ctx.beginPath();ctx.moveTo(R*0.15,0);ctx.lineTo(R,0);ctx.stroke();
   ctx.restore();
 }
 
 function makeEnemy(type,x,y){
   const boss=type==='boss',elite=type==='elite';
-  const powerFactor=wave>=15?Math.pow(wave,2.2):Math.max(1,wave*.5);
-  const hpScale=powerFactor,damageScale=powerFactor*.7,speedScale=wave>=15?1+(wave-15)*.015:1,radiusBoost=wave>=10?1+(wave-10)*.04:1;
+  const dualMul=player2?1.8:1; 
+  const powerFactor=(wave>=15?Math.pow(wave,2.2):Math.max(1,wave*.5))*dualMul;
+  const hpScale=powerFactor,damageScale=powerFactor*.7,speedScale=wave>=15?1+(wave-15)*.02:1,radiusBoost=wave>=10?1+(wave-10)*.04:1;
   const hp=(boss?1800+wave*260:elite?260+wave*85:35+wave*18)*hpScale,
         radius=(boss?36:elite?25:(Math.random()<.25?12:16))*radiusBoost,
         speed=(boss?.8:elite?1.15:(Math.random()<.18?2.4:1.6)+wave*.05)*speedScale;
@@ -482,14 +521,123 @@ function triggerShop(){
   initAudio();shopRerollCount=0;gameState='SHOP';startInvulnerability();
   const availablePool=itemPool.filter(item=>!(item.unique&&player.permanentPurchasedIds.includes(item.id)));
   shopChoiceIds=[...availablePool].sort(()=>Math.random()-.5).slice(0,4).map(x=>x.id);
-  purchasedItemIds=[];renderShop();document.getElementById('shopMenu').style.display='flex';updateHUD();saveGame();
+  purchasedItemIds=[];
+  if(player2){
+    const availablePool2=itemPool.filter(item=>!(item.unique&&player2.permanentPurchasedIds.includes(item.id)));
+    shopChoiceIds2=[...availablePool2].sort(()=>Math.random()-.5).slice(0,4).map(x=>x.id);
+    purchasedItemIds2=[];
+  }
+  renderShop();document.getElementById('shopMenu').style.display='flex';updateHUD();saveGame();
 }
 function currentRerollCost(){return SHOP_REROLL_BASE_COST+shopRerollCount*SHOP_REROLL_COST_STEP}
-function rerollShop(){const cost=currentRerollCost();if(gameState!=='SHOP'||player.gold<cost)return;player.gold-=cost;shopRerollCount++;purchasedItemIds=[];const available=itemPool.filter(item=>!shopChoiceIds.includes(item.id)&&!(item.unique&&player.permanentPurchasedIds.includes(item.id)));shopChoiceIds=available.sort(()=>Math.random()-.5).slice(0,4).map(item=>item.id);renderShop();updateHUD();updateStatsDisplay();saveGame()}
-function autoBuyShop(){if(gameState!=='SHOP')return;let boughtAny=true;while(boughtAny){boughtAny=false;for(const id of shopChoiceIds){const item=itemPool.find(x=>x.id===id);if(!item)continue;const isBoughtThisWave=purchasedItemIds.includes(id);if(item.unique&&player.permanentPurchasedIds.includes(id))continue;if(!isBoughtThisWave&&player.gold>=item.price){player.gold-=item.price;item.apply(player);purchasedItemIds.push(id);if(item.unique&&!player.permanentPurchasedIds.includes(id))player.permanentPurchasedIds.push(id);boughtAny=true;break}}}renderShop();updateHUD();updateStatsDisplay();saveGame()}
+function rerollShop(){
+  const cost=currentRerollCost();
+  if(gameState!=='SHOP'||player.gold<cost)return;
+  player.gold-=cost;
+  if(player2){ if(player2.gold>=cost) player2.gold-=cost; else return; }
+  shopRerollCount++;
+  purchasedItemIds=[];
+  const available=itemPool.filter(item=>!shopChoiceIds.includes(item.id)&&!(item.unique&&player.permanentPurchasedIds.includes(item.id)));
+  shopChoiceIds=available.sort(()=>Math.random()-.5).slice(0,4).map(item=>item.id);
+  if(player2){
+    purchasedItemIds2=[];
+    const available2=itemPool.filter(item=>!shopChoiceIds2.includes(item.id)&&!(item.unique&&player2.permanentPurchasedIds.includes(item.id)));
+    shopChoiceIds2=available2.sort(()=>Math.random()-.5).slice(0,4).map(item=>item.id);
+  }
+  renderShop();updateHUD();updateStatsDisplay();saveGame();
+}
+function autoBuyShop(){
+  if(gameState!=='SHOP')return;
+  let boughtAny=true;
+  while(boughtAny){
+    boughtAny=false;
+    for(const id of shopChoiceIds){
+      const item=itemPool.find(x=>x.id===id);if(!item)continue;
+      const isBought=purchasedItemIds.includes(id);
+      if(item.unique&&player.permanentPurchasedIds.includes(id))continue;
+      if(!isBought&&player.gold>=item.price){
+        player.gold-=item.price;item.apply(player);purchasedItemIds.push(id);
+        if(item.unique&&!player.permanentPurchasedIds.includes(id))player.permanentPurchasedIds.push(id);
+        boughtAny=true;break;
+      }
+    }
+    if(player2){
+      for(const id of shopChoiceIds2){
+        const item=itemPool.find(x=>x.id===id);if(!item)continue;
+        const isBought=purchasedItemIds2.includes(id);
+        if(item.unique&&player2.permanentPurchasedIds.includes(id))continue;
+        if(!isBought&&player2.gold>=item.price){
+          player2.gold-=item.price;item.apply(player2);purchasedItemIds2.push(id);
+          if(item.unique&&!player2.permanentPurchasedIds.includes(id))player2.permanentPurchasedIds.push(id);
+          boughtAny=true;break;
+        }
+      }
+    }
+  }
+  renderShop();updateHUD();updateStatsDisplay();saveGame();
+}
 
 function makeShopCard(title,desc,price,onClick,disabled=false,isUnique=false){const card=document.createElement('button');card.className=`shop-card ${isUnique?'unique-item':''}`;card.innerHTML=`<strong>${title}</strong><small>${desc}</small><br><em>價格：${price}</em>`;card.disabled=disabled;card.onclick=onClick;return card}
-function renderShop(){const grid=document.getElementById('shopGrid');grid.innerHTML='';for(const id of shopChoiceIds){const item=itemPool.find(x=>x.id===id);if(!item)continue;const isBoughtThisWave=purchasedItemIds.includes(id);const card=makeShopCard(item.title,item.desc,item.price,()=>{if(player.gold<item.price||isBoughtThisWave)return;player.gold-=item.price;item.apply(player);purchasedItemIds.push(id);if(item.unique&&!player.permanentPurchasedIds.includes(id))player.permanentPurchasedIds.push(id);renderShop();updateHUD();updateStatsDisplay();saveGame()},player.gold<item.price||isBoughtThisWave,item.unique);grid.appendChild(card)}if(!player.petUnlocked&&wave>=10&&pendingPetUpgrades>0){grid.appendChild(makeShopCard('解鎖寵物','花費 100 金幣解鎖環繞跟隨寵物。',100,()=>{if(player.gold<100||player.petUnlocked||wave<10||pendingPetUpgrades<=0)return;player.gold-=100;pendingPetUpgrades--;player.petUnlocked=true;renderShop();updateHUD();updateStatsDisplay();saveGame()},player.gold<100))}else if(player.petUnlocked&&wave>=10&&pendingPetUpgrades>0){grid.appendChild(makeShopCard(`寵物升級（${pendingPetUpgrades} 次可選）`,`寵物目前等級 ${player.petLevel||0}；升級後所有最終傷害 +10%。`,0,()=>{if(wave<10||pendingPetUpgrades<=0)return;pendingPetUpgrades--;player.petLevel=(player.petLevel||0)+1;renderShop();updateHUD();updateStatsDisplay();saveGame()}))}const rerollBtn=document.getElementById('rerollShopBtn'),cost=currentRerollCost();rerollBtn.textContent=`刷新獎勵（消耗：${cost} 金幣）`;rerollBtn.disabled=player.gold<cost;const petBtn=document.getElementById('petQuickUpgradeBtn'),canQuickUpgrade=player.petUnlocked&&pendingPetUpgrades>0;petBtn.hidden=!canQuickUpgrade;petBtn.disabled=!canQuickUpgrade;petBtn.textContent=`一鍵升級寵物（+${pendingPetUpgrades}）`;const shopGoldEl=document.getElementById('shopGold');if(shopGoldEl)shopGoldEl.textContent=player.gold}
+function renderShop(){
+  const grid1=document.getElementById('shopGrid');
+  grid1.innerHTML='';
+  for(const id of shopChoiceIds){
+    const item=itemPool.find(x=>x.id===id);if(!item)continue;
+    const isBought=purchasedItemIds.includes(id);
+    const card=makeShopCard(item.title,item.desc,item.price,()=>{
+      if(player.gold<item.price||isBought)return;
+      player.gold-=item.price;item.apply(player);purchasedItemIds.push(id);
+      if(item.unique&&!player.permanentPurchasedIds.includes(id))player.permanentPurchasedIds.push(id);
+      renderShop();updateHUD();updateStatsDisplay();saveGame();
+    },player.gold<item.price||isBought,item.unique);
+    grid1.appendChild(card);
+  }
+  
+  const grid2=document.getElementById('shopGrid2');
+  const title1=document.getElementById('shopP1Title');
+  const title2=document.getElementById('shopP2Title');
+  const goldWrap2=document.getElementById('shopGold2Wrap');
+  if(player2){
+    grid2.style.display='flex';title1.style.display='block';title2.style.display='block';goldWrap2.style.display='inline';
+    grid2.innerHTML='';
+    for(const id of shopChoiceIds2){
+      const item=itemPool.find(x=>x.id===id);if(!item)continue;
+      const isBought=purchasedItemIds2.includes(id);
+      const card=makeShopCard(item.title,item.desc,item.price,()=>{
+        if(player2.gold<item.price||isBought)return;
+        player2.gold-=item.price;item.apply(player2);purchasedItemIds2.push(id);
+        if(item.unique&&!player2.permanentPurchasedIds.includes(id))player2.permanentPurchasedIds.push(id);
+        renderShop();updateHUD();updateStatsDisplay();saveGame();
+      },player2.gold<item.price||isBought,item.unique);
+      grid2.appendChild(card);
+    }
+  }else{
+    grid2.style.display='none';title1.style.display='none';title2.style.display='none';goldWrap2.style.display='none';
+  }
+  
+  if(!player.petUnlocked&&wave>=10&&pendingPetUpgrades>0){
+    grid1.appendChild(makeShopCard('解鎖寵物','花費 100 金幣解鎖環繞跟隨寵物。',100,()=>{
+      if(player.gold<100||player.petUnlocked||wave<10||pendingPetUpgrades<=0)return;
+      player.gold-=100;pendingPetUpgrades--;player.petUnlocked=true;renderShop();updateHUD();updateStatsDisplay();saveGame();
+    },player.gold<100));
+  }else if(player.petUnlocked&&wave>=10&&pendingPetUpgrades>0){
+    grid1.appendChild(makeShopCard(`寵物升級（${pendingPetUpgrades} 次可選）`,`寵物目前等級 ${player.petLevel||0}；升級後所有最終傷害 +10%。`,0,()=>{
+      if(wave<10||pendingPetUpgrades<=0)return;
+      pendingPetUpgrades--;player.petLevel=(player.petLevel||0)+1;renderShop();updateHUD();updateStatsDisplay();saveGame();
+    }));
+  }
+  
+  const rerollBtn=document.getElementById('rerollShopBtn'),cost=currentRerollCost();
+  rerollBtn.textContent=`刷新獎勵（消耗：${cost} 金幣）`;
+  rerollBtn.disabled=player.gold<cost || (player2 && player2.gold<cost);
+  
+  const petBtn=document.getElementById('petQuickUpgradeBtn'),canQuickUpgrade=player.petUnlocked&&pendingPetUpgrades>0;
+  petBtn.hidden=!canQuickUpgrade;petBtn.disabled=!canQuickUpgrade;
+  petBtn.textContent=`一鍵升級寵物（+${pendingPetUpgrades}）`;
+  
+  const s1=document.getElementById('shopGold1'); if(s1) s1.textContent=player.gold;
+  const s2=document.getElementById('shopGold2'); if(s2&&player2) s2.textContent=player2.gold;
+}
 function quickUpgradePet(){if(!player.petUnlocked||pendingPetUpgrades<=0||gameState!=='SHOP')return;const count=pendingPetUpgrades;pendingPetUpgrades=0;player.petLevel=(player.petLevel||0)+count;renderShop();updateHUD();updateStatsDisplay();saveGame()}
 function startNextWave(){wave++;document.getElementById('shopMenu').style.display='none';initWave()}
 function gameOver(){
@@ -535,7 +683,7 @@ function updateStatsDisplay(){
   const w=weapons.find(x=>x.id===player.weaponId)||weapons[3];
   const ws=weaponStats(w);
   const rate=60/Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32)),dmg=player.damage*ws.damage*(w.kind==='melee'?c.melee:c.range),critChance=1-(1-clamp(player.critChance,0,1))*(1-clamp(c.crit,0,1)),critMult=player.critDamage+c.critDamage,expected=dmg*(1+critChance*(critMult-1)),finalMultiplier=truthDamageMultiplier(player)*petDamageMultiplier(player);
-  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DEFENSE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
+  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DEFENSE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
   const metaGroups=[{title:'基本',items:groups.basic},{title:'戰鬥',items:groups.combat},{title:'生存',items:groups.survival},{title:'收益',items:groups.economy}];
   document.getElementById('statsGrid').innerHTML=metaGroups.map(g=>`<div class="stats-group"><div class="stats-group-title">${g.title}</div>${g.items.map(([k,v])=>`<div class="stat-item"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`).join('');
 }
@@ -549,22 +697,32 @@ function loadSavedGame(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));
 /* ===== 畫面繪製 ===== */
 function drawBar(e){const w=e.type==='boss'?Math.max(48,e.radius*2.4):Math.max(26,e.radius*2.4),h=e.type==='boss'?8:5,x=e.x-w/2,y=e.y-e.radius-10,r=clamp(e.hp/e.maxHp,0,1);ctx.fillStyle='#000b';ctx.fillRect(x,y,w,h);ctx.fillStyle=e.type==='boss'?'#c86bff':r>.6?'#32d59d':'#ffcd58';ctx.fillRect(x,y,w*r,h)}
 function drawBullet(b){
-  /* V2：飛行拖尾（金色 / 皮膚暗紅 / 材質色） */
   ctx.save();
-  const trailLen=Math.max(3,Math.hypot(b.vx,b.vy)*3.2);
+  const trailLen=Math.max(3,Math.hypot(b.vx,b.vy)*3.2)*(b.evolved?1.8:1);
   const grad=ctx.createLinearGradient(b.x-b.vx*3.2,b.y-b.vy*3.2,b.x,b.y);
   grad.addColorStop(0,'rgba(0,0,0,0)');
   grad.addColorStop(1,b.color||'#fff');
-  ctx.strokeStyle=grad;ctx.lineWidth=Math.max(2,b.radius*0.9);ctx.lineCap='round';
+  ctx.strokeStyle=grad;ctx.lineWidth=Math.max(2,b.radius*0.9)*(b.evolved?1.5:1);ctx.lineCap='round';
   ctx.globalAlpha=.75;
   ctx.beginPath();ctx.moveTo(b.x-b.vx*3.2,b.y-b.vy*3.2);ctx.lineTo(b.x,b.y);ctx.stroke();
   ctx.restore();
 
   ctx.save();ctx.translate(b.x,b.y);ctx.rotate(Math.atan2(b.vy,b.vx));ctx.fillStyle=b.color||'#fff';
-  if(b.hostile){ctx.shadowBlur=12;ctx.shadowColor=b.color||'#f66'}
-  if(b.shape==='arrow'){ctx.beginPath();ctx.moveTo(b.radius+6,0);ctx.lineTo(-b.radius-6,-b.radius*.8);ctx.lineTo(-b.radius-6,b.radius*.8);ctx.closePath();ctx.fill()}
-  else if(b.shape==='bolt'){ctx.fillRect(-b.radius-7,-b.radius*.7,b.radius*2+14,b.radius*1.4)}
-  else{ctx.beginPath();ctx.arc(0,0,b.radius+(b.shape==='orb'?2:1),0,Math.PI*2);ctx.fill()}
+  if(b.hostile||b.evolved){ctx.shadowBlur=b.evolved?30:12;ctx.shadowColor=b.color||'#f66'}
+  if(b.shape==='arrow'){
+    const r=b.evolved?b.radius*1.5:b.radius;
+    ctx.beginPath();ctx.moveTo(r+6,0);ctx.lineTo(-r-6,-r*.8);ctx.lineTo(-r-6,r*.8);ctx.closePath();ctx.fill();
+    if(b.evolved){ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(0,0,3,0,Math.PI*2);ctx.fill();}
+  }
+  else if(b.shape==='bolt'){
+    const r=b.evolved?b.radius*1.5:b.radius;
+    ctx.fillRect(-r-7,-r*.7,r*2+14,r*1.4);
+    if(b.evolved){ctx.fillStyle='#fff';ctx.fillRect(-r, -r*.2, r*2, r*.4);}
+  }
+  else{
+    ctx.beginPath();ctx.arc(0,0,b.radius+(b.shape==='orb'?2:1)*(b.evolved?1.5:1),0,Math.PI*2);ctx.fill();
+    if(b.evolved){ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(0,0,b.radius*.6,0,Math.PI*2);ctx.fill();}
+  }
   ctx.restore();
 }
 function drawPlayerEntity(p){
@@ -752,7 +910,6 @@ function handlePlayerDown(p){
     p.revives--;p.hp=Math.max(1,Math.round(p.maxHp*.35));
     p.invulnerabilityFrames=REVIVE_INVULNERABILITY_FRAMES;
     spawnParticles(p.x,p.y,'#0fc',28,1.5);addDamageNumber(p.x,p.y-30,'復活！','#0fc');playSound('coin');
-    /* 復活時把周圍敵人推開，避免一復活立刻再死 */
     for(const e of enemies){const d=Math.hypot(e.x-p.x,e.y-p.y)||1;if(d<170){e.x+=(e.x-p.x)/d*90;e.y+=(e.y-p.y)/d*90}}
     return;
   }
@@ -841,7 +998,7 @@ function playerCombat(p,mx,my,targets){
       if(hits.length){
         p.shootCounter=0;
         const slashWidth=(wdef.id==='halberd'?18:wdef.id==='sword'?15:12)+Math.floor((ws.level-1)/2);
-        addSlash(p.x,p.y,angle,ws.range+30,.14,slashWidth,ws.color,wdef.id);
+        addSlash(p.x,p.y,angle,ws.range+30,.14,slashWidth,ws.color,wdef.id,ws.evolved);
         for(const e of hits.slice(0,wdef.id==='halberd'?4:wdef.id==='sword'?3:2)){
           const crit=Math.random()<p.critChance;
           const dmg=p.damage*ws.damage*job.melee*(crit?p.critDamage+job.critDamage:1)*rageDmg;
@@ -855,7 +1012,7 @@ function playerCombat(p,mx,my,targets){
       const shots=ws.proj>6?2:1;
       for(let s=0;s<shots;s++){
         const a=angle+(s===0?0:.12);
-        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*wdef.speed,vy:Math.sin(a)*wdef.speed,damage:p.damage*ws.damage*job.range*rageDmg,radius:wdef.projectile,color:bulletColor,shape:wdef.shape,crit:Math.random()<p.critChance,life:120,splash:wdef.splash||0,owner:p,tgt:targets||enemies});
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*wdef.speed,vy:Math.sin(a)*wdef.speed,damage:p.damage*ws.damage*job.range*rageDmg,radius:wdef.projectile,color:bulletColor,shape:wdef.shape,crit:Math.random()<p.critChance,life:120,splash:wdef.splash||0,owner:p,tgt:targets||enemies,evolved:ws.evolved});
       }
       playSound('coin');
     }
@@ -914,7 +1071,7 @@ function update(){
   const list=activePlayers();
   for(const p of list){if(p.invulnerabilityFrames>0)p.invulnerabilityFrames--;if(p.skillCd>0)p.skillCd--;if(p.skillActive>0)p.skillActive--}
 
-  /* 移動輸入：P1 鍵盤 / 左搖桿，P2 方向鍵 / 右搖桿 */
+  /* 移動輸入 */
   let mx=0,my=0;
   if(keys.KeyW)my--;if(keys.KeyS)my++;if(keys.KeyA)mx--;if(keys.KeyD)mx++;
   if(!player2){if(keys.ArrowUp)my--;if(keys.ArrowDown)my++;if(keys.ArrowLeft)mx--;if(keys.ArrowRight)mx++}
@@ -1021,10 +1178,12 @@ function update(){
     updateHUD();return;
   }
 
-  /* 生成敵人（頻率提高、數量增加） */
-  if(++enemySpawnCounter>=Math.max(20,80-wave*4)){
+  /* 生成敵人（雙人模式下頻率大增、數量增加） */
+  const spawnRate=Math.max(20,80-wave*4)/(player2?1.5:1);
+  if(++enemySpawnCounter>=spawnRate){
     enemySpawnCounter=0;
-    for(let n=0;n<Math.min(9,2+Math.floor((wave-1)/2));n++){
+    const count=Math.min(player2?12:9,2+Math.floor((wave-1)/2))*(player2?1.5:1);
+    for(let n=0;n<count;n++){
       const eliteChance=wave>=3?Math.min(.25,.08+(wave-3)*.012):0,fastChance=Math.min(.4,.2+wave*.005),roll=Math.random();
       spawnEnemy(roll<eliteChance?'elite':roll<eliteChance+fastChance?'fast':'normal');
     }
@@ -1065,16 +1224,17 @@ function update(){
     if(e.hp<=0){
       kills++;
       if((e.type==='elite'||e.type==='boss')&&wave>=10)pendingPetUpgrades++;
-      const gold=e.type==='boss'?50:e.type==='elite'?40:3;
-      player.gold+=Math.round(gold*(1+player.incomeBonus));
-      /* 掉落局外升級素材 */
-      const dropW=e.type==='boss'?Math.round(8+Math.random()*8):e.type==='elite'?Math.round(2+Math.random()*3):(Math.random()<.25?1:0);
-      const dropC=e.type==='boss'?Math.round(6+Math.random()*6):e.type==='elite'?Math.round(1+Math.random()*2):(Math.random()<.15?1:0);
+      const gold=(e.type==='boss'?150:e.type==='elite'?80:10)*(1+e.incomeBonus);
+      player.gold+=Math.round(gold);
+      if(player2)player2.gold+=Math.round(gold); // 双人模式下双方各自获得金币
+      
+      const dropW=e.type==='boss'?Math.round(10+Math.random()*10):e.type==='elite'?Math.round(3+Math.random()*4):(Math.random()<.3?1:0);
+      const dropC=e.type==='boss'?Math.round(8+Math.random()*8):e.type==='elite'?Math.round(2+Math.random()*3):(Math.random()<.2?1:0);
       if(dropW){meta.weaponMat+=dropW;addDamageNumber(e.x,e.y-30,`+${dropW} 武器素材`,'#7bdff2');}
       if(dropC){meta.charMat+=dropC;addDamageNumber(e.x,e.y-52,`+${dropC} 角色靈魂`,'#c86bff');}
       if(dropW||dropC)saveMeta();
       spawnParticles(e.x,e.y,e.color,e.type==='boss'?35:15,1.6);
-      materials.push({x:clamp(e.x,5,Math.max(5,canvas.width-5)),y:clamp(e.y,5,Math.max(5,canvas.height-5)),value:Math.max(1,Math.round((e.type==='boss'?60:e.type==='elite'?48:3)*(1+wave*.08)*(1+player.incomeBonus)))});
+      materials.push({x:clamp(e.x,5,Math.max(5,canvas.width-5)),y:clamp(e.y,5,Math.max(5,canvas.height-5)),value:Math.max(1,Math.round((e.type==='boss'?120:e.type==='elite'?80:5)*(1+wave*.08)*(1+e.incomeBonus)))});
       enemies.splice(i,1);
     }
   }
@@ -1089,7 +1249,9 @@ function update(){
       const a=Math.atan2(pick.y-m.y,pick.x-m.x),v=Math.min(9,4+(pick.attractionRange-d)*.05);
       m.x+=Math.cos(a)*v;m.y+=Math.sin(a)*v;
       if(d<pick.radius+10){
-        player.gold+=m.value;addDamageNumber(pick.x,pick.y-28,`+${m.value}`,'#ffd700');
+        player.gold+=m.value;
+        if(player2)player2.gold+=m.value;
+        addDamageNumber(pick.x,pick.y-28,`+${m.value}`,'#ffd700');
         playSound('coin');materials.splice(i,1);
       }
     }
@@ -1133,6 +1295,27 @@ bind('nextWaveBtn',startNextWave);
 bind('restartBtn',()=>{document.getElementById('gameOverMenu').style.display='none';startGame()});
 bind('skillBtn',()=>trySkill(player));
 bind('skillBtn2',()=>trySkill(player2));
+
+/* 等级码绑定 */
+bind('exportCodeBtn',()=>{
+  const code=generateCode();
+  if(code){navigator.clipboard.writeText(code).then(()=>alert('等级码已复制到剪贴板！')).catch(()=>prompt('复制以下等级码:',code));}
+});
+bind('importCodeBtn',()=>{
+  const code=document.getElementById('importCodeInput').value.trim();
+  importCode(code);
+});
+bind('exportCodeBtn2',()=>{
+  const code=generateCode();
+  if(code){navigator.clipboard.writeText(code).then(()=>alert('等级码已复制到剪贴板！')).catch(()=>prompt('复制以下等级码:',code));}
+});
+bind('importCodeBtn2',()=>{
+  const code=document.getElementById('importCodeInput2').value.trim();
+  importCode(code);
+});
+document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){importCode(e.target.value.trim())}});
+document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){importCode(e.target.value.trim())}});
+
 function syncSettings(){soundToggle.checked=settings.sound;volumeSlider.value=Math.round(settings.volume*100);volumeText.textContent=`${Math.round(settings.volume*100)}%`;fxSlider.value=Math.round(settings.effects*100);fxText.textContent=`${Math.round(settings.effects*100)}%`;player.speedCap=clamp(Number(player.speedCap)||4,0,PLAYER_SPEED_CAP_MAX);player.speed=clamp(Number(player.speed)||0,0,player.speedCap);speedCapInput.value=player.speedCap;speedCapText.textContent=`${speedValueLabel(player.speedCap)}`;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`}
 function storeSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings))}catch(e){}}
 soundToggle.onchange=e=>{settings.sound=e.target.checked;storeSettings()};volumeSlider.oninput=e=>{settings.volume=Number(e.target.value)/100;volumeText.textContent=`${e.target.value}%`;storeSettings()};fxSlider.oninput=e=>{settings.effects=Number(e.target.value)/100;fxText.textContent=`${e.target.value}%`;storeSettings()};speedCapInput.oninput=e=>{const cap=clamp(Number(e.target.value)||0,0,PLAYER_SPEED_CAP_MAX);player.speedCap=cap;player.speed=clamp(player.speed,0,cap);speedCapText.textContent=`${speedValueLabel(cap)}`;speedValueInput.max=cap;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`};speedValueInput.oninput=e=>{const value=clamp(Number(e.target.value)||0,0,player.speedCap||0);player.speed=value;speedValueText.textContent=`${speedValueLabel(value)}`};
