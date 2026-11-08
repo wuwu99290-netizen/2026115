@@ -8,7 +8,9 @@
 *{box-sizing:border-box;user-select:none;-webkit-user-select:none;touch-action:manipulation}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1a1c23;color:#fff;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}canvas{display:block;width:100%;height:100%;background:radial-gradient(circle at center,#252836,#101218)}#ui-layer{position:absolute;inset:0;padding:14px;pointer-events:none;z-index:20}.hud-top{display:flex;justify-content:space-between;align-items:flex-start}.hud-panel{display:flex;gap:14px;flex-wrap:wrap;background:#141923dc;border:2px solid #fc0;border-radius:10px;padding:9px 13px;font-size:13px;line-height:1.5;box-shadow:0 0 15px #fc04}.hud-panel span{color:#fc0;font-weight:bold}.btn-pause{pointer-events:auto;background:#101218;border:2px solid #fc0;color:#fc0;padding:9px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
 .controls-layer{position:absolute;inset:0;display:none;z-index:10;touch-action:none}.touch-active .controls-layer{display:block}.stick{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid #fc08;background:#ffffff12;pointer-events:none;display:none}.stick i{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px;border:2px solid #fc0;border-radius:50%;background:#fc06}.stick.p2{border-color:#ff6ec7aa;background:#ff6ec712}.stick.p2 i{border-color:#ff6ec7;background:#ff6ec722;box-shadow:0 0 12px #ff6ec755}.low-health-vignette{position:fixed;inset:0;z-index:15;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(180,0,20,.68) 100%);transition:opacity .25s ease}.low-health-vignette.active{opacity:1;animation:lowHealthPulse 1.15s ease-in-out infinite alternate}@keyframes lowHealthPulse{from{filter:brightness(.75)}to{filter:brightness(1.25)}}
 .modal-overlay{position:absolute;inset:0;z-index:100;background:#101218ed;backdrop-filter:blur(7px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px;overflow-y:auto;text-align:center}.modal-overlay[style*="display: none"]{display:none!important}.modal-title{font-size:27px;color:#fc0;font-weight:800;text-shadow:0 0 18px #fc09;margin:5px 0}.modal-subtitle{font-size:13px;color:#b0b5c0;margin:6px 0 16px}.menu-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn-menu{border:0;border-radius:8px;padding:12px 22px;margin:5px;min-width:170px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#fc0,#f60);color:#101218}.btn-menu.secondary{background:#202838;color:#fc0;border:1px solid #fc08}.choice-grid,.weapon-grid,.shop-grid,.skin-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;width:min(940px,96vw);margin:6px auto 12px}.choice-card,.weapon-card,.shop-card,.skin-card{width:195px;max-width:45vw;padding:12px;border:2px solid #fc06;border-radius:10px;background:#191e2af2;color:#fff;cursor:pointer;line-height:1.4}.choice-card.selected,.weapon-card.selected,.skin-card.selected{border-color:#0fc;box-shadow:0 0 14px #0fc6}.choice-card strong,.weapon-card strong,.shop-card strong,.skin-card strong{display:block;color:#fc0;margin-bottom:5px}.choice-card small,.weapon-card small,.shop-card small,.skin-card small{color:#c1c6d0;display:block}.skin-preview{display:block;width:64px;height:90px;object-fit:contain;margin:4px auto 8px;image-rendering:pixelated}.setting{display:flex;justify-content:space-between;align-items:center;gap:15px;width:min(420px,90vw);padding:11px 14px;margin:4px 0;background:#191e2a;border:1px solid #fc06;border-radius:8px}.setting input[type=range]{width:145px}.setting input[type=number]{width:90px;padding:6px 8px;border-radius:6px;border:1px solid #fc08;background:#101218;color:#fff;text-align:center}.stats-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:10px;width:min(760px,95vw);max-height:58vh;overflow:auto;padding:10px;margin:8px auto;background:#141923;border:1px solid #fc08;border-radius:12px}.stats-group{padding:8px 10px;border:1px solid rgba(255,204,0,.18);border-radius:10px;background:rgba(255,255,255,.015)}.stats-group-title{font-size:12px;letter-spacing:1px;color:#ffd66b;font-weight:800;text-transform:uppercase;margin:0 0 6px;padding:0 4px}.stat-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:6px 4px;font-size:13px;text-align:left;background:transparent}.stat-item:last-child{border-bottom:none}.stat-item span:first-child{color:#b0b5c0}.stat-item span:last-child{color:#fc0;font-weight:700;text-align:right}.shop-card:disabled,.btn-menu:disabled{opacity:.45;cursor:not-allowed}.shop-card.unique-item{border-color:#ff3366 !important;box-shadow:0 0 12px rgba(255,51,102,0.6) !important;}
-.skill-btn{position:absolute;bottom:50px;width:74px;height:74px;border-radius:50%;background:#0fc2;border:3px solid #0fc;color:#0fc;font-weight:900;font-size:15px;z-index:25;pointer-events:auto;display:none;text-shadow:0 0 8px #0fc}.skill-btn.on{display:block}.skill-btn.cool{opacity:.4}.skill-btn.p1btn{left:36px}.skill-btn.p2btn{right:36px;border-color:#ff6ec7;color:#ff6ec7;background:#ff6ec722;text-shadow:0 0 8px #ff6ec7}
+.skill-btn{position:absolute;bottom:50px;width:74px;height:74px;border-radius:50%;background:#0fc2;border:3px solid #0fc;color:#0fc;font-weight:900;font-size:15px;z-index:25;pointer-events:auto;display:none;text-shadow:0 0 8px #0fc;transition:opacity .2s}.skill-btn.on{display:block}.skill-btn.cool{opacity:.4}.skill-btn.p1btn{left:36px}.skill-btn.p2btn{right:36px;border-color:#ff6ec7;color:#ff6ec7;background:#ff6ec722;text-shadow:0 0 8px #ff6ec7}
+.drag-active .skill-btn{outline:3px dashed #fff;outline-offset:4px;cursor:grab;box-shadow:0 0 30px rgba(255,255,255,0.8)}
+.drag-active .skill-btn:active{cursor:grabbing}
 .dual-cols{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:min(1120px,98vw);margin-bottom:10px}.dual-col{flex:1;min-width:290px;background:#141923;border:1px solid #fc08;border-radius:12px;padding:10px}.dual-col-title{font-size:14px;font-weight:800;color:#0fc;margin-bottom:8px;letter-spacing:1px}.choice-grid.small,.weapon-grid.small{width:100%;gap:6px}.choice-grid.small .choice-card,.weapon-grid.small .weapon-card{width:126px;max-width:46%;padding:8px;font-size:11px;line-height:1.25}.choice-grid.small .choice-card strong,.weapon-grid.small .weapon-card strong{font-size:12px;margin-bottom:3px}
 .mat-bar{color:#fc0;font-weight:800;font-size:15px;margin:6px 0}.code-area{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin:10px auto;padding:10px;background:#141923;border:1px solid #fc08;border-radius:8px;width:min(800px,96vw)}.code-area input{flex:1;min-width:150px;padding:8px;border-radius:6px;border:1px solid #fc08;background:#101218;color:#fff;text-align:center;font-size:13px}
 .shop-title-p1{color:#0fc;font-weight:bold;font-size:18px;margin-top:6px}.shop-title-p2{color:#ff6ec7;font-weight:bold;font-size:18px;margin-top:6px}
@@ -72,7 +74,7 @@
 </div>
 <div class="menu-buttons" style="margin-top:20px;margin-bottom:40px;"><button class="btn-menu" id="dualStartBtn" style="padding:15px 40px;font-size:18px;">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
 
-<div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label><div class="menu-buttons"><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label><div class="menu-buttons"><button class="btn-menu" id="customUiBtn" style="background:#0fc;color:#000;">🎯 自定義技能按鈕位置</button><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
 
 <div class="modal-overlay" id="pauseMenu" style="display:none"><div class="modal-title">遊戲暫停</div><div class="modal-subtitle">角色能力與對局收益（分項整理）</div><div class="stats-grid" id="statsGrid"></div><div class="menu-buttons"><button class="btn-menu" id="resumeBtn">返回戰鬥</button><button class="btn-menu secondary" id="pauseSettingsBtn">設定</button><button class="btn-menu secondary" id="saveExitBtn">離開</button></div></div>
 
@@ -88,7 +90,7 @@
 
 <script>
 'use strict';
-const SAVE_KEY='spaceSpudArenaSaveV1',SETTINGS_KEY='spaceSpudSettingsV1',SKIN_KEY='spaceSpudSkinV1',META_KEY='spaceSpudMetaV2',SHOP_REROLL_BASE_COST=10,SHOP_REROLL_COST_STEP=10,TRANSITION_INVULNERABILITY_FRAMES=6,REVIVE_INVULNERABILITY_FRAMES=120,MAX_DEFENSE_RATE=.999,PLAYER_SPEED_CAP_MAX=40,MAX_WLV=10,MAX_CLV=10;
+const SAVE_KEY='spaceSpudArenaSaveV1',SETTINGS_KEY='spaceSpudSettingsV1',SKIN_KEY='spaceSpudSkinV1',META_KEY='spaceSpudMetaV2',UI_KEY='spaceSpudUiPosV1',SHOP_REROLL_BASE_COST=10,SHOP_REROLL_COST_STEP=10,TRANSITION_INVULNERABILITY_FRAMES=6,REVIVE_INVULNERABILITY_FRAMES=120,MAX_DEFENSE_RATE=.999,PLAYER_SPEED_CAP_MAX=40,MAX_WLV=10,MAX_CLV=10;
 
 const classes=[
 {id:'berserker',name:'狂戰士',desc:'近戰傷害 +100%，暴擊傷害 +75%。技能：狂暴（8 秒內傷害 +60%、攻速 +50%）',melee:2,range:1,crit:0,critDamage:.75,summon:1,skill:'rage',skillCd:600,skillName:'狂暴'},
@@ -132,393 +134,90 @@ let currentSkinId='default';try{const s=localStorage.getItem(SKIN_KEY);if(skinLi
 
 /* ===== 皮膚繪製 ===== */
 const paperCanvas=document.createElement('canvas');
-// 使用高分辨率 512x720 確保細節
-paperCanvas.width=512; paperCanvas.height=720;
+paperCanvas.width=64; paperCanvas.height=90;
 const pctx=paperCanvas.getContext('2d');
-pctx.imageSmoothingEnabled = true;
 
-// 夏日海灘皮膚 (極致還原：貝塞爾曲線、光影漸變、高光、精緻五官)
+// 夏日皮膚 (完全回退至最初你提供的那一版)
 function renderDetailedSummerSkin(){
-  pctx.clearRect(0,0,512,720);
-  
-  // 1. 後髮 (深紅漸變)
-  const hairBgGrad = pctx.createLinearGradient(0, 100, 0, 600);
-  hairBgGrad.addColorStop(0, '#7a1113');
-  hairBgGrad.addColorStop(0.5, '#a4161a');
-  hairBgGrad.addColorStop(1, '#7a1113');
-  pctx.fillStyle = hairBgGrad;
-  pctx.beginPath();
-  pctx.moveTo(200, 80);
-  pctx.bezierCurveTo(100, 80, 80, 300, 80, 560); // 左側垂髮
-  pctx.lineTo(432, 560); // 右側垂髮
-  pctx.bezierCurveTo(432, 300, 412, 80, 312, 80);
-  pctx.fill();
-
-  // 2. 膚色打底 (加入陰影)
-  // 脖子與肩膀 (修正脖子太細的問題)
-  pctx.fillStyle = '#ffe6c7'; // 基礎膚色
-  pctx.beginPath();
-  pctx.moveTo(220, 220); // 左頸
-  pctx.bezierCurveTo(200, 260, 160, 280, 160, 340); // 左肩
-  pctx.lineTo(352, 340); // 右肩
-  pctx.bezierCurveTo(352, 280, 312, 260, 292, 220); // 右頸
-  pctx.fill();
-  
-  // 胸腹部軀幹
-  pctx.beginPath();
-  pctx.moveTo(180, 340);
-  pctx.bezierCurveTo(180, 420, 200, 500, 200, 520);
-  pctx.lineTo(312, 520);
-  pctx.bezierCurveTo(312, 500, 332, 420, 332, 340);
-  pctx.fill();
-  
-  // 軀幹與脖子陰影
-  pctx.fillStyle = 'rgba(200,150,100,0.3)';
-  pctx.beginPath();
-  pctx.moveTo(220, 220);
-  pctx.bezierCurveTo(240, 260, 272, 260, 292, 220);
-  pctx.bezierCurveTo(280, 280, 232, 280, 220, 220);
-  pctx.fill();
-
-  // 3. 腿部 (加入透視和光影)
-  // 左腿 (較遠，稍微小一點)
-  pctx.fillStyle = '#ffe6c7';
-  pctx.beginPath();
-  pctx.moveTo(210, 520);
-  pctx.bezierCurveTo(190, 600, 190, 680, 200, 720);
-  pctx.lineTo(250, 720);
-  pctx.bezierCurveTo(240, 650, 250, 580, 256, 520);
-  pctx.fill();
-  // 左腿陰影
-  pctx.fillStyle = 'rgba(200,150,100,0.4)';
-  pctx.beginPath();
-  pctx.moveTo(250, 720);
-  pctx.bezierCurveTo(240, 650, 250, 580, 256, 520);
-  pctx.lineTo(240, 520);
-  pctx.bezierCurveTo(235, 580, 230, 650, 240, 720);
-  pctx.fill();
-
-  // 右腿 (較近，稍微大一點)
-  pctx.fillStyle = '#ffe6c7';
-  pctx.beginPath();
-  pctx.moveTo(256, 520);
-  pctx.bezierCurveTo(260, 580, 270, 650, 260, 720);
-  pctx.lineTo(310, 720);
-  pctx.bezierCurveTo(320, 680, 320, 600, 300, 520);
-  pctx.fill();
-  // 右腿高光
-  pctx.fillStyle = 'rgba(255,255,255,0.5)';
-  pctx.beginPath();
-  pctx.moveTo(260, 520);
-  pctx.bezierCurveTo(265, 580, 275, 650, 265, 720);
-  pctx.lineTo(275, 720);
-  pctx.bezierCurveTo(285, 650, 275, 580, 270, 520);
-  pctx.fill();
-
-  // 4. 黑色交叉綁帶 (順著腿部透視)
-  pctx.strokeStyle = '#101218';
-  pctx.lineWidth = 6;
-  pctx.lineCap = 'round';
-  // 左腿綁帶
-  for(let i=0; i<4; i++){
-    let y = 570 + i*40;
-    pctx.beginPath();
-    pctx.moveTo(200 + i*3, y);
-    pctx.lineTo(250 - i*2, y+20);
-    pctx.stroke();
-    pctx.beginPath();
-    pctx.moveTo(250 - i*2, y);
-    pctx.lineTo(200 + i*3, y+20);
-    pctx.stroke();
-  }
-  // 右腿綁帶
-  for(let i=0; i<4; i++){
-    let y = 570 + i*40;
-    pctx.beginPath();
-    pctx.moveTo(260 + i*3, y);
-    pctx.lineTo(310 - i*2, y+20);
-    pctx.stroke();
-    pctx.beginPath();
-    pctx.moveTo(310 - i*2, y);
-    pctx.lineTo(260 + i*3, y+20);
-    pctx.stroke();
-  }
-
-  // 5. 鞋子 (黑色高跟鞋)
-  pctx.fillStyle = '#101218';
-  // 左鞋
-  pctx.beginPath();
-  pctx.moveTo(200, 720);
-  pctx.lineTo(250, 720);
-  pctx.lineTo(240, 700);
-  pctx.lineTo(180, 700);
-  pctx.fill();
-  // 右鞋
-  pctx.beginPath();
-  pctx.moveTo(260, 720);
-  pctx.lineTo(310, 720);
-  pctx.lineTo(330, 700);
-  pctx.lineTo(270, 700);
-  pctx.fill();
-  // 鞋子高光
-  pctx.fillStyle = '#4a4d57';
-  pctx.beginPath(); pctx.ellipse(210, 710, 20, 5, 0, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(295, 710, 25, 5, 0, 0, Math.PI*2); pctx.fill();
-
-  // 6. 泳衣比基尼 (深藍色)
-  const swimsuitGrad = pctx.createLinearGradient(200, 340, 300, 500);
-  swimsuitGrad.addColorStop(0, '#1a365d');
-  swimsuitGrad.addColorStop(1, '#2b6cb0');
-  pctx.fillStyle = swimsuitGrad;
-  // 內褲
-  pctx.beginPath();
-  pctx.moveTo(200, 480);
-  pctx.bezierCurveTo(220, 520, 292, 520, 312, 480);
-  pctx.lineTo(300, 520);
-  pctx.lineTo(212, 520);
-  pctx.fill();
-  // 上衣
-  pctx.beginPath();
-  pctx.moveTo(180, 340);
-  pctx.bezierCurveTo(220, 360, 292, 360, 332, 340);
-  pctx.lineTo(330, 400);
-  pctx.bezierCurveTo(280, 420, 230, 420, 182, 400);
-  pctx.fill();
-  // 側邊白絲帶
-  pctx.fillStyle = '#ffffff';
-  pctx.fillRect(180, 340, 6, 60);
-  pctx.fillRect(326, 340, 6, 60);
-  // 胸前蝴蝶結
-  pctx.beginPath(); pctx.arc(240, 370, 10, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.arc(272, 370, 10, 0, Math.PI*2); pctx.fill();
-  pctx.fillRect(250, 365, 12, 10);
-
-  // 7. 白色透明外衫 (加上光影)
-  pctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-  pctx.beginPath();
-  pctx.moveTo(160, 340);
-  pctx.bezierCurveTo(130, 420, 150, 520, 180, 560); // 左下擺
-  pctx.lineTo(200, 540);
-  pctx.bezierCurveTo(180, 480, 190, 400, 190, 340);
-  pctx.fill();
-  pctx.beginPath();
-  pctx.moveTo(352, 340);
-  pctx.bezierCurveTo(382, 420, 362, 520, 332, 560);
-  pctx.lineTo(312, 540);
-  pctx.bezierCurveTo(332, 480, 322, 400, 322, 340);
-  pctx.fill();
-  // 外衫高光 (絲綢質感)
-  pctx.strokeStyle = 'rgba(255,255,255,0.8)';
-  pctx.lineWidth = 4;
-  pctx.beginPath(); pctx.moveTo(160, 340); pctx.bezierCurveTo(130, 420, 150, 520, 180, 560); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(352, 340); pctx.bezierCurveTo(382, 420, 362, 520, 332, 560); pctx.stroke();
-
-  // 8. 手臂 (彎曲，告別直筒)
-  pctx.fillStyle = '#ffe6c7';
-  // 左手臂
-  pctx.beginPath();
-  pctx.moveTo(160, 340);
-  pctx.bezierCurveTo(120, 400, 140, 460, 170, 480);
-  pctx.lineTo(190, 460);
-  pctx.bezierCurveTo(160, 420, 160, 380, 180, 340);
-  pctx.fill();
-  // 右手臂 (舉著水槍)
-  pctx.beginPath();
-  pctx.moveTo(352, 340);
-  pctx.bezierCurveTo(380, 380, 380, 420, 360, 440);
-  pctx.lineTo(340, 420);
-  pctx.bezierCurveTo(350, 390, 340, 360, 320, 340);
-  pctx.fill();
-
-  // 9. 頭部 (臉型與下巴輪廓)
-  const faceGrad = pctx.createRadialGradient(256, 180, 20, 256, 180, 100);
-  faceGrad.addColorStop(0, '#ffe6c7');
-  faceGrad.addColorStop(1, '#ffcfa8');
-  pctx.fillStyle = faceGrad;
-  pctx.beginPath();
-  pctx.ellipse(256, 160, 80, 90, 0, 0, Math.PI*2);
-  pctx.fill();
-  // 下巴陰影
-  pctx.fillStyle = 'rgba(200,150,100,0.2)';
-  pctx.beginPath();
-  pctx.ellipse(256, 200, 60, 40, 0, 0, Math.PI);
-  pctx.fill();
-
-  // 10. 五官 (高光與漸變)
-  // 眼睛
-  pctx.fillStyle = '#1d3557'; // 眼眶
-  pctx.beginPath(); pctx.ellipse(210, 160, 18, 24, 0, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(302, 160, 18, 24, 0, 0, Math.PI*2); pctx.fill();
-  // 藍色瞳孔
-  const eyeGrad = pctx.createLinearGradient(210, 140, 210, 180);
-  eyeGrad.addColorStop(0, '#00b4d8');
-  eyeGrad.addColorStop(1, '#0077b6');
-  pctx.fillStyle = eyeGrad;
-  pctx.beginPath(); pctx.ellipse(210, 162, 12, 18, 0, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(302, 162, 12, 18, 0, 0, Math.PI*2); pctx.fill();
-  // 瞳孔高光
-  pctx.fillStyle = '#ffffff';
-  pctx.beginPath(); pctx.arc(205, 150, 6, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.arc(297, 150, 6, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.arc(215, 170, 2, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.arc(307, 170, 2, 0, Math.PI*2); pctx.fill();
-
-  // 腮紅
-  pctx.fillStyle = 'rgba(255, 143, 163, 0.5)';
-  pctx.beginPath(); pctx.ellipse(180, 190, 20, 10, 0, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(332, 190, 20, 10, 0, 0, Math.PI*2); pctx.fill();
-
-  // 嘴巴
-  pctx.strokeStyle = '#e63946';
-  pctx.lineWidth = 4;
-  pctx.lineCap = 'round';
-  pctx.beginPath();
-  pctx.arc(256, 205, 8, 0, Math.PI);
-  pctx.stroke();
-
-  // 11. 前髮 (層次感與髮絲)
-  pctx.fillStyle = '#e63946';
-  // 頂部瀏海
-  pctx.beginPath();
-  pctx.moveTo(176, 100);
-  pctx.bezierCurveTo(200, 40, 312, 40, 336, 100);
-  pctx.lineTo(330, 120);
-  pctx.lineTo(310, 80);
-  pctx.lineTo(290, 130);
-  pctx.lineTo(256, 70);
-  pctx.lineTo(222, 130);
-  pctx.lineTo(202, 80);
-  pctx.lineTo(182, 120);
-  pctx.fill();
-
-  // 兩側長髮 (加上高光)
-  pctx.beginPath();
-  pctx.moveTo(176, 100);
-  pctx.bezierCurveTo(140, 180, 130, 300, 160, 360);
-  pctx.lineTo(180, 360);
-  pctx.bezierCurveTo(150, 280, 160, 180, 176, 100);
-  pctx.fill();
-  pctx.beginPath();
-  pctx.moveTo(336, 100);
-  pctx.bezierCurveTo(372, 180, 382, 300, 352, 360);
-  pctx.lineTo(332, 360);
-  pctx.bezierCurveTo(362, 280, 352, 180, 336, 100);
-  pctx.fill();
-
-  // 髮絲高光
-  pctx.strokeStyle = '#ff8fa3';
-  pctx.lineWidth = 3;
-  pctx.beginPath(); pctx.moveTo(190, 90); pctx.bezierCurveTo(220, 60, 280, 60, 310, 90); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(165, 140); pctx.bezierCurveTo(150, 220, 155, 300, 170, 340); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(347, 140); pctx.bezierCurveTo(362, 220, 357, 300, 342, 340); pctx.stroke();
-
-  // 12. 頭飾 (白色小蝴蝶結，加入陰影)
-  pctx.fillStyle = '#ffffff';
-  pctx.beginPath(); pctx.ellipse(200, 60, 12, 8, -0.4, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(312, 60, 12, 8, 0.4, 0, Math.PI*2); pctx.fill();
-  pctx.fillStyle = '#90e0ef';
-  pctx.beginPath(); pctx.arc(200, 60, 4, 0, Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.arc(312, 60, 4, 0, Math.PI*2); pctx.fill();
-
-  // 13. 水槍 (立體感與漸變)
-  // 槍身
-  const gunGrad = pctx.createLinearGradient(360, 400, 440, 430);
-  gunGrad.addColorStop(0, '#2a9d8f');
-  gunGrad.addColorStop(1, '#145f56');
-  pctx.fillStyle = gunGrad;
-  pctx.beginPath();
-  pctx.roundRect(360, 400, 80, 30, 10);
-  pctx.fill();
-  // 握把
-  const handleGrad = pctx.createLinearGradient(400, 430, 420, 460);
-  handleGrad.addColorStop(0, '#2a9d8f');
-  handleGrad.addColorStop(1, '#145f56');
-  pctx.fillStyle = handleGrad;
-  pctx.beginPath();
-  pctx.roundRect(400, 430, 20, 40, 5);
-  pctx.fill();
-  // 槍口
-  pctx.fillStyle = '#118ab2';
-  pctx.fillRect(340, 405, 20, 20);
-  // 水槍高光
-  pctx.fillStyle = 'rgba(255,255,255,0.4)';
-  pctx.beginPath(); pctx.roundRect(370, 405, 60, 6, 3); pctx.fill();
-  // 水槍黃色裝飾
-  pctx.fillStyle = '#e9c46a';
-  pctx.beginPath(); pctx.arc(400, 415, 6, 0, Math.PI*2); pctx.fill();
-  pctx.fillStyle = 'rgba(0,0,0,0.2)';
-  pctx.beginPath(); pctx.arc(400, 418, 6, 0, Math.PI); pctx.fill();
+  pctx.clearRect(0,0,64,90);
+  pctx.fillStyle='#e63946';pctx.fillRect(18,26,28,32);
+  pctx.fillStyle='#ffe0bd';pctx.fillRect(24,48,6,25);pctx.fillRect(34,48,6,25);
+  pctx.strokeStyle='#2b6cb0';pctx.lineWidth=1.2;
+  pctx.beginPath();pctx.moveTo(24,56);pctx.lineTo(30,61);pctx.moveTo(30,61);pctx.lineTo(24,66);pctx.moveTo(24,66);pctx.lineTo(30,71);pctx.moveTo(34,56);pctx.lineTo(40,61);pctx.moveTo(40,61);pctx.lineTo(34,66);pctx.moveTo(34,66);pctx.lineTo(40,71);pctx.stroke();
+  pctx.fillStyle='#2b6cb0';pctx.fillRect(23,73,8,3);pctx.fillRect(33,73,8,3);
+  pctx.fillStyle='#ffe0bd';pctx.fillRect(23,34,18,16);
+  pctx.fillStyle='rgba(255,255,255,.75)';pctx.fillRect(18,36,5,12);pctx.fillRect(41,36,5,12);
+  pctx.fillStyle='#fff';pctx.fillRect(24,35,16,7);
+  pctx.fillStyle='#1a365d';pctx.fillRect(24,45,16,5);
+  pctx.fillStyle='#2b6cb0';pctx.beginPath();pctx.arc(30,38,2,0,Math.PI*2);pctx.arc(34,38,2,0,Math.PI*2);pctx.fill();pctx.fillRect(31,37,2,3);
+  pctx.fillStyle='#ffe0bd';pctx.beginPath();pctx.arc(32,24,11,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#e63946';pctx.fillRect(21,14,22,11);pctx.fillRect(19,23,5,18);pctx.fillRect(40,23,5,18);
+  pctx.fillStyle='#1a365d';pctx.beginPath();pctx.arc(28,24,1.8,0,Math.PI*2);pctx.arc(36,24,1.8,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#ffb703';pctx.beginPath();pctx.arc(32,9,4.5,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#fb8500';pctx.beginPath();pctx.arc(35,10,1.8,0,Math.PI*2);pctx.fill();
 }
-// 如果用户有原图，直接用原图，这里作为兜底
 renderDetailedSummerSkin();
-const summerSkinImg=new Image(); 
-summerSkinImg.src=paperCanvas.toDataURL();
-// 如果本地有 summer_skin.png，会自动加载覆盖
-const userSummerImg = new Image();
-userSummerImg.src = 'summer_skin.png'; 
-userSummerImg.onload = () => { summerSkinImg.src = userSummerImg.src; };
+const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
 
-// 深海女僕皮膚 (同樣優化高解析度)
+// 深海女僕皮膚 (保持不變)
 function renderMaidSkin(){
-  // 保持原有邏輯，但使用貝塞爾曲線優化
-  pctx.clearRect(0,0,512,720);
+  pctx.clearRect(0,0,64,90);
   pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(256,360,144,224,0,0,Math.PI*2); pctx.fill();
-  // ... (其餘保持不變，代碼過長略過，原版已經比較圓潤)
-  // 為了篇幅，直接複用之前的平滑繪製，只是放大到 512x720
+  pctx.beginPath(); pctx.ellipse(32,45,18,28,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#2b3b6b';
-  pctx.beginPath(); pctx.moveTo(360,520); pctx.quadraticCurveTo(480,560,440,680); pctx.quadraticCurveTo(384,624,360,600); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(45,65); pctx.quadraticCurveTo(60,70,55,85); pctx.quadraticCurveTo(48,78,45,75); pctx.fill();
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(384,544); pctx.quadraticCurveTo(456,576,424,656); pctx.quadraticCurveTo(400,608,384,592); pctx.fill();
-  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(160,480); pctx.lineTo(352,480); pctx.lineTo(384,640); pctx.lineTo(128,640); pctx.fill();
-  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(128,480); pctx.lineTo(384,480); pctx.lineTo(416,600); pctx.lineTo(96,600); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(48,68); pctx.quadraticCurveTo(57,72,53,82); pctx.quadraticCurveTo(50,76,48,74); pctx.fill();
+  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(20,60); pctx.lineTo(44,60); pctx.lineTo(48,80); pctx.lineTo(16,80); pctx.fill();
+  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(16,60); pctx.lineTo(48,60); pctx.lineTo(52,75); pctx.lineTo(12,75); pctx.fill();
   pctx.fillStyle='#ffffff';
-  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(120+i*42.4,600,20,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#ffffff'; pctx.fillRect(192,640,40,64); pctx.fillRect(280,640,40,64);
-  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(212,704,32,16,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(300,704,32,16,0,0,Math.PI*2); pctx.fill();
+  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(15+i*5.3,75,2.5,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#ffffff'; pctx.fillRect(24,80,5,8); pctx.fillRect(35,80,5,8);
+  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(26.5,88,4,2,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(37.5,88,4,2,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(160,360,48,80,0.2,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(352,360,48,80,-0.2,0,Math.PI*2); pctx.fill();
-  pctx.fillRect(192,288,128,200);
-  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(208,304); pctx.lineTo(304,304); pctx.lineTo(336,600); pctx.lineTo(176,600); pctx.fill();
-  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(184+i*36,600,20,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(256,464,40,24,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(296,464); pctx.lineTo(320,440); pctx.lineTo(312,488); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(232,460,8,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ffffff'; pctx.fillRect(200,288,112,32);
-  pctx.fillStyle='#ffd700'; pctx.fillRect(208,336,16,16); pctx.fillRect(288,336,16,16); pctx.fillRect(208,368,16,16); pctx.fillRect(288,368,16,16);
-  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(256,208,80,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(192,240,20,0,Math.PI*2); pctx.arc(320,240,20,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(256,248,12,0,Math.PI); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(20,45,6,10,0.2,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(44,45,6,10,-0.2,0,Math.PI*2); pctx.fill();
+  pctx.fillRect(24,36,16,25);
+  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(26,38); pctx.lineTo(38,38); pctx.lineTo(42,75); pctx.lineTo(22,75); pctx.fill();
+  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(23+i*4.5,75,2.5,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(32,58,5,3,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(37,58); pctx.lineTo(40,55); pctx.lineTo(39,61); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(29,57.5,1,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ffffff'; pctx.fillRect(25,36,14,4);
+  pctx.fillStyle='#ffd700'; pctx.fillRect(26,42,2,2); pctx.fillRect(36,42,2,2); pctx.fillRect(26,46,2,2); pctx.fillRect(36,46,2,2);
+  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(32,26,10,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(24,30,2.5,0,Math.PI*2); pctx.arc(40,30,2.5,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(32,31,1.5,0,Math.PI); pctx.fill();
   pctx.fillStyle='#0a2a4a';
-  pctx.beginPath(); pctx.ellipse(208,208,24,32,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(304,208,24,32,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(26,26,3,4,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(38,26,3,4,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.ellipse(208,216,16,24,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(304,216,16,24,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(26,27,2,3,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(38,27,2,3,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#ffffff';
-  pctx.beginPath(); pctx.arc(200,200,8,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(296,200,8,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(25,25,1,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(37,25,1,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#90e0ef';
-  pctx.beginPath(); pctx.moveTo(160,192); pctx.lineTo(112,160); pctx.lineTo(144,224); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(352,192); pctx.lineTo(400,160); pctx.lineTo(368,224); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(20,24); pctx.lineTo(14,20); pctx.lineTo(18,28); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(44,24); pctx.lineTo(50,20); pctx.lineTo(46,28); pctx.fill();
   pctx.fillStyle='#2b3b6b'; 
-  pctx.beginPath(); pctx.moveTo(160,208); pctx.quadraticCurveTo(256,128,352,208); pctx.quadraticCurveTo(304,176,256,224); pctx.quadraticCurveTo(208,176,160,208); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(176,192); pctx.quadraticCurveTo(144,320,176,400); pctx.quadraticCurveTo(208,320,208,240); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(336,192); pctx.quadraticCurveTo(368,320,336,400); pctx.quadraticCurveTo(304,320,304,240); pctx.fill();
-  pctx.strokeStyle='#4ea8de'; pctx.lineWidth=12;
-  pctx.beginPath(); pctx.moveTo(192,224); pctx.quadraticCurveTo(176,304,192,360); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(320,224); pctx.quadraticCurveTo(336,304,320,360); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(20,26); pctx.quadraticCurveTo(32,16,44,26); pctx.quadraticCurveTo(38,22,32,28); pctx.quadraticCurveTo(26,22,20,26); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(22,24); pctx.quadraticCurveTo(18,40,22,50); pctx.quadraticCurveTo(26,40,26,30); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(42,24); pctx.quadraticCurveTo(46,40,42,50); pctx.quadraticCurveTo(38,40,38,30); pctx.fill();
+  pctx.strokeStyle='#4ea8de'; pctx.lineWidth=1.5;
+  pctx.beginPath(); pctx.moveTo(24,28); pctx.quadraticCurveTo(22,38,24,45); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(40,28); pctx.quadraticCurveTo(42,38,40,45); pctx.stroke();
   pctx.fillStyle='#ffffff';
-  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(176+i*32,128,16,0,Math.PI*2); pctx.fill(); }
-  pctx.fillRect(176,128,160,16);
+  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(22+i*4,16,2,0,Math.PI*2); pctx.fill(); }
+  pctx.fillRect(22,16,20,2);
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(320,112); pctx.lineTo(368,80); pctx.lineTo(360,128); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(320,112); pctx.lineTo(368,144); pctx.lineTo(352,112); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(320,112,12,0,Math.PI*2); pctx.fill();
-  pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=16;
-  pctx.beginPath(); pctx.moveTo(256,112); pctx.bezierCurveTo(224,48,288,32,320,64); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,10); pctx.lineTo(45,16); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,18); pctx.lineTo(44,14); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(40,14,1.5,0,Math.PI*2); pctx.fill();
+  pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=2;
+  pctx.beginPath(); pctx.moveTo(32,14); pctx.bezierCurveTo(28,6,36,4,40,8); pctx.stroke();
 }
 renderMaidSkin();
+  
 const maidSkinImg=new Image(); maidSkinImg.src=paperCanvas.toDataURL();
 
 function saveSelectedSkin(){try{localStorage.setItem(SKIN_KEY,currentSkinId)}catch(e){}}
@@ -700,7 +399,7 @@ function newPlayer(cid,customLevels){
   cid=cid||classId;
   const job=classes.find(c=>c.id===cid)||classes[1],b=charBonus(cid,customLevels);
   const hp=Math.round(100*b.hp*(job.hpBonus||1));
-  return {id:++playerIdCounter,x:innerWidth/2,y:innerHeight/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,pendingPetUpgrades:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,customLevels:customLevels||null}
+  return {id:++playerIdCounter,x:innerWidth/2,y:innerHeight/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,pendingPetUpgrades:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,customLevels:customLevels||null,lastMoveX:0,lastMoveY:0}
 }
 let player=newPlayer(),enemies=[],bullets=[],materials=[],particles=[],damageNumbers=[],slashes=[],turrets=[],lightningBeams=[],eliteFlashes=[],bossCircles=[],bossZones=[],bossBeams=[],skillFrame=0;
 const keys={};
@@ -722,7 +421,7 @@ function nearestTarget(x,y,r,list){let t=null,b=r;for(const e of (list||enemies)
 function spawnParticles(x,y,color,n=6,spread=1){const s=Math.max(.25,settings.effects);for(let i=0;i<Math.round(n*s);i++){const a=Math.random()*Math.PI*2,v=(Math.random()*3+1)*spread*s;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,color,radius:Math.random()*3+1,decay:.015+Math.random()*.025})}}
 function addDamageNumber(x,y,text,color='#fff',critical=false){damageNumbers.push({x,y,text,life:1,vy:-1.2,color,critical})}
 
-/* ===== BOSS 出場動畫 (支持雙龍) ===== */
+/* ===== BOSS 出場動畫 ===== */
 function showPhaseTag(text){const el=document.getElementById('bossPhaseTag');el.textContent=text;el.classList.add('show');bossPhaseTagTimer=120}
 function startBossIntro(e){
   const bossList = [e];
@@ -1235,12 +934,10 @@ function drawPlayerEntity(p){
   if(currentSkinId==='maid_skin'){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);const floatY=Math.sin(skillFrame*.08)*3;
     ctx.shadowBlur=16;ctx.shadowColor='rgba(0,180,216,.55)';
-    // 使用高分辨率画布，缩放到 32x45
     ctx.drawImage(maidSkinImg,-16,-22.5+floatY,32,45);
   } else if(currentSkinId==='summer_skin'){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);const floatY=Math.sin(skillFrame*.08)*3;
     ctx.shadowBlur=16;ctx.shadowColor='rgba(255,45,85,.55)';
-    // 使用高分辨率画布，缩放到 32x45
     ctx.drawImage(summerSkinImg,-16,-22.5+floatY,32,45);
   }else{
     ctx.shadowBlur=14;ctx.shadowColor=p===player2?'#ff6ec7':'#fc0';ctx.fillStyle='#d4883b';ctx.strokeStyle='#5a3818';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(p.x,p.y,18,22,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.shadowBlur=0;ctx.fillStyle='#101218';ctx.beginPath();ctx.arc(p.x-5,p.y-3,2.5,0,Math.PI*2);ctx.arc(p.x+5,p.y-3,2.5,0,Math.PI*2);ctx.fill()
@@ -1499,7 +1196,7 @@ function handlePlayerDown(p){
   gameOver();
 }
 
-/* ===== 職業技能 (刺客改群傷) ===== */
+/* ===== 職業技能 (新增自選方向) ===== */
 function trySkill(p){
   if(!p||p.dead)return;
   if(gameState!=='PLAYING')return;
@@ -1509,9 +1206,38 @@ function trySkill(p){
   const lv=cLevel(p.classId,p.customLevels);
   const targets=gameMode==='pvp'?(p===player?[player2]:[player]):enemies;
   const effectCount=18+lv*3,effectSpread=1.4+lv*0.1;
+  
+  // 获取移动方向用于技能瞄准
+  const moveMag = Math.hypot(p.lastMoveX, p.lastMoveY);
+  const hasMoveDir = moveMag > 0.1;
+  const moveAngle = Math.atan2(p.lastMoveY, p.lastMoveX);
+
   switch(job.skill){
     case 'rage':p.skillActive=480;spawnParticles(p.x,p.y,'#ff3366',effectCount,effectSpread);if(lv>=5)bossZones.push({x:p.x,y:p.y,r:80,t:0,dur:40,dmg:0,owner:p,color:'#ff3366',fired:false});if(lv>=10){bossZones.push({x:p.x,y:p.y,r:150,t:0,dur:60,dmg:0,owner:p,color:'#ff0000',fired:false});spawnParticles(p.x,p.y,'#ff0000',30,2)}break;
-    case 'arrowRain':{const rainCount=Math.min(targets.length,6+lv*2);const list=targets.filter(e=>e&&!e.dead&&enemyInView(e)).slice(0,rainCount);for(const e of list){const a=Math.atan2(e.y-p.y,e.x-p.x);bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*15,vy:Math.sin(a)*15,damage:p.damage*1.6*(job.range||1)*(1+lv*0.05),radius:5+lv*0.3,color:lv>=10?'#ffd700':'#7bdff2',shape:'arrow',crit:false,life:120,splash:lv>=5?30:0,owner:p,tgt:targets})}spawnParticles(p.x,p.y,'#7bdff2',effectCount,effectSpread);playSound('coin');break}
+    
+    case 'arrowRain':{
+      const rainCount=Math.min(targets.length,6+lv*2);
+      let list=[];
+      if(hasMoveDir) {
+        // 如果有移动方向，朝移动方向前方扇形的目标
+        list = targets.filter(e=>e&&!e.dead&&enemyInView(e)).filter(e=>{
+          const a=Math.atan2(e.y-p.y,e.x-p.x);
+          let diff=Math.abs(Math.atan2(Math.sin(a-moveAngle),Math.cos(a-moveAngle)));
+          return diff < Math.PI/3; // 60度扇形
+        }).slice(0,rainCount);
+        // 如果前方没有敌人，也朝那个方向射空（防呆）
+        if(list.length===0) list = [{x:p.x+Math.cos(moveAngle)*300, y:p.y+Math.sin(moveAngle)*300, isDummy:true}];
+      } else {
+        list=targets.filter(e=>e&&!e.dead&&enemyInView(e)).slice(0,rainCount);
+      }
+      
+      for(const e of list){
+        const a = hasMoveDir ? moveAngle + (Math.random()-0.5)*0.5 : Math.atan2(e.y-p.y,e.x-p.x);
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*15,vy:Math.sin(a)*15,damage:p.damage*1.6*(job.range||1)*(1+lv*0.05),radius:5+lv*0.3,color:lv>=10?'#ffd700':'#7bdff2',shape:'arrow',crit:false,life:120,splash:lv>=5?30:0,owner:p,tgt:targets});
+      }
+      spawnParticles(p.x,p.y,'#7bdff2',effectCount,effectSpread);playSound('coin');break;
+    }
+    
     case 'summonBeast':{
       const hp=100+lv*30;
       let r=Math.random(), bType='wolf';
@@ -1525,33 +1251,55 @@ function trySkill(p){
       if(lv>=10){for(let i=0;i<10;i++){const a=Math.random()*Math.PI*2,r=Math.random()*80;lightningBeams.push({x1:p.x+Math.cos(a)*r,y1:p.y+Math.sin(a)*r,x2:p.x,y2:p.y,life:1})}}
       playSound('coin');break;
     }
+    
     case 'shield':p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,240+lv*10);spawnParticles(p.x,p.y,'#facc15',effectCount,effectSpread);if(lv>=10){for(let i=0;i<20;i++)spawnParticles(p.x+(Math.random()-0.5)*60,p.y+(Math.random()-0.5)*60,'#ffd700',2,2)}break;
-    case 'meteor':{const t=nearestTarget(p.x,p.y,900,targets);const a=t?Math.atan2(t.y-p.y,t.x-p.x):0;bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*7,vy:Math.sin(a)*7,damage:p.damage*3.2*(job.summon||1)*(1+lv*0.05),radius:14+lv,color:lv>=10?'#ff0000':'#ff734d',shape:'orb',crit:false,life:150,splash:110+lv*10,owner:p,tgt:targets});if(lv>=10)bossZones.push({x:p.x,y:p.y,r:100,t:0,dur:30,dmg:0,owner:p,color:'#ff734d',fired:false});playSound('coin');break}
-    case 'blink':{
-      const t=nearestTarget(p.x,p.y,600,targets);
-      if(t){
-        if(lv>=5){
-          for(let i=1;i<=3;i++) slashes.push({x:p.x+(t.x-p.x)*(i/4),y:p.y+(t.y-p.y)*(i/4),angle:Math.atan2(t.y-p.y,t.x-p.x),length:150,ttl:0.2,life:0.2,isSkin:currentSkinId==='summer_skin',isMaid:currentSkinId==='maid_skin',width:10,color:'#a855f7',type:'sword',glow:'#c084fc',evolved:true});
-        }
-        p.x=clamp(t.x-40,20,innerWidth-20);
-        p.y=clamp(t.y-40,20,innerHeight-20);
-        const aoeRadius = 160 + lv * 20;
-        for(const e of targets){
-          if(!e || e.dead) continue;
-          if(Math.hypot(e.x - t.x, e.y - t.y) <= aoeRadius + (e.radius||0)){
-            if(e.isPlayer) damagePlayer(p.damage*2.4, null, e);
-            else if(e.isBeast) damageBeast(e, p.damage*2.4);
-            else dealEnemyDamage(e, p.damage*2.4, true, p);
-          }
-        }
-        spawnParticles(p.x,p.y,'#a855f7',effectCount,effectSpread);
-        addSlash(p.x,p.y,Math.atan2(t.y-p.y,t.x-p.x),150+lv*5,.16,18+lv,lv>=10?'#ffd700':'#a855f7','sword',lv>=5);
-        for(let i=0;i<6;i++){
-          const ang = Math.PI*2*i/6 + Math.random()*0.5;
-          addSlash(p.x,p.y,ang,100+lv*10,.14,10,'#a855f7','knife',lv>=5);
-        }
-        playSound('hit');
+    
+    case 'meteor':{
+      let a=0;
+      if(hasMoveDir) a = moveAngle;
+      else {
+        const t=nearestTarget(p.x,p.y,900,targets);
+        a = t ? Math.atan2(t.y-p.y,t.x-p.x) : 0;
       }
+      bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*7,vy:Math.sin(a)*7,damage:p.damage*3.2*(job.summon||1)*(1+lv*0.05),radius:14+lv,color:lv>=10?'#ff0000':'#ff734d',shape:'orb',crit:false,life:150,splash:110+lv*10,owner:p,tgt:targets});
+      if(lv>=10)bossZones.push({x:p.x,y:p.y,r:100,t:0,dur:30,dmg:0,owner:p,color:'#ff734d',fired:false});
+      playSound('coin');break;
+    }
+    
+    case 'blink':{
+      let targetX = p.x, targetY = p.y;
+      if(hasMoveDir) {
+        // 如果有移动方向，瞬移向那个方向固定距离
+        targetX = clamp(p.x + Math.cos(moveAngle)*250, 20, innerWidth-20);
+        targetY = clamp(p.y + Math.sin(moveAngle)*250, 20, innerHeight-20);
+      } else {
+        // 没移动就锁定敌人
+        const t=nearestTarget(p.x,p.y,600,targets);
+        if(t) { targetX = t.x - 40; targetY = t.y - 40; }
+      }
+      
+      if(lv>=5){
+        for(let i=1;i<=3;i++) slashes.push({x:p.x+(targetX-p.x)*(i/4),y:p.y+(targetY-p.y)*(i/4),angle:Math.atan2(targetY-p.y,targetX-p.x),length:150,ttl:0.2,life:0.2,isSkin:currentSkinId==='summer_skin',isMaid:currentSkinId==='maid_skin',width:10,color:'#a855f7',type:'sword',glow:'#c084fc',evolved:true});
+      }
+      p.x=clamp(targetX,20,innerWidth-20);
+      p.y=clamp(targetY,20,innerHeight-20);
+      const aoeRadius = 160 + lv * 20;
+      
+      for(const e of targets){
+        if(!e || e.dead) continue;
+        if(Math.hypot(e.x - p.x, e.y - p.y) <= aoeRadius + (e.radius||0)){
+          if(e.isPlayer) damagePlayer(p.damage*2.4, null, e);
+          else if(e.isBeast) damageBeast(e, p.damage*2.4);
+          else dealEnemyDamage(e, p.damage*2.4, true, p);
+        }
+      }
+      spawnParticles(p.x,p.y,'#a855f7',effectCount,effectSpread);
+      addSlash(p.x,p.y,Math.atan2(targetY-p.y,targetX-p.x),150+lv*5,.16,18+lv,lv>=10?'#ffd700':'#a855f7','sword',lv>=5);
+      for(let i=0;i<6;i++){
+        const ang = Math.PI*2*i/6 + Math.random()*0.5;
+        addSlash(p.x,p.y,ang,100+lv*10,.14,10,'#a855f7','knife',lv>=5);
+      }
+      playSound('hit');
       break;
     }
   }
@@ -1562,12 +1310,17 @@ function movePlayerEntity(p,mx,my){
   if(!p||p.dead)return;
   if(p.pullTimer>0&&p.pullX!==undefined){p.x=clamp(p.x+p.pullX*4,20,innerWidth-20);p.y=clamp(p.y+p.pullY*4,20,innerHeight-20);p.pullTimer--}
   if(mx||my){
+    p.lastMoveX = mx;
+    p.lastMoveY = my;
     const l=Math.hypot(mx,my)||1,moveSpeed=clamp(p.speed,0,p.speedCap);
     p.x=clamp(p.x+mx/l*moveSpeed,p.radius,innerWidth-p.radius);
     p.y=clamp(p.y+my/l*moveSpeed,p.radius,innerHeight-p.radius);
     if(mx!==0)p.facingRight=mx>0;
     if(currentSkinId==='summer_skin'&&Math.random()<.45){const petalColor=Math.random()<.6?'#ff2d55':'#b3001b';spawnParticles(p.x,p.y+12,petalColor,1,.6)}
     if(currentSkinId==='maid_skin'&&Math.random()<.45){const splashColor=Math.random()<.6?'#00b4d8':'#caf0f8';spawnParticles(p.x,p.y+12,splashColor,1,.6)}
+  } else {
+    p.lastMoveX = 0;
+    p.lastMoveY = 0;
   }
 }
 function playerCombat(p,mx,my,targets){
@@ -1994,6 +1747,113 @@ document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.k
 document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim()))alert('等级码导入成功！')}});
 bind('importP1Btn',()=>{const code=document.getElementById('p1CodeInput').value.trim();if(!code){document.getElementById('p1LevelStatus').textContent='当前状态：全1级 (基础)';return}const lvls=parseCodeToLevels(code);if(Object.keys(lvls.w).length||Object.keys(lvls.c).length||Object.keys(lvls.s||{}).length){document.getElementById('p1LevelStatus').textContent='✅ 等级码验证成功，开始战斗将生效！';document.getElementById('p1LevelStatus').style.color='#32d59d'}else{document.getElementById('p1LevelStatus').textContent='❌ 无效等级码，将使用基础状态';document.getElementById('p1LevelStatus').style.color='#ff3366'}});
 bind('importP2Btn',()=>{const code=document.getElementById('p2CodeInput').value.trim();if(!code){document.getElementById('p2LevelStatus').textContent='当前状态：全1级 (基础)';return}const lvls=parseCodeToLevels(code);if(Object.keys(lvls.w).length||Object.keys(lvls.c).length||Object.keys(lvls.s||{}).length){document.getElementById('p2LevelStatus').textContent='✅ 等级码验证成功，开始战斗将生效！';document.getElementById('p2LevelStatus').style.color='#32d59d'}else{document.getElementById('p2LevelStatus').textContent='❌ 无效等级码，将使用基础状态';document.getElementById('p2LevelStatus').style.color='#ff3366'}});
+
+/* ===== UI 拖拽自定義 ===== */
+let isDragMode = false;
+bind('customUiBtn', () => {
+  showMenu('none');
+  isDragMode = true;
+  document.body.classList.add('drag-active');
+  document.getElementById('skillBtn').style.pointerEvents = 'auto';
+  if (player2) document.getElementById('skillBtn2').style.pointerEvents = 'auto';
+  // 强制显示按钮方便拖拽
+  document.getElementById('skillBtn').classList.add('on');
+  if (player2) document.getElementById('skillBtn2').classList.add('on');
+});
+
+// 拖动逻辑
+let dragTarget = null;
+let dragStartX = 0, dragStartY = 0;
+let btnStartX = 0, btnStartY = 0;
+
+function setupDrag(btn) {
+  btn.addEventListener('pointerdown', e => {
+    if (!isDragMode) return;
+    dragTarget = e.target;
+    const rect = dragTarget.getBoundingClientRect();
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    btnStartX = rect.left;
+    btnStartY = rect.top;
+    
+    // 使用 absolute 并覆盖 left/top
+    dragTarget.style.left = rect.left + 'px';
+    dragTarget.style.top = rect.top + 'px';
+    dragTarget.style.bottom = 'auto';
+    dragTarget.style.right = 'auto';
+    e.preventDefault();
+  });
+}
+
+function handleDragMove(e) {
+  if (!dragTarget || !isDragMode) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  
+  let newLeft = btnStartX + dx;
+  let newTop = btnStartY + dy;
+  
+  // 边界限制
+  const w = dragTarget.offsetWidth;
+  const h = dragTarget.offsetHeight;
+  newLeft = Math.max(10, Math.min(innerWidth - w - 10, newLeft));
+  newTop = Math.max(10, Math.min(innerHeight - h - 10, newTop));
+  
+  dragTarget.style.left = newLeft + 'px';
+  dragTarget.style.top = newTop + 'px';
+}
+
+function handleDragEnd(e) {
+  if (!dragTarget || !isDragMode) return;
+  const id = dragTarget.id;
+  const left = parseFloat(dragTarget.style.left);
+  const top = parseFloat(dragTarget.style.top);
+  
+  try {
+    const uiPos = JSON.parse(localStorage.getItem(UI_KEY) || '{}');
+    uiPos[id] = { left, top };
+    localStorage.setItem(UI_KEY, JSON.stringify(uiPos));
+  } catch(err) {}
+  
+  dragTarget = null;
+  
+  // 退出拖拽模式
+  isDragMode = false;
+  document.body.classList.remove('drag-active');
+  document.getElementById('skillBtn').style.pointerEvents = '';
+  if (document.getElementById('skillBtn2')) document.getElementById('skillBtn2').style.pointerEvents = '';
+  
+  // 恢复状态显示
+  updateHUD();
+  showMenu('startMenu');
+}
+
+setupDrag(document.getElementById('skillBtn'));
+setupDrag(document.getElementById('skillBtn2'));
+
+window.addEventListener('pointermove', handleDragMove, { passive: false });
+window.addEventListener('pointerup', handleDragEnd);
+
+// 载入已保存的按钮位置
+function loadUiPositions() {
+  try {
+    const uiPos = JSON.parse(localStorage.getItem(UI_KEY) || '{}');
+    if (uiPos['skillBtn']) {
+      const btn = document.getElementById('skillBtn');
+      btn.style.left = uiPos['skillBtn'].left + 'px';
+      btn.style.top = uiPos['skillBtn'].top + 'px';
+      btn.style.bottom = 'auto';
+    }
+    if (uiPos['skillBtn2']) {
+      const btn = document.getElementById('skillBtn2');
+      btn.style.left = uiPos['skillBtn2'].left + 'px';
+      btn.style.top = uiPos['skillBtn2'].top + 'px';
+      btn.style.right = 'auto';
+      btn.style.bottom = 'auto';
+    }
+  } catch(e) {}
+}
+loadUiPositions();
 
 /* ===== 設定同步 ===== */
 function syncSettings(){soundToggle.checked=settings.sound;volumeSlider.value=Math.round(settings.volume*100);volumeText.textContent=`${Math.round(settings.volume*100)}%`;fxSlider.value=Math.round(settings.effects*100);fxText.textContent=`${Math.round(settings.effects*100)}%`;player.speed=clamp(Number(player.speed)||0,0,player.speedCap);speedValueInput.max=player.speedCap;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`}
