@@ -132,234 +132,279 @@ let currentSkinId='default';try{const s=localStorage.getItem(SKIN_KEY);if(skinLi
 
 /* ===== 皮膚繪製 ===== */
 const paperCanvas=document.createElement('canvas');
-paperCanvas.width=64; paperCanvas.height=90;
+// 使用高分辨率画布来绘制柔和立绘
+paperCanvas.width=256; paperCanvas.height=360;
 const pctx=paperCanvas.getContext('2d');
+pctx.imageSmoothingEnabled = true; // 开启抗锯齿，呈现平滑立绘效果
 
-// 夏日皮膚 (重製版：精緻像素風)
 function renderDetailedSummerSkin(){
-  pctx.clearRect(0,0,64,90);
+  pctx.clearRect(0,0,256,360);
   
-  // 1. 後髮 (深紅色)
-  pctx.fillStyle='#900C3F';
-  pctx.fillRect(18, 10, 28, 28); // 頭部後方
-  pctx.fillRect(16, 28, 8, 24);  // 左側長髮
-  pctx.fillRect(40, 28, 8, 24);  // 右側長髮
+  // 1. 後髮 (深紅)
+  pctx.fillStyle='#8b0000';
+  pctx.beginPath();
+  pctx.moveTo(100, 40);
+  pctx.bezierCurveTo(40, 40, 40, 150, 40, 280);
+  pctx.lineTo(216, 280);
+  pctx.bezierCurveTo(216, 150, 216, 40, 156, 40);
+  pctx.fill();
 
-  // 2. 腿部 (膚色)
-  pctx.fillStyle='#FFE0BD';
-  pctx.fillRect(24, 54, 6, 26);
-  pctx.fillRect(34, 54, 6, 26);
-  // 腿部陰影
-  pctx.fillStyle='#E0A87B';
-  pctx.fillRect(28, 54, 2, 26);
-  pctx.fillRect(38, 54, 2, 26);
+  // 2. 膚色打底
+  pctx.fillStyle='#ffe6c7';
+  // 脖子
+  pctx.fillRect(115, 110, 26, 30);
+  // 身體
+  pctx.beginPath();
+  pctx.moveTo(90, 140);
+  pctx.lineTo(166, 140);
+  pctx.lineTo(150, 230);
+  pctx.lineTo(106, 230);
+  pctx.fill();
+  // 腿
+  pctx.beginPath();
+  pctx.moveTo(106, 230);
+  pctx.lineTo(98, 320);
+  pctx.lineTo(118, 320);
+  pctx.lineTo(128, 230);
+  pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(128, 230);
+  pctx.lineTo(138, 320);
+  pctx.lineTo(158, 320);
+  pctx.lineTo(150, 230);
+  pctx.fill();
+  // 手臂
+  pctx.beginPath();
+  pctx.moveTo(90, 140);
+  pctx.lineTo(70, 200);
+  pctx.lineTo(85, 205);
+  pctx.lineTo(105, 150);
+  pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(166, 140);
+  pctx.lineTo(186, 200);
+  pctx.lineTo(171, 205);
+  pctx.lineTo(151, 150);
+  pctx.fill();
 
-  // 3. 腿部黑色交叉綁帶
-  pctx.fillStyle='#1A1C23';
-  for(let i=0; i<4; i++){
-    let y = 58 + i*5;
-    pctx.fillRect(24, y, 6, 2);
-    pctx.fillRect(34, y+2, 6, 2);
+  // 3. 脸部
+  pctx.beginPath();
+  pctx.ellipse(128, 80, 38, 45, 0, 0, Math.PI*2);
+  pctx.fill();
+  // 脸部阴影
+  pctx.fillStyle='#e8c3a1';
+  pctx.beginPath();
+  pctx.ellipse(128, 95, 30, 25, 0, 0, Math.PI);
+  pctx.fill();
+
+  // 4. 蓝色比基尼
+  // 底裤
+  pctx.fillStyle='#1a365d';
+  pctx.beginPath();
+  pctx.moveTo(100, 210);
+  pctx.lineTo(156, 210);
+  pctx.lineTo(150, 240);
+  pctx.lineTo(106, 240);
+  pctx.fill();
+  // 上衣
+  pctx.fillStyle='#457b9d';
+  pctx.beginPath();
+  pctx.moveTo(95, 140);
+  pctx.lineTo(161, 140);
+  pctx.lineTo(156, 170);
+  pctx.lineTo(100, 170);
+  pctx.fill();
+  // 白色绑带
+  pctx.strokeStyle='#ffffff';
+  pctx.lineWidth=3;
+  pctx.beginPath();
+  pctx.moveTo(128, 140); pctx.lineTo(128, 170);
+  pctx.stroke();
+  // 胸前蝴蝶结
+  pctx.fillStyle='#ffffff';
+  pctx.beginPath();
+  pctx.arc(115, 150, 6, 0, Math.PI*2);
+  pctx.arc(141, 150, 6, 0, Math.PI*2);
+  pctx.fill();
+
+  // 5. 白色半透明外衫
+  pctx.fillStyle='rgba(255, 255, 255, 0.6)';
+  pctx.beginPath();
+  pctx.moveTo(90, 140);
+  pctx.lineTo(70, 220);
+  pctx.lineTo(85, 225);
+  pctx.lineTo(100, 150);
+  pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(166, 140);
+  pctx.lineTo(186, 220);
+  pctx.lineTo(171, 225);
+  pctx.lineTo(156, 150);
+  pctx.fill();
+
+  // 6. 腿部黑色交叉绑带与高跟鞋
+  pctx.strokeStyle='#101218';
+  pctx.lineWidth=4;
+  // 左腿
+  for(let i=0; i<3; i++){
+    pctx.beginPath();
+    pctx.moveTo(98, 260 + i*20);
+    pctx.lineTo(120, 270 + i*20);
+    pctx.stroke();
+    pctx.beginPath();
+    pctx.moveTo(120, 260 + i*20);
+    pctx.lineTo(98, 270 + i*20);
+    pctx.stroke();
   }
-
-  // 4. 鞋子 (黑色)
+  // 右腿
+  for(let i=0; i<3; i++){
+    pctx.beginPath();
+    pctx.moveTo(138, 260 + i*20);
+    pctx.lineTo(160, 270 + i*20);
+    pctx.stroke();
+    pctx.beginPath();
+    pctx.moveTo(160, 260 + i*20);
+    pctx.lineTo(138, 270 + i*20);
+    pctx.stroke();
+  }
+  // 高跟鞋
   pctx.fillStyle='#101218';
-  pctx.fillRect(23, 82, 8, 4);
-  pctx.fillRect(33, 82, 8, 4);
-  pctx.fillStyle='#3A3F4B'; // 鞋子高光
-  pctx.fillRect(24, 82, 6, 1);
-  pctx.fillRect(34, 82, 6, 1);
+  pctx.beginPath();
+  pctx.moveTo(98, 320); pctx.lineTo(118, 320); pctx.lineTo(115, 340); pctx.lineTo(90, 340);
+  pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(138, 320); pctx.lineTo(158, 320); pctx.lineTo(166, 340); pctx.lineTo(141, 340);
+  pctx.fill();
 
-  // 5. 泳褲 (深藍色 + 亮藍裝飾)
-  pctx.fillStyle='#1A365D';
-  pctx.fillRect(22, 48, 20, 8);
-  pctx.fillStyle='#2B6CB0'; // 亮藍
-  pctx.fillRect(24, 49, 16, 3);
-  // 側邊綁帶
-  pctx.fillStyle='#1A365D';
-  pctx.fillRect(20, 46, 2, 6);
-  pctx.fillRect(42, 46, 2, 6);
-
-  // 6. 上半身 (膚色)
-  pctx.fillStyle='#FFE0BD';
-  pctx.fillRect(26, 34, 12, 14);
-
-  // 7. 泳衣上衣 (白色 + 藍色蝴蝶結)
-  pctx.fillStyle='#FFFFFF';
-  pctx.fillRect(23, 35, 18, 6);
-  pctx.fillStyle='#457B9D'; // 藍色裝飾
-  pctx.fillRect(31, 36, 2, 4); // 中間綁帶
-  pctx.fillRect(25, 37, 4, 2); // 左側蝴蝶結
-  pctx.fillRect(35, 37, 4, 2); // 右側蝴蝶結
-
-  // 8. 白色半透明外衫
-  pctx.fillStyle='rgba(255,255,255,0.6)';
-  pctx.fillRect(15, 34, 6, 22); // 左手外衫
-  pctx.fillRect(43, 34, 6, 22); // 右手外衫
-  pctx.fillStyle='rgba(255,255,255,0.9)'; // 邊緣高光
-  pctx.fillRect(15, 34, 2, 22);
-  pctx.fillRect(47, 34, 2, 22);
-
-  // 9. 手臂 (膚色)
-  pctx.fillStyle='#FFE0BD';
-  pctx.fillRect(17, 45, 4, 10);
-  pctx.fillRect(43, 45, 4, 10);
-
-  // 10. 水槍 (右手)
-  pctx.fillStyle='#2A9D8F'; // 槍身
-  pctx.fillRect(42, 38, 8, 4);
-  pctx.fillRect(46, 34, 4, 4);
-  pctx.fillStyle='#E9C46A'; // 黃色裝飾
-  pctx.fillRect(44, 39, 2, 2);
-  pctx.fillRect(47, 35, 2, 2);
-  pctx.fillStyle='#118AB2'; // 槍口
-  pctx.fillRect(41, 38, 2, 4);
-
-  // 11. 頭部與臉型
-  pctx.fillStyle='#FFE0BD';
-  pctx.fillRect(22, 16, 20, 18); // 臉部
-  pctx.fillStyle='#E0A87B'; // 臉頰陰影
-  pctx.fillRect(22, 30, 20, 4);
-
-  // 12. 五官 (精緻像素風)
-  // 眼睛 (藍色瞳孔)
-  pctx.fillStyle='#1A365D';
-  pctx.fillRect(26, 23, 3, 4); // 左眼
-  pctx.fillRect(35, 23, 3, 4); // 右眼
-  // 眼睛高光
-  pctx.fillStyle='#FFFFFF';
-  pctx.fillRect(27, 24, 1, 1);
-  pctx.fillRect(36, 24, 1, 1);
-  // 腮紅
-  pctx.fillStyle='#FFB4A2';
-  pctx.fillRect(24, 27, 3, 2);
-  pctx.fillRect(37, 27, 3, 2);
+  // 7. 五官
+  // 眼睛
+  pctx.fillStyle='#1d3557';
+  pctx.beginPath(); pctx.ellipse(110, 85, 8, 10, 0, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(146, 85, 8, 10, 0, 0, Math.PI*2); pctx.fill();
+  pctx.fillStyle='#457b9d';
+  pctx.beginPath(); pctx.ellipse(110, 86, 6, 8, 0, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(146, 86, 6, 8, 0, 0, Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ffffff';
+  pctx.beginPath(); pctx.arc(108, 83, 3, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(144, 83, 3, 0, Math.PI*2); pctx.fill();
   // 嘴巴
-  pctx.fillStyle='#E63946';
-  pctx.fillRect(31, 29, 2, 1);
+  pctx.strokeStyle='#e63946';
+  pctx.lineWidth=2;
+  pctx.beginPath();
+  pctx.arc(128, 100, 4, 0, Math.PI);
+  pctx.stroke();
+  // 腮红
+  pctx.fillStyle='rgba(255, 143, 163, 0.6)';
+  pctx.beginPath(); pctx.ellipse(98, 95, 8, 4, 0, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(158, 95, 8, 4, 0, 0, Math.PI*2); pctx.fill();
 
-  // 13. 前髮與瀏海 (鮮紅色)
-  pctx.fillStyle='#E63946';
-  pctx.fillRect(20, 10, 24, 8); // 頂部瀏海
-  // 瀏海細節 (參差感)
-  pctx.fillRect(22, 18, 4, 4);
-  pctx.fillRect(28, 18, 4, 2);
-  pctx.fillRect(34, 18, 4, 5);
-  pctx.fillRect(38, 18, 4, 3);
+  // 8. 前髮
+  pctx.fillStyle='#b3001b';
+  // 瀏海
+  pctx.beginPath();
+  pctx.moveTo(90, 60);
+  pctx.bezierCurveTo(100, 30, 156, 30, 166, 60);
+  pctx.lineTo(160, 70);
+  pctx.lineTo(150, 45);
+  pctx.lineTo(140, 75);
+  pctx.lineTo(128, 45);
+  pctx.lineTo(116, 75);
+  pctx.lineTo(106, 45);
+  pctx.lineTo(96, 70);
+  pctx.fill();
   // 兩側長髮
-  pctx.fillRect(18, 14, 4, 22);
-  pctx.fillRect(42, 14, 4, 22);
+  pctx.beginPath();
+  pctx.moveTo(90, 60); pctx.bezierCurveTo(80, 100, 70, 160, 90, 180); pctx.lineTo(100, 180); pctx.bezierCurveTo(85, 130, 95, 90, 90, 60); pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(166, 60); pctx.bezierCurveTo(176, 100, 186, 160, 166, 180); pctx.lineTo(156, 180); pctx.bezierCurveTo(171, 130, 161, 90, 166, 60); pctx.fill();
+  // 高光
+  pctx.strokeStyle='#ff2d55';
+  pctx.lineWidth=4;
+  pctx.beginPath(); pctx.moveTo(100, 50); pctx.bezierCurveTo(110, 40, 140, 40, 150, 50); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(85, 100); pctx.bezierCurveTo(80, 140, 90, 160, 95, 170); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(171, 100); pctx.bezierCurveTo(176, 140, 166, 160, 161, 170); pctx.stroke();
 
-  // 14. 頭髮高光 (亮紅/橘色)
-  pctx.fillStyle='#FF8FA3';
-  pctx.fillRect(22, 10, 20, 2);
-  pctx.fillRect(19, 14, 2, 10);
-  pctx.fillRect(43, 14, 2, 10);
+  // 9. 白色發飾
+  pctx.fillStyle='#ffffff';
+  pctx.beginPath(); pctx.arc(105, 40, 6, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(151, 40, 6, 0, Math.PI*2); pctx.fill();
+  pctx.fillStyle='#90e0ef';
+  pctx.beginPath(); pctx.arc(105, 40, 3, 0, Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(151, 40, 3, 0, Math.PI*2); pctx.fill();
 
-  // 15. 頭飾 (小白色蝴蝶結)
-  pctx.fillStyle='#FFFFFF';
-  pctx.fillRect(18, 10, 4, 4);
-  pctx.fillStyle='#90E0EF'; // 藍色點綴
-  pctx.fillRect(20, 11, 2, 2);
+  // 10. 水槍
+  pctx.fillStyle='#2a9d8f';
+  pctx.fillRect(175, 180, 30, 15);
+  pctx.fillRect(185, 165, 15, 15);
+  pctx.fillStyle='#e9c46a';
+  pctx.fillRect(180, 185, 8, 8);
+  pctx.fillRect(190, 170, 6, 6);
+  pctx.fillStyle='#118ab2';
+  pctx.fillRect(165, 180, 10, 15);
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(185, 175, 4, 4);
 }
 renderDetailedSummerSkin();
 const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
 
-// 深海女僕皮膚 (最終精修版)
+// 深海女僕皮膚 (保持原样，平滑风格)
 function renderMaidSkin(){
-  pctx.clearRect(0,0,64,90);
-  
-  // 1. 後髮與尾巴 (背景)
-  pctx.fillStyle='#1e2a4a'; // 深藍
-  pctx.beginPath(); pctx.ellipse(32,45,18,28,0,0,Math.PI*2); pctx.fill(); // 後髮
-  // 鯨魚尾巴
-  pctx.fillStyle='#2b3b6b';
-  pctx.beginPath(); pctx.moveTo(45,65); pctx.quadraticCurveTo(60,70,55,85); pctx.quadraticCurveTo(48,78,45,75); pctx.fill();
-  pctx.fillStyle='#4ea8de'; // 尾巴高光
-  pctx.beginPath(); pctx.moveTo(48,68); pctx.quadraticCurveTo(57,72,53,82); pctx.quadraticCurveTo(50,76,48,74); pctx.fill();
-
-  // 2. 裙擺與腿
-  // 內裙 (水藍百褶)
-  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(20,60); pctx.lineTo(44,60); pctx.lineTo(48,80); pctx.lineTo(16,80); pctx.fill();
-  // 外裙 (深藍)
-  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(16,60); pctx.lineTo(48,60); pctx.lineTo(52,75); pctx.lineTo(12,75); pctx.fill();
-  // 裙子白蕾絲
-  pctx.fillStyle='#ffffff';
-  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(15+i*5.3,75,2.5,0,Math.PI); pctx.fill(); }
-  // 腿 (白絲襪)
-  pctx.fillStyle='#ffffff'; pctx.fillRect(24,80,5,8); pctx.fillRect(35,80,5,8);
-  // 鞋子 (黑皮鞋)
-  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(26.5,88,4,2,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(37.5,88,4,2,0,0,Math.PI*2); pctx.fill();
-
-  // 3. 身體與女僕裝
-  // 上半身深藍 (泡泡袖)
+  pctx.clearRect(0,0,256,360);
   pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(20,45,6,10,0.2,0,Math.PI*2); pctx.fill(); // 左袖
-  pctx.beginPath(); pctx.ellipse(44,45,6,10,-0.2,0,Math.PI*2); pctx.fill(); // 右袖
-  pctx.fillRect(24,36,16,25); // 衣服本體
-  
-  // 白色圍裙
-  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(26,38); pctx.lineTo(38,38); pctx.lineTo(42,75); pctx.lineTo(22,75); pctx.fill();
-  // 圍裙下蕾絲
-  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(23+i*4.5,75,2.5,0,Math.PI); pctx.fill(); }
-  // 圍裙上的鯨魚
-  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(32,58,5,3,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(37,58); pctx.lineTo(40,55); pctx.lineTo(39,61); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(29,57.5,1,0,Math.PI*2); pctx.fill(); // 鯨魚眼
-
-  // 領口 (白) 與 金釦子
-  pctx.fillStyle='#ffffff'; pctx.fillRect(25,36,14,4);
-  pctx.fillStyle='#ffd700'; pctx.fillRect(26,42,2,2); pctx.fillRect(36,42,2,2); pctx.fillRect(26,46,2,2); pctx.fillRect(36,46,2,2);
-
-  // 4. 臉部
-  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(32,26,10,0,Math.PI*2); pctx.fill();
-  
-  // 腮紅與嘴巴
-  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(24,30,2.5,0,Math.PI*2); pctx.arc(40,30,2.5,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(32,31,1.5,0,Math.PI); pctx.fill();
-
-  // 眼睛 (深藍眼眶、藍色瞳孔、白高光)
+  pctx.beginPath(); pctx.ellipse(128,180,72,112,0,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#2b3b6b';
+  pctx.beginPath(); pctx.moveTo(180,260); pctx.quadraticCurveTo(240,280,220,340); pctx.quadraticCurveTo(192,312,180,300); pctx.fill();
+  pctx.fillStyle='#4ea8de';
+  pctx.beginPath(); pctx.moveTo(192,272); pctx.quadraticCurveTo(228,288,212,328); pctx.quadraticCurveTo(200,304,192,296); pctx.fill();
+  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(80,240); pctx.lineTo(176,240); pctx.lineTo(192,320); pctx.lineTo(64,320); pctx.fill();
+  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(64,240); pctx.lineTo(192,240); pctx.lineTo(208,300); pctx.lineTo(48,300); pctx.fill();
+  pctx.fillStyle='#ffffff';
+  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(60+i*21.2,300,10,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#ffffff'; pctx.fillRect(96,320,20,32); pctx.fillRect(140,320,20,32);
+  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(106,352,16,8,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(150,352,16,8,0,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#1e2a4a';
+  pctx.beginPath(); pctx.ellipse(80,180,24,40,0.2,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(176,180,24,40,-0.2,0,Math.PI*2); pctx.fill();
+  pctx.fillRect(96,144,64,100);
+  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(104,152); pctx.lineTo(152,152); pctx.lineTo(168,300); pctx.lineTo(88,300); pctx.fill();
+  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(92+i*18,300,10,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(128,232,20,12,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(148,232); pctx.lineTo(160,220); pctx.lineTo(156,244); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(116,230,4,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ffffff'; pctx.fillRect(100,144,56,16);
+  pctx.fillStyle='#ffd700'; pctx.fillRect(104,168,8,8); pctx.fillRect(144,168,8,8); pctx.fillRect(104,184,8,8); pctx.fillRect(144,184,8,8);
+  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(128,104,40,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(96,120,10,0,Math.PI*2); pctx.arc(160,120,10,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(128,124,6,0,Math.PI); pctx.fill();
   pctx.fillStyle='#0a2a4a';
-  pctx.beginPath(); pctx.ellipse(26,26,3,4,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(38,26,3,4,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(104,104,12,16,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(152,104,12,16,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.ellipse(26,27,2,3,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(38,27,2,3,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(104,108,8,12,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(152,108,8,12,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#ffffff';
-  pctx.beginPath(); pctx.arc(25,25,1,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(37,25,1,0,Math.PI*2); pctx.fill();
-
-  // 5. 魚鰭耳 (水藍色)
+  pctx.beginPath(); pctx.arc(100,100,4,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(148,100,4,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#90e0ef';
-  pctx.beginPath(); pctx.moveTo(20,24); pctx.lineTo(14,20); pctx.lineTo(18,28); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(44,24); pctx.lineTo(50,20); pctx.lineTo(46,28); pctx.fill();
-
-  // 6. 前髮與鬢角 (深藍色)
+  pctx.beginPath(); pctx.moveTo(80,96); pctx.lineTo(56,80); pctx.lineTo(72,112); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(176,96); pctx.lineTo(200,80); pctx.lineTo(184,112); pctx.fill();
   pctx.fillStyle='#2b3b6b'; 
-  // 瀏海
-  pctx.beginPath(); pctx.moveTo(20,26); pctx.quadraticCurveTo(32,16,44,26); pctx.quadraticCurveTo(38,22,32,28); pctx.quadraticCurveTo(26,22,20,26); pctx.fill();
-  // 兩側鬢角
-  pctx.beginPath(); pctx.moveTo(22,24); pctx.quadraticCurveTo(18,40,22,50); pctx.quadraticCurveTo(26,40,26,30); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(42,24); pctx.quadraticCurveTo(46,40,42,50); pctx.quadraticCurveTo(38,40,38,30); pctx.fill();
-  // 頭髮高光 (水藍)
-  pctx.strokeStyle='#4ea8de'; pctx.lineWidth=1.5;
-  pctx.beginPath(); pctx.moveTo(24,28); pctx.quadraticCurveTo(22,38,24,45); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(40,28); pctx.quadraticCurveTo(42,38,40,45); pctx.stroke();
-
-  // 7. 女僕頭飾 (蕾絲帶 + 蝴蝶結)
+  pctx.beginPath(); pctx.moveTo(80,104); pctx.quadraticCurveTo(128,64,176,104); pctx.quadraticCurveTo(152,88,128,112); pctx.quadraticCurveTo(104,88,80,104); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(88,96); pctx.quadraticCurveTo(72,160,88,200); pctx.quadraticCurveTo(104,160,104,120); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(168,96); pctx.quadraticCurveTo(184,160,168,200); pctx.quadraticCurveTo(152,160,152,120); pctx.fill();
+  pctx.strokeStyle='#4ea8de'; pctx.lineWidth=6;
+  pctx.beginPath(); pctx.moveTo(96,112); pctx.quadraticCurveTo(88,152,96,180); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(160,112); pctx.quadraticCurveTo(168,152,160,180); pctx.stroke();
   pctx.fillStyle='#ffffff';
-  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(22+i*4,16,2,0,Math.PI*2); pctx.fill(); }
-  pctx.fillRect(22,16,20,2);
+  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(88+i*16,64,8,0,Math.PI*2); pctx.fill(); }
+  pctx.fillRect(88,64,80,8);
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,10); pctx.lineTo(45,16); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,18); pctx.lineTo(44,14); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(40,14,1.5,0,Math.PI*2); pctx.fill();
-
-  // 8. 呆毛 (細線)
-  pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=2;
-  pctx.beginPath(); pctx.moveTo(32,14); pctx.bezierCurveTo(28,6,36,4,40,8); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(160,56); pctx.lineTo(184,40); pctx.lineTo(180,64); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(160,56); pctx.lineTo(184,72); pctx.lineTo(176,56); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(160,56,6,0,Math.PI*2); pctx.fill();
+  pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=8;
+  pctx.beginPath(); pctx.moveTo(128,56); pctx.bezierCurveTo(112,24,144,16,160,32); pctx.stroke();
 }
 renderMaidSkin();
-  
 const maidSkinImg=new Image(); maidSkinImg.src=paperCanvas.toDataURL();
 
 function saveSelectedSkin(){try{localStorage.setItem(SKIN_KEY,currentSkinId)}catch(e){}}
@@ -826,7 +871,6 @@ function rerollShop(){
   shopRerollCount++;
   const available=itemPool.filter(item=>!shopChoiceIds.includes(item.id)&&!purchasedItemIds.includes(item.id)&&!(item.unique&&player.permanentPurchasedIds.includes(item.id)));
   shopChoiceIds=available.sort(()=>Math.random()-.5).slice(0,4).map(item=>item.id);
-  // 不清空 purchasedItemIds，保持本回合已购记录
   if(player2){
     const available2=itemPool.filter(item=>!shopChoiceIds2.includes(item.id)&&!purchasedItemIds2.includes(item.id)&&!(item.unique&&player2.permanentPurchasedIds.includes(item.id)));
     shopChoiceIds2=available2.sort(()=>Math.random()-.5).slice(0,4).map(item=>item.id);
@@ -1077,10 +1121,12 @@ function drawPlayerEntity(p){
   if(currentSkinId==='maid_skin'){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);const floatY=Math.sin(skillFrame*.08)*3;
     ctx.shadowBlur=16;ctx.shadowColor='rgba(0,180,216,.55)';
+    // 使用高分辨率画布，缩放到 32x45
     ctx.drawImage(maidSkinImg,-16,-22.5+floatY,32,45);
   } else if(currentSkinId==='summer_skin'){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);const floatY=Math.sin(skillFrame*.08)*3;
     ctx.shadowBlur=16;ctx.shadowColor='rgba(255,45,85,.55)';
+    // 使用高分辨率画布，缩放到 32x45
     ctx.drawImage(summerSkinImg,-16,-22.5+floatY,32,45);
   }else{
     ctx.shadowBlur=14;ctx.shadowColor=p===player2?'#ff6ec7':'#fc0';ctx.fillStyle='#d4883b';ctx.strokeStyle='#5a3818';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(p.x,p.y,18,22,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.shadowBlur=0;ctx.fillStyle='#101218';ctx.beginPath();ctx.arc(p.x-5,p.y-3,2.5,0,Math.PI*2);ctx.arc(p.x+5,p.y-3,2.5,0,Math.PI*2);ctx.fill()
@@ -1882,16 +1928,26 @@ setInterval(saveGame,1500);
 if(hasSave()){continueGameBtn.hidden=false;continueGameBtn.onclick=()=>{loadSavedGame();showMenu('none')}}
 showMenu('startMenu');renderChoices();syncSettings();updateHUD();
 
-/* 【平板優化】固定 60FPS 步進主迴圈 */
-let lastFrameTime=performance.now();
-const TARGET_FPS=60,FRAME_TIME=1000/TARGET_FPS;
-requestAnimationFrame(function loop(currentTime){
-  const deltaTime=currentTime-lastFrameTime;
-  if(deltaTime>=FRAME_TIME){
-    const updates=Math.min(Math.floor(deltaTime/FRAME_TIME),3);
-    for(let i=0;i<updates;i++)update();
-    lastFrameTime=currentTime-(deltaTime%FRAME_TIME);
+/* 【修复站立不动导致怪物减速】采用时间累加器（Accumulator）主循环 */
+let lastFrameTime = performance.now();
+const TARGET_FPS = 60;
+const FRAME_TIME = 1000 / TARGET_FPS;
+let accumulator = 0;
+
+requestAnimationFrame(function loop(currentTime) {
+  const deltaTime = currentTime - lastFrameTime;
+  lastFrameTime = currentTime;
+  
+  // 累积时间，防止切到后台回来一瞬间更新太多帧导致穿透
+  accumulator += deltaTime;
+  if (accumulator > 1000) accumulator = 1000; // 最多补偿1秒的帧
+
+  // 无论浏览器降频到多少，只要累积时间够了，就执行逻辑更新
+  while (accumulator >= FRAME_TIME) {
+    update();
+    accumulator -= FRAME_TIME;
   }
+  
   draw();
   requestAnimationFrame(loop);
 });
