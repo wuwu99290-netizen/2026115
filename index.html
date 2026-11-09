@@ -141,169 +141,155 @@ paperCanvas.width=128; paperCanvas.height=180;
 const pctx=paperCanvas.getContext('2d');
 pctx.imageSmoothingEnabled = false; // 徹底關閉平滑，保證像素銳利
 
-// 夏日皮膚 (終極精修：像素級光影、比例、細節還原)
+// 夏日皮膚 (二次精修：修復比例、動態姿勢與立體感)
 function renderDetailedSummerSkin(){
   pctx.clearRect(0,0,128,180);
   
-  // --- 1. 後髮與骨架 ---
-  // 頭部 (x:48~80, y:20~56)，脖子(y:56~64)，軀幹(x:48~80, y:64~100)
-  // 腿部 (x:52~66, y:100~150)，手臂(x:36, x:92)
-
-  // 後髮打底 (深紅)
-  pctx.fillStyle='#7a1113';
-  pctx.fillRect(40, 16, 48, 52); // 頭部後方
-  pctx.fillRect(36, 56, 12, 44); // 左側長髮
-  pctx.fillRect(80, 56, 12, 44); // 右側長髮
-
-  // --- 2. 腿部與鞋子 (拉長比例) ---
-  // 膚色
+  // --- 1. 基礎膚色 (腿、身體、手臂、脖子、頭) ---
   pctx.fillStyle='#ffe0bd';
+  // 腿部
   pctx.fillRect(52, 100, 10, 46); // 左腿
   pctx.fillRect(66, 100, 10, 46); // 右腿
-  // 腿部陰影
+  // 身體
+  pctx.fillRect(50, 64, 28, 26); // 腹部
+  // 脖子
+  pctx.fillRect(56, 56, 16, 8);
+  // 頭部 (稍微修圓，減少方塊感)
+  pctx.fillRect(48, 20, 32, 36); 
+  // 左手臂自然下垂
+  pctx.fillRect(36, 66, 8, 24);
+  pctx.fillRect(36, 86, 8, 8); // 手
+  // 右手拿水槍 (向前伸出，展現動態)
+  pctx.fillRect(84, 66, 8, 16); // 上臂
+  pctx.fillRect(82, 78, 10, 10); // 前臂和手
+
+  // --- 2. 陰影 (增加立體感) ---
   pctx.fillStyle='#e0a87b';
-  pctx.fillRect(58, 100, 4, 46);
-  pctx.fillRect(72, 100, 4, 46);
+  pctx.fillRect(58, 100, 4, 46); // 左腿内侧阴影
+  pctx.fillRect(66, 100, 4, 46); // 右腿内侧阴影
+  pctx.fillRect(46, 50, 36, 6); // 下巴/脸部阴影
+  pctx.fillRect(74, 64, 4, 26); // 腹部右侧阴影
+  pctx.fillRect(36, 86, 8, 4); // 左手下阴影
 
-  // 黑色交叉綁帶 (純色、點對點)
-  pctx.fillStyle='#101218';
-  // 左腿綁帶
-  for(let i=0;i<3;i++){
-    let y = 110 + i*10;
-    pctx.fillRect(52, y, 10, 2);
-    pctx.fillRect(54, y+2, 6, 2);
-    pctx.fillRect(56, y+4, 2, 2);
-    pctx.fillRect(52, y+6, 10, 2);
-  }
-  // 右腿綁帶
-  for(let i=0;i<3;i++){
-    let y = 110 + i*10;
-    pctx.fillRect(66, y, 10, 2);
-    pctx.fillRect(68, y+2, 6, 2);
-    pctx.fillRect(70, y+4, 2, 2);
-    pctx.fillRect(66, y+6, 10, 2);
-  }
-
-  // 高跟鞋
-  pctx.fillStyle='#101218';
-  pctx.fillRect(48, 146, 14, 6); // 左鞋
-  pctx.fillRect(66, 146, 14, 6); // 右鞋
-  pctx.fillStyle='#3a3f4b'; // 鞋跟高光
-  pctx.fillRect(50, 146, 10, 1);
-  pctx.fillRect(68, 146, 10, 1);
-  pctx.fillStyle='#101218';
-  pctx.fillRect(48, 152, 4, 12); // 左跟
-  pctx.fillRect(76, 152, 4, 12); // 右跟
-
-  // --- 3. 泳褲 (深藍比基尼) ---
+  // --- 3. 後髮 ---
+  pctx.fillStyle='#7a1113';
+  pctx.fillRect(38, 16, 52, 48);
+  pctx.fillRect(34, 56, 14, 46); // 左侧长发
+  pctx.fillRect(80, 56, 14, 46); // 右侧长发
+  
+  // --- 4. 泳褲 (深藍比基尼) ---
   pctx.fillStyle='#1a365d';
   pctx.fillRect(48, 90, 32, 10);
   pctx.fillStyle='#2b6cb0'; // 亮藍高光
-  pctx.fillRect(50, 92, 28, 3);
+  pctx.fillRect(50, 92, 28, 2);
   // 側邊白綁帶
   pctx.fillStyle='#ffffff';
   pctx.fillRect(46, 88, 4, 6);
   pctx.fillRect(78, 88, 4, 6);
-
-  // --- 4. 上半身與服裝 ---
-  // 腹部肌膚
-  pctx.fillStyle='#ffe0bd';
-  pctx.fillRect(54, 64, 20, 26); 
+  
+  // --- 5. 上半身與服裝 ---
   // 白色內衣
   pctx.fillStyle='#ffffff';
   pctx.fillRect(48, 60, 32, 10);
   // 藍色蝴蝶結
   pctx.fillStyle='#2b6cb0';
-  pctx.fillRect(62, 60, 4, 10);
-  pctx.fillRect(52, 62, 8, 4);
-  pctx.fillRect(68, 62, 8, 4);
+  pctx.fillRect(62, 60, 4, 6);
+  pctx.fillRect(54, 62, 8, 4);
+  pctx.fillRect(66, 62, 8, 4);
+  
+  // --- 6. 白色半透明外衫 ---
+  pctx.fillStyle='rgba(255,255,255,0.45)';
+  pctx.fillRect(34, 60, 10, 42);
+  pctx.fillRect(84, 60, 10, 42);
+  // 外衫高光
+  pctx.fillStyle='rgba(255,255,255,0.8)';
+  pctx.fillRect(34, 60, 2, 42);
+  pctx.fillRect(92, 60, 2, 42);
 
-  // --- 5. 白色半透明外衫 ---
-  pctx.fillStyle='rgba(255,255,255,0.55)';
-  pctx.fillRect(34, 60, 12, 40);
-  pctx.fillRect(82, 60, 12, 40);
-  // 外衫高光 (絲綢質感)
-  pctx.fillStyle='rgba(255,255,255,0.9)';
-  pctx.fillRect(34, 60, 2, 40);
-  pctx.fillRect(92, 60, 2, 40);
-
-  // --- 6. 手臂 ---
-  pctx.fillStyle='#ffe0bd';
-  pctx.fillRect(38, 74, 8, 20);
-  pctx.fillRect(82, 74, 8, 20);
-
-  // --- 7. 頭部與脖子 ---
-  // 脖子 (修正頭重腳輕)
-  pctx.fillStyle='#ffe0bd';
-  pctx.fillRect(52, 56, 24, 8); 
-  // 臉部
-  pctx.fillRect(46, 22, 36, 36);
-  // 臉頰陰影
-  pctx.fillStyle='#e0a87b';
-  pctx.fillRect(46, 50, 36, 8);
-
-  // --- 8. 精緻五官 ---
-  // 眼睛 (深藍眼眶、紅瞳、白高光，帶點靈氣)
+  // --- 7. 精緻五官 ---
+  // 眼睛 (深藍眼眶、紅瞳、白高光，拉開間距)
   pctx.fillStyle='#1a365d';
-  pctx.fillRect(52, 34, 8, 8);
-  pctx.fillRect(68, 34, 8, 8);
+  pctx.fillRect(50, 32, 8, 10);
+  pctx.fillRect(70, 32, 8, 10);
   pctx.fillStyle='#e63946';
-  pctx.fillRect(54, 36, 4, 4);
-  pctx.fillRect(70, 36, 4, 4);
+  pctx.fillRect(52, 34, 4, 6);
+  pctx.fillRect(72, 34, 4, 6);
   pctx.fillStyle='#ffffff';
-  pctx.fillRect(54, 36, 1, 1);
-  pctx.fillRect(70, 36, 1, 1);
-  // 腮紅
+  pctx.fillRect(52, 34, 2, 2);
+  pctx.fillRect(72, 34, 2, 2);
+  // 腮紅 (位置微調，更可愛)
   pctx.fillStyle='#ffb4a2';
-  pctx.fillRect(48, 44, 4, 2);
-  pctx.fillRect(76, 44, 4, 2);
-  // 嘴巴
+  pctx.fillRect(46, 42, 4, 3);
+  pctx.fillRect(78, 42, 4, 3);
+  // 嘴巴 (小微笑)
   pctx.fillStyle='#e63946';
   pctx.fillRect(62, 46, 4, 1);
-  pctx.fillRect(60, 47, 2, 1);
-  pctx.fillRect(66, 47, 2, 1);
+  pctx.fillRect(60, 45, 2, 1);
+  pctx.fillRect(66, 45, 2, 1);
 
-  // --- 9. 前髮與瀏海 (層次感) ---
-  pctx.fillStyle='#a4161a'; // 中紅
-  pctx.fillRect(42, 18, 44, 12); // 頂部
-  pctx.fillRect(44, 30, 6, 8); // 左鬢角
-  pctx.fillRect(78, 30, 6, 10); // 右鬢角
+  // --- 8. 前髮與瀏海 ---
+  pctx.fillStyle='#a4161a';
+  pctx.fillRect(42, 16, 44, 14); // 顶部
+  pctx.fillRect(44, 28, 6, 12); // 左鬓角
+  pctx.fillRect(78, 28, 6, 14); // 右鬓角
   // 瀏海參差
-  pctx.fillRect(50, 30, 6, 6);
-  pctx.fillRect(60, 30, 6, 8);
-  pctx.fillRect(70, 30, 6, 4);
-  
-  // 前髮亮色層次
-  pctx.fillStyle='#e63946';
-  pctx.fillRect(44, 20, 40, 10);
-  pctx.fillRect(46, 30, 4, 6);
-  pctx.fillRect(76, 30, 4, 8);
-  pctx.fillRect(52, 30, 4, 4);
-  pctx.fillRect(62, 30, 4, 6);
+  pctx.fillRect(50, 28, 8, 6);
+  pctx.fillRect(60, 28, 6, 8);
+  pctx.fillRect(68, 28, 8, 5);
+
+  pctx.fillStyle='#e63946'; // 亮色層次
+  pctx.fillRect(44, 18, 40, 8);
+  pctx.fillRect(46, 28, 6, 6);
+  pctx.fillRect(76, 28, 4, 8);
 
   // 頭髮高光
   pctx.fillStyle='#ff8fa3';
-  pctx.fillRect(46, 20, 36, 2);
-  pctx.fillRect(38, 56, 2, 10);
-  pctx.fillRect(88, 56, 2, 10);
+  pctx.fillRect(46, 18, 36, 2);
+  pctx.fillRect(36, 56, 2, 10);
+  pctx.fillRect(90, 56, 2, 10);
 
-  // --- 10. 頭飾 ---
+  // --- 9. 頭飾 ---
   pctx.fillStyle='#ffffff';
-  pctx.fillRect(42, 16, 6, 4);
-  pctx.fillStyle='#90e0ef'; // 藍色點綴
-  pctx.fillRect(44, 17, 2, 2);
+  pctx.fillRect(42, 14, 6, 4);
+  pctx.fillStyle='#90e0ef';
+  pctx.fillRect(44, 15, 2, 2);
 
-  // --- 11. 水槍 (像素立體感) ---
+  // --- 10. 腿部綁帶 (改為梯形收縮，貼合腿部) ---
+  pctx.fillStyle='#101218';
+  for(let i=0;i<4;i++){
+    let y = 106 + i*10;
+    // 左腿
+    pctx.fillRect(52, y, 8, 2);
+    pctx.fillRect(54, y+2, 6, 2);
+    pctx.fillRect(56, y+4, 4, 2);
+    // 右腿
+    pctx.fillRect(68, y, 8, 2);
+    pctx.fillRect(68, y+2, 6, 2);
+    pctx.fillRect(68, y+4, 4, 2);
+  }
+
+  // --- 11. 高跟鞋 ---
+  pctx.fillStyle='#101218';
+  pctx.fillRect(46, 146, 16, 6); // 左鞋
+  pctx.fillRect(66, 146, 16, 6); // 右鞋
+  pctx.fillStyle='#3a3f4b'; // 鞋面高光
+  pctx.fillRect(48, 146, 12, 1);
+  pctx.fillRect(68, 146, 12, 1);
+  pctx.fillStyle='#101218';
+  pctx.fillRect(48, 152, 4, 10); // 左跟
+  pctx.fillRect(76, 152, 4, 10); // 右跟
+
+  // --- 12. 水槍 (貼合右手) ---
   pctx.fillStyle='#2a9d8f';
-  pctx.fillRect(82, 76, 16, 6); // 槍身
+  pctx.fillRect(80, 74, 14, 6); // 槍身
   pctx.fillRect(90, 68, 6, 8); // 槍管
   pctx.fillStyle='#e9c46a';
-  pctx.fillRect(86, 78, 4, 2); // 裝飾
+  pctx.fillRect(84, 76, 4, 2); // 裝飾
   pctx.fillRect(92, 70, 2, 2);
   pctx.fillStyle='#118ab2';
-  pctx.fillRect(78, 76, 4, 6); // 槍口
-  pctx.fillStyle='#ffffff'; // 槍身高光
-  pctx.fillRect(84, 77, 10, 1);
+  pctx.fillRect(76, 74, 4, 6); // 槍口
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(82, 75, 8, 1);
 }
 renderDetailedSummerSkin();
 const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
