@@ -136,165 +136,144 @@ let currentSkinId='default';try{const s=localStorage.getItem(SKIN_KEY);if(skinLi
 
 /* ===== 皮膚繪製 ===== */
 const paperCanvas=document.createElement('canvas');
-// 嚴格使用 128x180 的高分辨率像素網格
 paperCanvas.width=128; paperCanvas.height=180;
 const pctx=paperCanvas.getContext('2d');
-pctx.imageSmoothingEnabled = false; // 徹底關閉平滑，保證像素銳利
+pctx.imageSmoothingEnabled = false;
 
-// 夏日皮膚 (二次精修：修復比例、動態姿勢與立體感)
+// 精修夏日海灘皮膚繪製
 function renderDetailedSummerSkin(){
   pctx.clearRect(0,0,128,180);
   
-  // --- 1. 基礎膚色 (腿、身體、手臂、脖子、頭) ---
+  // 1. 後髮 (深紅漸變與多層次長髮)
+  pctx.fillStyle='#6b0d13';
+  pctx.fillRect(34, 18, 60, 48);
+  pctx.fillRect(28, 54, 20, 52); // 左側長髮
+  pctx.fillRect(80, 54, 20, 52); // 右側長髮
+  pctx.fillStyle='#9b1319';
+  pctx.fillRect(30, 58, 16, 44);
+  pctx.fillRect(82, 58, 16, 44);
+
+  // 2. 草帽與花朵頭飾
+  pctx.fillStyle='#e9c46a';
+  pctx.fillRect(18, 10, 92, 8); // 帽子帽簷
+  pctx.fillRect(36, 2, 56, 10); // 帽頂
+  pctx.fillStyle='#f4a261';
+  pctx.fillRect(18, 16, 92, 2);
+  pctx.fillStyle='#e63946'; // 絲帶
+  pctx.fillRect(36, 9, 56, 3);
+  pctx.fillStyle='#ffffff'; // 白花
+  pctx.fillRect(28, 8, 6, 6);
+  pctx.fillStyle='#ffb703';
+  pctx.fillRect(30, 10, 2, 2);
+
+  // 3. 基礎膚色 (頭部、脖子、身體、腿部)
   pctx.fillStyle='#ffe0bd';
-  // 腿部
-  pctx.fillRect(52, 100, 10, 46); // 左腿
-  pctx.fillRect(66, 100, 10, 46); // 右腿
-  // 身體
+  pctx.fillRect(48, 20, 32, 36); // 臉部
+  pctx.fillRect(56, 56, 16, 8);  // 脖子
   pctx.fillRect(50, 64, 28, 26); // 腹部
-  // 脖子
-  pctx.fillRect(56, 56, 16, 8);
-  // 頭部 (稍微修圓，減少方塊感)
-  pctx.fillRect(48, 20, 32, 36); 
-  // 左手臂自然下垂
-  pctx.fillRect(36, 66, 8, 24);
-  pctx.fillRect(36, 86, 8, 8); // 手
-  // 右手拿水槍 (向前伸出，展現動態)
-  pctx.fillRect(84, 66, 8, 16); // 上臂
-  pctx.fillRect(82, 78, 10, 10); // 前臂和手
+  pctx.fillRect(50, 98, 12, 48); // 左腿
+  pctx.fillRect(66, 98, 12, 48); // 右腿
+  pctx.fillRect(36, 66, 8, 24);  // 左臂
+  pctx.fillRect(36, 86, 8, 8);   // 左手
+  pctx.fillRect(84, 66, 8, 16);  // 右上臂
+  pctx.fillRect(82, 78, 10, 10); // 右前臂/手
 
-  // --- 2. 陰影 (增加立體感) ---
-  pctx.fillStyle='#e0a87b';
-  pctx.fillRect(58, 100, 4, 46); // 左腿内侧阴影
-  pctx.fillRect(66, 100, 4, 46); // 右腿内侧阴影
-  pctx.fillRect(46, 50, 36, 6); // 下巴/脸部阴影
-  pctx.fillRect(74, 64, 4, 26); // 腹部右侧阴影
-  pctx.fillRect(36, 86, 8, 4); // 左手下阴影
+  // 4. 肌膚陰影 (立體質感)
+  pctx.fillStyle='#f3c49f';
+  pctx.fillRect(48, 50, 32, 6);  // 臉下陰影
+  pctx.fillRect(58, 98, 4, 48);  // 左腿內側陰影
+  pctx.fillRect(66, 98, 4, 48);  // 右腿內側陰影
+  pctx.fillRect(74, 64, 4, 26);  // 腹側陰影
+  pctx.fillRect(36, 84, 8, 4);   // 左手陰影
 
-  // --- 3. 後髮 ---
-  pctx.fillStyle='#7a1113';
-  pctx.fillRect(38, 16, 52, 48);
-  pctx.fillRect(34, 56, 14, 46); // 左侧长发
-  pctx.fillRect(80, 56, 14, 46); // 右侧长发
-  
-  // --- 4. 泳褲 (深藍比基尼) ---
-  pctx.fillStyle='#1a365d';
-  pctx.fillRect(48, 90, 32, 10);
-  pctx.fillStyle='#2b6cb0'; // 亮藍高光
-  pctx.fillRect(50, 92, 28, 2);
-  // 側邊白綁帶
-  pctx.fillStyle='#ffffff';
+  // 5. 比基尼泳衣 (深藍與白色滾邊)
+  pctx.fillStyle='#1d3557';
+  pctx.fillRect(48, 62, 32, 12); // 上衣
+  pctx.fillRect(48, 90, 32, 10); // 下著
+  pctx.fillStyle='#457b9d';
+  pctx.fillRect(50, 63, 28, 3);
+  pctx.fillRect(50, 91, 28, 2);
+  pctx.fillStyle='#ffffff'; // 綁帶細節
+  pctx.fillRect(62, 62, 4, 6);
   pctx.fillRect(46, 88, 4, 6);
   pctx.fillRect(78, 88, 4, 6);
-  
-  // --- 5. 上半身與服裝 ---
-  // 白色內衣
-  pctx.fillStyle='#ffffff';
-  pctx.fillRect(48, 60, 32, 10);
-  // 藍色蝴蝶結
-  pctx.fillStyle='#2b6cb0';
-  pctx.fillRect(62, 60, 4, 6);
-  pctx.fillRect(54, 62, 8, 4);
-  pctx.fillRect(66, 62, 8, 4);
-  
-  // --- 6. 白色半透明外衫 ---
-  pctx.fillStyle='rgba(255,255,255,0.45)';
-  pctx.fillRect(34, 60, 10, 42);
-  pctx.fillRect(84, 60, 10, 42);
-  // 外衫高光
-  pctx.fillStyle='rgba(255,255,255,0.8)';
-  pctx.fillRect(34, 60, 2, 42);
-  pctx.fillRect(92, 60, 2, 42);
 
-  // --- 7. 精緻五官 ---
-  // 眼睛 (深藍眼眶、紅瞳、白高光，拉開間距)
-  pctx.fillStyle='#1a365d';
-  pctx.fillRect(50, 32, 8, 10);
-  pctx.fillRect(70, 32, 8, 10);
-  pctx.fillStyle='#e63946';
-  pctx.fillRect(52, 34, 4, 6);
-  pctx.fillRect(72, 34, 4, 6);
-  pctx.fillStyle='#ffffff';
-  pctx.fillRect(52, 34, 2, 2);
-  pctx.fillRect(72, 34, 2, 2);
-  // 腮紅 (位置微調，更可愛)
-  pctx.fillStyle='#ffb4a2';
-  pctx.fillRect(46, 42, 4, 3);
-  pctx.fillRect(78, 42, 4, 3);
-  // 嘴巴 (小微笑)
-  pctx.fillStyle='#e63946';
-  pctx.fillRect(62, 46, 4, 1);
-  pctx.fillRect(60, 45, 2, 1);
-  pctx.fillRect(66, 45, 2, 1);
+  // 6. 半透明白色外衫
+  pctx.fillStyle='rgba(255,255,255,0.48)';
+  pctx.fillRect(34, 60, 12, 46);
+  pctx.fillRect(82, 60, 12, 46);
+  pctx.fillRect(46, 60, 4, 18);
+  pctx.fillRect(78, 60, 4, 18);
+  pctx.fillStyle='rgba(255,255,255,0.85)';
+  pctx.fillRect(34, 60, 2, 46);
+  pctx.fillRect(92, 60, 2, 46);
 
-  // --- 8. 前髮與瀏海 ---
+  // 7. 五官 (動漫大眼睛、腮紅與甜美微笑)
+  pctx.fillStyle='#1d3557';
+  pctx.fillRect(50, 32, 8, 11);
+  pctx.fillRect(70, 32, 8, 11);
+  pctx.fillStyle='#e63946'; // 紅色瞳孔
+  pctx.fillRect(52, 34, 5, 7);
+  pctx.fillRect(72, 34, 5, 7);
+  pctx.fillStyle='#ffffff'; // 眼中高光
+  pctx.fillRect(52, 34, 2, 3);
+  pctx.fillRect(72, 34, 2, 3);
+  pctx.fillStyle='#ffb4a2'; // 可愛腮紅
+  pctx.fillRect(45, 43, 6, 3);
+  pctx.fillRect(77, 43, 6, 3);
+  pctx.fillStyle='#e63946'; // 嘴巴
+  pctx.fillRect(62, 47, 4, 2);
+
+  // 8. 前髮瀏海與亮紅髮絲
   pctx.fillStyle='#a4161a';
-  pctx.fillRect(42, 16, 44, 14); // 顶部
-  pctx.fillRect(44, 28, 6, 12); // 左鬓角
-  pctx.fillRect(78, 28, 6, 14); // 右鬓角
-  // 瀏海參差
-  pctx.fillRect(50, 28, 8, 6);
-  pctx.fillRect(60, 28, 6, 8);
-  pctx.fillRect(68, 28, 8, 5);
+  pctx.fillRect(44, 16, 40, 12);
+  pctx.fillRect(42, 26, 8, 16);
+  pctx.fillRect(78, 26, 8, 16);
+  pctx.fillRect(52, 26, 6, 8);
+  pctx.fillRect(60, 26, 8, 10);
+  pctx.fillRect(70, 26, 6, 7);
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(46, 18, 36, 4);
+  pctx.fillRect(44, 28, 4, 8);
+  pctx.fillRect(80, 28, 4, 8);
+  pctx.fillStyle='#ffb5a7'; // 頭髮光澤
+  pctx.fillRect(48, 18, 32, 2);
 
-  pctx.fillStyle='#e63946'; // 亮色層次
-  pctx.fillRect(44, 18, 40, 8);
-  pctx.fillRect(46, 28, 6, 6);
-  pctx.fillRect(76, 28, 4, 8);
+  // 9. 大腿裝飾綁帶
+  pctx.fillStyle='#101218';
+  pctx.fillRect(50, 106, 12, 3);
+  pctx.fillRect(66, 116, 12, 3);
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(54, 106, 4, 3);
+  pctx.fillRect(70, 116, 4, 3);
 
-  // 頭髮高光
-  pctx.fillStyle='#ff8fa3';
-  pctx.fillRect(46, 18, 36, 2);
-  pctx.fillRect(36, 56, 2, 10);
-  pctx.fillRect(90, 56, 2, 10);
-
-  // --- 9. 頭飾 ---
+  // 10. 海灘涼鞋
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(46, 146, 16, 6);
+  pctx.fillRect(66, 146, 16, 6);
   pctx.fillStyle='#ffffff';
-  pctx.fillRect(42, 14, 6, 4);
-  pctx.fillStyle='#90e0ef';
-  pctx.fillRect(44, 15, 2, 2);
-
-  // --- 10. 腿部綁帶 (改為梯形收縮，貼合腿部) ---
+  pctx.fillRect(50, 144, 8, 2);
+  pctx.fillRect(70, 144, 8, 2);
   pctx.fillStyle='#101218';
-  for(let i=0;i<4;i++){
-    let y = 106 + i*10;
-    // 左腿
-    pctx.fillRect(52, y, 8, 2);
-    pctx.fillRect(54, y+2, 6, 2);
-    pctx.fillRect(56, y+4, 4, 2);
-    // 右腿
-    pctx.fillRect(68, y, 8, 2);
-    pctx.fillRect(68, y+2, 6, 2);
-    pctx.fillRect(68, y+4, 4, 2);
-  }
+  pctx.fillRect(48, 152, 4, 10);
+  pctx.fillRect(76, 152, 4, 10);
 
-  // --- 11. 高跟鞋 ---
-  pctx.fillStyle='#101218';
-  pctx.fillRect(46, 146, 16, 6); // 左鞋
-  pctx.fillRect(66, 146, 16, 6); // 右鞋
-  pctx.fillStyle='#3a3f4b'; // 鞋面高光
-  pctx.fillRect(48, 146, 12, 1);
-  pctx.fillRect(68, 146, 12, 1);
-  pctx.fillStyle='#101218';
-  pctx.fillRect(48, 152, 4, 10); // 左跟
-  pctx.fillRect(76, 152, 4, 10); // 右跟
-
-  // --- 12. 水槍 (貼合右手) ---
-  pctx.fillStyle='#2a9d8f';
-  pctx.fillRect(80, 74, 14, 6); // 槍身
-  pctx.fillRect(90, 68, 6, 8); // 槍管
-  pctx.fillStyle='#e9c46a';
-  pctx.fillRect(84, 76, 4, 2); // 裝飾
-  pctx.fillRect(92, 70, 2, 2);
-  pctx.fillStyle='#118ab2';
-  pctx.fillRect(76, 74, 4, 6); // 槍口
+  // 11. 科技感水槍 (右手持)
+  pctx.fillStyle='#00b4d8';
+  pctx.fillRect(82, 70, 22, 10);
+  pctx.fillStyle='#caf0f8';
+  pctx.fillRect(104, 72, 8, 6);
+  pctx.fillStyle='#ffb703';
+  pctx.fillRect(86, 64, 12, 6);
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(88, 80, 4, 6);
   pctx.fillStyle='#ffffff';
-  pctx.fillRect(82, 75, 8, 1);
+  pctx.fillRect(84, 71, 18, 2);
 }
 renderDetailedSummerSkin();
 const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
 
-// 深海女僕皮膚 (保持原樣)
+// 深海女僕皮膚
 function renderMaidSkin(){
   pctx.clearRect(0,0,128,180);
   pctx.fillStyle='#1e2a4a';
@@ -1891,21 +1870,19 @@ bind('importP2Btn',()=>{const code=document.getElementById('p2CodeInput').value.
 
 /* ===== UI 拖拽自定義 ===== */
 let isDragMode = false;
-let prevGameState = 'START'; // 修复局内拖拽后状态错乱的 bug
+let prevGameState = 'START';
 
 bind('customUiBtn', () => {
-  prevGameState = gameState; // 记录进入前的状态
+  prevGameState = gameState;
   showMenu('none');
   isDragMode = true;
   document.body.classList.add('drag-active');
   document.getElementById('skillBtn').style.pointerEvents = 'auto';
   if (player2) document.getElementById('skillBtn2').style.pointerEvents = 'auto';
-  // 强制显示按钮方便拖拽
   document.getElementById('skillBtn').classList.add('on');
   if (player2) document.getElementById('skillBtn2').classList.add('on');
 });
 
-// 拖动逻辑
 let dragTarget = null;
 let dragStartX = 0, dragStartY = 0;
 let btnStartX = 0, btnStartY = 0;
@@ -1920,7 +1897,6 @@ function setupDrag(btn) {
     btnStartX = rect.left;
     btnStartY = rect.top;
     
-    // 使用 absolute 并覆盖 left/top
     dragTarget.style.left = rect.left + 'px';
     dragTarget.style.top = rect.top + 'px';
     dragTarget.style.bottom = 'auto';
@@ -1937,7 +1913,6 @@ function handleDragMove(e) {
   let newLeft = btnStartX + dx;
   let newTop = btnStartY + dy;
   
-  // 边界限制
   const w = dragTarget.offsetWidth;
   const h = dragTarget.offsetHeight;
   newLeft = Math.max(10, Math.min(innerWidth - w - 10, newLeft));
@@ -1961,20 +1936,16 @@ function handleDragEnd(e) {
   
   dragTarget = null;
   
-  // 退出拖拽模式
   isDragMode = false;
   document.body.classList.remove('drag-active');
   document.getElementById('skillBtn').style.pointerEvents = '';
   if (document.getElementById('skillBtn2')) document.getElementById('skillBtn2').style.pointerEvents = '';
   
-  // 恢复状态显示
   updateHUD();
   
-  // 修复：正确恢复之前的菜单或战斗状态
   if(prevGameState === 'PAUSE') {
     showMenu('pauseMenu');
   } else if(prevGameState === 'PLAYING' || prevGameState === 'BOSS_INTRO') {
-    // 如果是在游戏里，直接恢复战斗界面
     showMenu('none');
   } else {
     showMenu('startMenu');
@@ -1987,7 +1958,6 @@ setupDrag(document.getElementById('skillBtn2'));
 window.addEventListener('pointermove', handleDragMove, { passive: false });
 window.addEventListener('pointerup', handleDragEnd);
 
-// 载入已保存的按钮位置
 function loadUiPositions() {
   try {
     const uiPos = JSON.parse(localStorage.getItem(UI_KEY) || '{}');
@@ -2068,7 +2038,7 @@ setInterval(saveGame,1500);
 if(hasSave()){continueGameBtn.hidden=false;continueGameBtn.onclick=()=>{loadSavedGame();showMenu('none')}}
 showMenu('startMenu');renderChoices();syncSettings();updateHUD();
 
-/* 【修复站立不动导致怪物减速】采用时间累加器（Accumulator）主循环 */
+/* 主循環 */
 let lastFrameTime = performance.now();
 const TARGET_FPS = 60;
 const FRAME_TIME = 1000 / TARGET_FPS;
@@ -2078,11 +2048,9 @@ requestAnimationFrame(function loop(currentTime) {
   const deltaTime = currentTime - lastFrameTime;
   lastFrameTime = currentTime;
   
-  // 累积时间，防止切到后台回来一瞬间更新太多帧导致穿透
   accumulator += deltaTime;
-  if (accumulator > 1000) accumulator = 1000; // 最多补偿1秒的帧
+  if (accumulator > 1000) accumulator = 1000;
 
-  // 无论浏览器降频到多少，只要累积时间够了，就执行逻辑更新
   while (accumulator >= FRAME_TIME) {
     update();
     accumulator -= FRAME_TIME;
@@ -2094,3 +2062,4 @@ requestAnimationFrame(function loop(currentTime) {
 </script>
 </body>
 </html>
+
