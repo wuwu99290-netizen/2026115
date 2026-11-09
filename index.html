@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>馬鈴薯深空戰記 V5.9 — 夏日激戰精修版</title>
+<title>馬鈴薯深空戰記 V6.0 — 隨風飄逸與深度平衡版</title>
 <style>
 *{box-sizing:border-box;user-select:none;-webkit-user-select:none;touch-action:manipulation}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1a1c23;color:#fff;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}canvas{display:block;width:100%;height:100%;background:radial-gradient(circle at center,#252836,#101218)}#ui-layer{position:absolute;inset:0;padding:14px;pointer-events:none;z-index:20}.hud-top{display:flex;justify-content:space-between;align-items:flex-start}.hud-panel{display:flex;gap:14px;flex-wrap:wrap;background:#141923dc;border:2px solid #fc0;border-radius:10px;padding:9px 13px;font-size:13px;line-height:1.5;box-shadow:0 0 15px #fc04}.hud-panel span{color:#fc0;font-weight:bold}.btn-pause{pointer-events:auto;background:#101218;border:2px solid #fc0;color:#fc0;padding:9px 14px;border-radius:8px;font-weight:bold;cursor:pointer}
 .controls-layer{position:absolute;inset:0;display:none;z-index:10;touch-action:none}.touch-active .controls-layer{display:block}.stick{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid #fc08;background:#ffffff12;pointer-events:none;display:none}.stick i{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px;border:2px solid #fc0;border-radius:50%;background:#fc06}.stick.p2{border-color:#ff6ec7aa;background:#ff6ec712}.stick.p2 i{border-color:#ff6ec7;background:#ff6ec722;box-shadow:0 0 12px #ff6ec755}.low-health-vignette{position:fixed;inset:0;z-index:15;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(180,0,20,.68) 100%);transition:opacity .25s ease}.low-health-vignette.active{opacity:1;animation:lowHealthPulse 1.15s ease-in-out infinite alternate}@keyframes lowHealthPulse{from{filter:brightness(.75)}to{filter:brightness(1.25)}}
-.modal-overlay{position:absolute;inset:0;z-index:100;background:#101218ed;backdrop-filter:blur(7px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px;overflow-y:auto;text-align:center}.modal-overlay[style*="display: none"]{display:none!important}.modal-title{font-size:27px;color:#fc0;font-weight:800;text-shadow:0 0 18px #fc09;margin:5px 0}.modal-subtitle{font-size:13px;color:#b0b5c0;margin:6px 0 16px}.menu-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn-menu{border:0;border-radius:8px;padding:12px 22px;margin:5px;min-width:170px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#fc0,#f60);color:#101218;transition:transform .12s,box-shadow .12s}.btn-menu:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 14px #fc05}.btn-menu.secondary{background:#202838;color:#fc0;border:1px solid #fc08}.choice-grid,.weapon-grid,.shop-grid,.skin-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;width:min(1040px,96vw);margin:6px auto 12px}.choice-card,.weapon-card,.shop-card,.skin-card{width:205px;max-width:46vw;padding:12px;border:2px solid #fc06;border-radius:10px;background:#191e2af2;color:#fff;cursor:pointer;line-height:1.4;transition:border-color .15s,box-shadow .15s,transform .12s}.choice-card:hover:not(:disabled),.weapon-card:hover:not(:disabled),.shop-card:hover:not(:disabled),.skin-card:hover:not(:disabled){transform:translateY(-2px)}.choice-card.selected,.weapon-card.selected,.skin-card.selected{border-color:#0fc;box-shadow:0 0 16px #0fc6}.choice-card strong,.weapon-card strong,.shop-card strong,.skin-card strong{display:block;color:#fc0;margin-bottom:5px}.choice-card small,.weapon-card small,.shop-card small,.skin-card small{color:#c1c6d0;display:block}.skin-card{width:280px;max-width:90vw;padding:14px}.skin-preview{display:block;width:136px;height:190px;object-fit:contain;margin:4px auto 8px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.55))}.skin-art-banner{width:100%;height:110px;object-fit:cover;object-position:center 28%;border-radius:8px;border:1px solid rgba(255,255,255,.2);margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.modal-overlay{position:absolute;inset:0;z-index:100;background:#101218ed;backdrop-filter:blur(7px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px;overflow-y:auto;text-align:center}.modal-overlay[style*="display: none"]{display:none!important}.modal-title{font-size:27px;color:#fc0;font-weight:800;text-shadow:0 0 18px #fc09;margin:5px 0}.modal-subtitle{font-size:13px;color:#b0b5c0;margin:6px 0 16px}.menu-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn-menu{border:0;border-radius:8px;padding:12px 22px;margin:5px;min-width:170px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#fc0,#f60);color:#101218;transition:transform .12s,box-shadow .12s}.btn-menu:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 14px #fc05}.btn-menu.secondary{background:#202838;color:#fc0;border:1px solid #fc08}.choice-grid,.weapon-grid,.shop-grid,.skin-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;width:min(1040px,96vw);margin:6px auto 12px}.choice-card,.weapon-card,.shop-card,.skin-card{width:205px;max-width:46vw;padding:12px;border:2px solid #fc06;border-radius:10px;background:#191e2af2;color:#fff;cursor:pointer;line-height:1.4;transition:border-color .15s,box-shadow .15s,transform .12s}.choice-card:hover:not(:disabled),.weapon-card:hover:not(:disabled),.shop-card:hover:not(:disabled),.skin-card:hover:not(:disabled){transform:translateY(-2px)}.choice-card.selected,.weapon-card.selected,.skin-card.selected{border-color:#0fc;box-shadow:0 0 16px #0fc6}.choice-card strong,.weapon-card strong,.shop-card strong,.skin-card strong{display:block;color:#fc0;margin-bottom:5px}.choice-card small,.weapon-card small,.shop-card small,.skin-card small{color:#c1c6d0;display:block}.skin-card{width:280px;max-width:90vw;padding:14px}.skin-preview{display:block;width:136px;height:190px;object-fit:contain;margin:4px auto 8px;background:transparent;filter:drop-shadow(0 6px 14px rgba(0,0,0,.55))}.skin-art-banner{width:100%;height:110px;object-fit:cover;object-position:center 28%;border-radius:8px;border:1px solid rgba(255,255,255,.2);margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,.4)}
 .setting{display:flex;justify-content:space-between;align-items:center;gap:15px;width:min(420px,90vw);padding:11px 14px;margin:4px 0;background:#191e2a;border:1px solid #fc06;border-radius:8px}.setting input[type=range]{width:145px}.setting input[type=number]{width:90px;padding:6px 8px;border-radius:6px;border:1px solid #fc08;background:#101218;color:#fff;text-align:center}.stats-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:10px;width:min(760px,95vw);max-height:58vh;overflow:auto;padding:10px;margin:8px auto;background:#141923;border:1px solid #fc08;border-radius:12px}.stats-group{padding:8px 10px;border:1px solid rgba(255,204,0,.18);border-radius:10px;background:rgba(255,255,255,.015)}.stats-group-title{font-size:12px;letter-spacing:1px;color:#ffd66b;font-weight:800;text-transform:uppercase;margin:0 0 6px;padding:0 4px}.stat-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:6px 4px;font-size:13px;text-align:left;background:transparent}.stat-item:last-child{border-bottom:none}.stat-item span:first-child{color:#b0b5c0}.stat-item span:last-child{color:#fc0;font-weight:700;text-align:right}.shop-card:disabled,.btn-menu:disabled{opacity:.45;cursor:not-allowed}.shop-card.unique-item{border-color:#ff3366 !important;box-shadow:0 0 12px rgba(255,51,102,0.6) !important;}
 .shop-item-wrap{display:flex;flex-direction:column;gap:5px;width:205px;max-width:46vw}
 .shop-item-wrap .shop-card{width:100%;max-width:100%;flex:1}
@@ -58,13 +58,13 @@
 <button class="skill-btn p2btn" id="skillBtn2">P2技能</button>
 <div class="controls-layer" id="controlsLayer"><div class="stick" id="joystickBase"><i id="joystickThumb"></i></div><div class="stick p2" id="joystickBase2"><i id="joystickThumb2"></i></div></div>
 
-<div class="modal-overlay" id="startMenu"><div class="modal-title" style="margin-top:50px;">馬鈴薯深空戰記</div><div class="modal-subtitle">SPACE SPUD: ARENA SURVIVAL V5.9 · 夏日立繪精修與絲滑操控版</div><div class="menu-buttons"><button class="btn-menu" id="newGameBtn">開始戰鬥</button><button class="btn-menu secondary" id="continueGameBtn" hidden>繼續戰鬥</button><button class="btn-menu secondary" id="openForgeBtn">⚒ 武器工坊</button><button class="btn-menu secondary" id="openCharBtn">🧬 角色訓練</button><button class="btn-menu secondary" id="openDualBtn">👥 雙人模式</button><button class="btn-menu secondary" id="openSkinsBtn">🏖 角色皮膚</button><button class="btn-menu secondary" id="openSettingsBtn">⚙ 設定</button></div></div>
+<div class="modal-overlay" id="startMenu"><div class="modal-title" style="margin-top:50px;">馬鈴薯深空戰記</div><div class="modal-subtitle">SPACE SPUD: ARENA SURVIVAL V6.0 · 隨風飄逸動態秀髮與前後期平衡重製版</div><div class="menu-buttons"><button class="btn-menu" id="newGameBtn">開始戰鬥</button><button class="btn-menu secondary" id="continueGameBtn" hidden>繼續戰鬥</button><button class="btn-menu secondary" id="openForgeBtn">⚒ 武器工坊</button><button class="btn-menu secondary" id="openCharBtn">🧬 角色訓練</button><button class="btn-menu secondary" id="openDualBtn">👥 雙人模式</button><button class="btn-menu secondary" id="openSkinsBtn">🏖 角色皮膚</button><button class="btn-menu secondary" id="openSettingsBtn">⚙ 設定</button></div></div>
 
-<div class="modal-overlay" id="loadoutMenu" style="display:none"><div class="modal-title">選擇你的戰鬥配置</div><div class="modal-subtitle">10 大職業與 8 種可進化附魔武器自由搭配（支援移動中無縫施放技能）</div><strong>職業（10種）</strong><div class="choice-grid" id="classChoices"></div><strong>武器（8種）</strong><div class="weapon-grid" id="weaponChoices"></div><div class="menu-buttons"><button class="btn-menu" id="beginBattleBtn">開始戰鬥</button><button class="btn-menu secondary" id="loadoutBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="loadoutMenu" style="display:none"><div class="modal-title">選擇你的戰鬥配置</div><div class="modal-subtitle">10 大職業與 8 種可進化附魔武器（職業等級與武器等級倍率會直接反映於下方數值）</div><strong>職業（10種）</strong><div class="choice-grid" id="classChoices"></div><strong>武器（8種）</strong><div class="weapon-grid" id="weaponChoices"></div><div class="menu-buttons"><button class="btn-menu" id="beginBattleBtn">開始戰鬥</button><button class="btn-menu secondary" id="loadoutBackBtn">返回</button></div></div>
 
-<div class="modal-overlay" id="skinMenu" style="display:none"><div class="modal-title">皮膚與立繪選擇</div><div class="modal-subtitle">精修夏日海灘少女：微濕絲滑飄逸紅髮、豐滿胸型與沙漏腰臀、圓潤關節手臂、大腿膝蓋小腿自然比例</div><div class="skin-grid" id="skinChoices"></div><div class="menu-buttons"><button class="btn-menu secondary" id="skinBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="skinMenu" style="display:none"><div class="modal-title">皮膚與動態立繪選擇</div><div class="modal-subtitle">精修夏日海灘少女：即時隨風飄逸的柔順S型紅長髮、豐滿胸型與沙漏腰臀、自然手臂與腿部膝蓋比例</div><div class="skin-grid" id="skinChoices"></div><div class="menu-buttons"><button class="btn-menu secondary" id="skinBackBtn">返回</button></div></div>
 
-<div class="modal-overlay" id="forgeMenu" style="display:none"><div class="modal-title">⚒ 武器工坊 · 鍛造與附魔</div><div class="modal-subtitle">升級武器解鎖 10 級【神話進化】專屬彈幕與劍氣；亦可消耗素材洗煉【武器附魔】或兌換稀缺材料</div>
+<div class="modal-overlay" id="forgeMenu" style="display:none"><div class="modal-title">⚒ 武器工坊 · 鍛造與附魔</div><div class="modal-subtitle">升級武器解鎖 10 級【神話進化】專屬彈幕與劍氣；支援等級碼匯出／匯入（輸入 MAX 可一鍵解鎖全滿級）</div>
 <div class="mat-bar"><span>🔧 武器素材：<span id="forgeMat">0</span></span><span>🔮 角色靈魂：<span id="forgeSoulMat">0</span></span></div>
 <div class="special-mat-bar" id="specialMatBar"></div>
 <div class="code-area">
@@ -72,30 +72,30 @@
   <button class="btn-menu secondary" id="exchangeWepToSoulBtn" style="min-width:130px;padding:6px 12px;font-size:12px">15武器素材 ➔ 15靈魂</button>
   <button class="btn-menu secondary" id="craftBossMatBtn" style="min-width:160px;padding:6px 12px;font-size:12px">25武器素材 ➔ 合成BOSS材料</button>
 </div>
-<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn" style="min-width:100px;padding:6px 12px">匯出等級碼</button><input type="text" id="importCodeInput" placeholder="輸入等級碼，按 Enter 或點擊匯入"><button class="btn-menu secondary" id="importCodeBtn" style="min-width:100px;padding:6px 12px">匯入</button></div>
+<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn" style="min-width:100px;padding:6px 12px">匯出等級碼</button><input type="text" id="importCodeInput" placeholder="貼上等級碼或輸入 MAX，按匯入生效"><button class="btn-menu secondary" id="importCodeBtn" style="min-width:90px;padding:6px 12px">匯入</button><button class="btn-menu" id="maxAllForgeBtn" style="min-width:120px;padding:6px 12px;font-size:12px">⚡ 一鍵全滿級</button></div>
 <div class="weapon-grid" id="forgeGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="forgeBackBtn">返回</button></div></div>
 
-<div class="modal-overlay" id="charMenu" style="display:none"><div class="modal-title">🧬 角色訓練</div><div class="modal-subtitle">消耗「角色靈魂」提升職業等級（每級生命+12%、傷害+10%、移速+3%、暴擊+1.5%，5級與10級解鎖技能進階形態）</div><div class="mat-bar">角色靈魂：<span id="charMat">0</span></div>
-<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn2" style="min-width:100px;padding:6px 12px">匯出等級碼</button><input type="text" id="importCodeInput2" placeholder="輸入等級碼，按 Enter 或點擊匯入"><button class="btn-menu secondary" id="importCodeBtn2" style="min-width:100px;padding:6px 12px">匯入</button></div>
+<div class="modal-overlay" id="charMenu" style="display:none"><div class="modal-title">🧬 角色訓練</div><div class="modal-subtitle">提升職業等級可大幅強化生命(+20%/級)、傷害(+18%/級)、職業專精倍率(+12%/級)並縮短技能冷卻(-4%/級)</div><div class="mat-bar">角色靈魂：<span id="charMat">0</span></div>
+<div class="code-area"><button class="btn-menu secondary" id="exportCodeBtn2" style="min-width:100px;padding:6px 12px">匯出等級碼</button><input type="text" id="importCodeInput2" placeholder="貼上等級碼或輸入 MAX，按匯入生效"><button class="btn-menu secondary" id="importCodeBtn2" style="min-width:90px;padding:6px 12px">匯入</button><button class="btn-menu" id="maxAllCharBtn" style="min-width:120px;padding:6px 12px;font-size:12px">⚡ 一鍵全滿級</button></div>
 <div class="choice-grid" id="charGrid"></div><div class="menu-buttons"><button class="btn-menu secondary" id="charBackBtn">返回</button></div></div>
 
 <div class="modal-overlay" id="dualMenu" style="display:none"><div class="modal-title">👥 雙人模式</div><div class="modal-subtitle">單一螢幕，兩位玩家同場作戰</div><div class="menu-buttons"><button class="btn-menu" id="pvpModeBtn">⚔ 雙人 PVP</button><button class="btn-menu" id="coopModeBtn">🗝 雙人副本</button></div><div style="margin-top:16px;color:#b0b5c0;font-size:13px;line-height:1.9"><div>玩家 1：左半螢幕搖桿移動／空白鍵、F、E 或 Q 施放技能</div><div>玩家 2：右半螢幕搖桿移動／Enter 或 / 鍵施放技能</div><div>（移動時點擊技能按鈕或按技能鍵可無縫瞬發技能並獲得短暫加速）</div><div>雙人副本：兩人各自擁有金幣與商店、獨立寵物；倒地 5 秒後自動復活</div><div>雙人 PVP：把對手打倒即獲勝</div></div><div class="menu-buttons"><button class="btn-menu secondary" id="dualBackBtn">返回</button></div></div>
 
 <div class="modal-overlay" id="dualLoadoutMenu" style="display:none"><div class="modal-title" id="dualLoadoutTitle">雙人配置</div><div class="dual-cols"><div class="dual-col"><div class="dual-col-title">玩家 1（左搖桿 / WASD）</div><strong>職業</strong><div class="choice-grid small" id="p1ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p1WeaponChoices"></div></div><div class="dual-col"><div class="dual-col-title">玩家 2（右搖桿 / 方向鍵）</div><strong>職業</strong><div class="choice-grid small" id="p2ClassChoices"></div><strong>武器</strong><div class="weapon-grid small" id="p2WeaponChoices"></div></div></div>
 <div style="background:#141923;border:2px solid #fc0;border-radius:12px;padding:16px;margin:10px auto;width:min(900px,96vw);">
-  <div style="color:#fc0;font-weight:bold;font-size:16px;margin-bottom:12px;text-align:left;">🔑 【雙人等級碼匯入區】</div>
+  <div style="color:#fc0;font-weight:bold;font-size:16px;margin-bottom:12px;text-align:left;">🔑 【雙人等級碼匯入區】（支援貼上等級碼或直接輸入 MAX 解鎖全10級）</div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px;">
     <span style="color:#0fc;font-weight:bold;width:110px;text-align:left;">玩家 1 等級碼：</span>
-    <input type="text" id="p1CodeInput" placeholder="留空則使用本機當前工坊等級" style="flex:1;min-width:200px;padding:10px;border-radius:6px;border:1px solid #0fc;background:#101218;color:#fff;">
+    <input type="text" id="p1CodeInput" placeholder="留空使用本機等級，或輸入 MAX 全滿級" style="flex:1;min-width:200px;padding:10px;border-radius:6px;border:1px solid #0fc;background:#101218;color:#fff;">
     <button class="btn-menu secondary" id="importP1Btn" style="padding:8px 16px;min-width:100px;margin:0;border-color:#0fc;color:#0fc;">驗證匯入</button>
   </div>
-  <div id="p1LevelStatus" style="color:#b0b5c0;font-size:13px;text-align:left;margin-bottom:15px;margin-left:120px;">當前狀態：使用本機等級</div>
+  <div id="p1LevelStatus" style="color:#b0b5c0;font-size:13px;text-align:left;margin-bottom:15px;margin-left:120px;">當前狀態：使用本機工坊等級</div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px;">
     <span style="color:#ff6ec7;font-weight:bold;width:110px;text-align:left;">玩家 2 等級碼：</span>
-    <input type="text" id="p2CodeInput" placeholder="留空則使用本機當前工坊等級" style="flex:1;min-width:200px;padding:10px;border-radius:6px;border:1px solid #ff6ec7;background:#101218;color:#fff;">
+    <input type="text" id="p2CodeInput" placeholder="留空使用本機等級，或輸入 MAX 全滿級" style="flex:1;min-width:200px;padding:10px;border-radius:6px;border:1px solid #ff6ec7;background:#101218;color:#fff;">
     <button class="btn-menu secondary" id="importP2Btn" style="padding:8px 16px;min-width:100px;margin:0;border-color:#ff6ec7;color:#ff6ec7;">驗證匯入</button>
   </div>
-  <div id="p2LevelStatus" style="color:#b0b5c0;font-size:13px;text-align:left;margin-left:120px;">當前狀態：使用本機等級</div>
+  <div id="p2LevelStatus" style="color:#b0b5c0;font-size:13px;text-align:left;margin-left:120px;">當前狀態：使用本機工坊等級</div>
 </div>
 <div class="menu-buttons" style="margin-top:20px;margin-bottom:40px;"><button class="btn-menu" id="dualStartBtn" style="padding:15px 40px;font-size:18px;">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
 
@@ -133,16 +133,16 @@ function showToast(msg){
 
 /* ===== 10 大職業定義 ===== */
 const classes=[
-  {id:'berserker',name:'狂戰士',desc:'近戰傷害 +110%，暴擊傷害 +80%，生命 +20%。技能：狂暴（8秒內傷害 +70%、攻速 +50%、吸血 +0.3）',melee:2.1,range:1,crit:.05,critDamage:.8,summon:1,hpBonus:1.2,skill:'rage',skillCd:540,skillName:'狂暴'},
-  {id:'archer',name:'弓箭手',desc:'遠程傷害 +140%，射程 +120%，暴擊率 +15%。技能：箭雨（發射密集的穿透追蹤箭矢風暴）',melee:1,range:2.4,crit:.15,critDamage:.25,summon:1,skill:'arrowRain',skillCd:420,skillName:'箭雨'},
-  {id:'summoner',name:'召喚師',desc:'召喚與魔法傷害 +180%，開局自帶1架無人機。技能：召喚進階戰鬥怪獸並釋放雷擊',melee:1,range:1.1,summon:2.8,crit:0,critDamage:0,startDrones:1,skill:'summonBeast',skillCd:600,skillName:'召喚怪獸'},
-  {id:'knight',name:'騎士',desc:'防禦 +35%，生命 +60%，自帶 25% 反傷。技能：聖盾（4.5秒無敵並震退周圍敵人）',melee:1.25,range:1.05,crit:0,critDamage:0,summon:1,skill:'shield',skillCd:720,skillName:'聖盾',armorBonus:.35,hpBonus:1.6,reflectBonus:.25},
-  {id:'mage',name:'法師',desc:'遠程與元素傷害 +130%。技能：隕石火球（發射巨型爆裂隕石並留下高傷烈焰風暴）',melee:1,range:2.3,crit:.1,critDamage:.3,summon:1.6,skill:'meteor',skillCd:380,skillName:'隕石火球'},
-  {id:'assassin',name:'刺客',desc:'近戰 +85%，遠程 +60%，暴擊率 +30%，暴傷 +65%，移速 +25%。技能：影襲（瞬移十字蓮華斬+短暫無敵）',melee:1.85,range:1.6,crit:.30,critDamage:.65,summon:1,skill:'blink',skillCd:320,skillName:'影襲',speedBonus:1.25},
-  {id:'paladin',name:'聖騎士',desc:'【新】近戰 +75%，生命 +45%，防禦 +20%，每秒恢復 +2.5 生命。技能：聖光裁決（恢復30%生命並降下神聖審判法陣）',melee:1.75,range:1.2,crit:.1,critDamage:.3,summon:1.4,hpBonus:1.45,armorBonus:.20,regenBonus:2.5,skill:'holyJudgment',skillCd:520,skillName:'聖光裁決'},
-  {id:'necromancer',name:'死靈法師',desc:'【新】召喚傷害 +150%，遠程 +75%，自帶命中吸血 +0.4。技能：亡靈天災（釋放噬魂鬼火大軍吸血並召喚骨靈）',melee:1.1,range:1.75,summon:2.5,crit:.1,critDamage:.25,vampBonus:.4,skill:'soulStorm',skillCd:460,skillName:'亡靈天災'},
-  {id:'gunslinger',name:'機械槍神',desc:'【新】遠程傷害 +125%，攻速 +30%，暴擊率 +20%。技能：彈幕風暴（向全場傾瀉高頻穿甲爆裂彈幕）',melee:1,range:2.25,crit:.20,critDamage:.45,summon:1.2,atkSpeedBonus:.75,skill:'bulletStorm',skillCd:390,skillName:'彈幕風暴'},
-  {id:'chronomancer',name:'時空術士',desc:'【新】全傷害 +95%，閃避 +20%，移速 +15%。技能：時空凝滯（清除周圍敵方彈幕、凍結敵人5秒並引發時空爆破）',melee:1.95,range:1.95,summon:1.95,crit:.12,critDamage:.3,dodgeBonus:.20,speedBonus:1.15,skill:'timeStop',skillCd:560,skillName:'時空凝滯'}
+  {id:'berserker',name:'狂戰士',desc:'近戰傷害 +110%，暴擊傷害 +80%，生命 +20%。技能：狂暴（大幅提升傷害、攻速與吸血，5/10級釋放鮮血新星震波）',melee:2.1,range:1,crit:.05,critDamage:.8,summon:1,hpBonus:1.2,skill:'rage',skillCd:540,skillName:'狂暴'},
+  {id:'archer',name:'弓箭手',desc:'遠程傷害 +140%，射程 +120%，暴擊率 +15%。技能：箭雨（發射密集的穿透追蹤箭矢風暴，隨等級增加箭數與爆破）',melee:1,range:2.4,crit:.15,critDamage:.25,summon:1,skill:'arrowRain',skillCd:420,skillName:'箭雨'},
+  {id:'summoner',name:'召喚師',desc:'召喚與魔法傷害 +180%，開局自帶1架無人機。技能：召喚進階戰鬥怪獸並釋放全場連鎖雷擊',melee:1,range:1.1,summon:2.8,crit:0,critDamage:0,startDrones:1,skill:'summonBeast',skillCd:600,skillName:'召喚怪獸'},
+  {id:'knight',name:'騎士',desc:'防禦 +35%，生命 +60%，自帶 25% 反傷。技能：聖盾（無敵護盾並震退周圍敵人造成聖光重擊）',melee:1.25,range:1.05,crit:0,critDamage:0,summon:1,skill:'shield',skillCd:720,skillName:'聖盾',armorBonus:.35,hpBonus:1.6,reflectBonus:.25},
+  {id:'mage',name:'法師',desc:'遠程與元素傷害 +130%。技能：隕石火球（發射巨型爆裂隕石並引爆全場烈焰震波）',melee:1,range:2.3,crit:.1,critDamage:.3,summon:1.6,skill:'meteor',skillCd:380,skillName:'隕石火球'},
+  {id:'assassin',name:'刺客',desc:'近戰 +85%，遠程 +60%，暴擊率 +30%，暴傷 +65%，移速 +25%。技能：影襲（瞬移十字蓮華斬+無敵幀）',melee:1.85,range:1.6,crit:.30,critDamage:.65,summon:1,skill:'blink',skillCd:320,skillName:'影襲',speedBonus:1.25},
+  {id:'paladin',name:'聖騎士',desc:'近戰 +75%，生命 +45%，防禦 +20%，每秒恢復 +2.5 生命。技能：聖光裁決（恢復生命並降下大範圍神聖審判）',melee:1.75,range:1.2,crit:.1,critDamage:.3,summon:1.4,hpBonus:1.45,armorBonus:.20,regenBonus:2.5,skill:'holyJudgment',skillCd:520,skillName:'聖光裁決'},
+  {id:'necromancer',name:'死靈法師',desc:'召喚傷害 +150%，遠程 +75%，自帶命中吸血 +0.4。技能：亡靈天災（釋放噬魂鬼火大軍吸血並重創敵群）',melee:1.1,range:1.75,summon:2.5,crit:.1,critDamage:.25,vampBonus:.4,skill:'soulStorm',skillCd:460,skillName:'亡靈天災'},
+  {id:'gunslinger',name:'機械槍神',desc:'遠程傷害 +125%，攻速 +30%，暴擊率 +20%。技能：彈幕風暴（向全場傾瀉高頻穿甲爆裂彈幕並大幅加速射擊）',melee:1,range:2.25,crit:.20,critDamage:.45,summon:1.2,atkSpeedBonus:.75,skill:'bulletStorm',skillCd:390,skillName:'彈幕風暴'},
+  {id:'chronomancer',name:'時空術士',desc:'全傷害 +95%，閃避 +20%，移速 +15%。技能：時空凝滯（清除周圍敵方彈幕、凍結敵人5秒並引發時空爆破）',melee:1.95,range:1.95,summon:1.95,crit:.12,critDamage:.3,dodgeBonus:.20,speedBonus:1.15,skill:'timeStop',skillCd:560,skillName:'時空凝滯'}
 ];
 
 /* ===== 8 種武器定義（含 Lv10 進化特性） ===== */
@@ -150,11 +150,11 @@ const weapons=[
   {id:'knife',name:'🔪 疾風短刀',desc:'超短冷卻、極速連斬。Lv10進化：雙重疾風弧光+刀氣波',damage:1.3,range:125,cooldown:20,speed:15,kind:'melee',projectile:4,shape:'slash',evoDesc:'揮砍同時發射穿透刀氣'},
   {id:'sword',name:'🗡️ 聖堂長劍',desc:'近中距離，攻守均衡。Lv10進化：破空劍氣斬',damage:1.45,range:165,cooldown:27,speed:14,kind:'melee',projectile:5,shape:'slash',evoDesc:'每次揮劍釋放大型半月劍氣'},
   {id:'halberd',name:'🔱 破軍長戟',desc:'大範圍橫掃重擊。Lv10進化：橫掃千軍震波',damage:1.85,range:215,cooldown:40,speed:12,kind:'melee',projectile:6,shape:'slash',evoDesc:'大範圍斬擊並引發震地衝擊'},
-  {id:'scythe',name:'🌙 死神鐮刀',desc:'【新】弧形收割，命中自帶額外吸血。Lv10進化：冥界靈魂收割',damage:1.75,range:195,cooldown:34,speed:13,kind:'melee',projectile:6,shape:'slash',vampAdd:.2,evoDesc:'收割弧光並釋放追蹤噬魂彈'},
+  {id:'scythe',name:'🌙 死神鐮刀',desc:'弧形收割，命中自帶額外吸血。Lv10進化：冥界靈魂收割',damage:1.75,range:195,cooldown:34,speed:13,kind:'melee',projectile:6,shape:'slash',vampAdd:.2,evoDesc:'收割弧光並釋放追蹤噬魂彈'},
   {id:'bow',name:'🏹 追風獵弓',desc:'高速連射箭矢。Lv10進化：散射追蹤箭嵐',damage:1.35,range:370,cooldown:28,speed:17,kind:'ranged',projectile:4,shape:'arrow',evoDesc:'額外發射2支自動追蹤箭'},
   {id:'crossbow',name:'🎯 重型十字弩',desc:'高暴傷強勁穿透。Lv10進化：雷霆貫穿巨弩',damage:1.8,range:330,cooldown:44,speed:19,kind:'ranged',projectile:5,shape:'bolt',pierce:true,evoDesc:'弩箭無限穿透並附帶連鎖閃電'},
   {id:'cannon',name:'💣 毀滅重炮',desc:'重型範圍爆炸砲彈。Lv10進化：集束連環爆破',damage:2.35,range:320,cooldown:58,speed:12,kind:'ranged',projectile:8,shape:'orb',splash:65,evoDesc:'爆炸範圍擴大並分裂次級炸彈'},
-  {id:'laser',name:'⚡ 脈衝鐳射槍',desc:'【新】極速能量光束，貫穿直線上所有敵人。Lv10進化：超載死光束',damage:1.5,range:410,cooldown:24,speed:22,kind:'ranged',projectile:5,shape:'bolt',pierce:true,evoDesc:'雙重超高速穿透鐳射光束'}
+  {id:'laser',name:'⚡ 脈衝鐳射槍',desc:'極速能量光束，貫穿直線上所有敵人。Lv10進化：超載死光束',damage:1.5,range:410,cooldown:24,speed:22,kind:'ranged',projectile:5,shape:'bolt',pierce:true,evoDesc:'雙重超高速穿透鐳射光束'}
 ];
 
 const WEAPON_ENCHANT_POOL=[
@@ -167,29 +167,41 @@ const WEAPON_ENCHANT_POOL=[
 
 const WEAPON_TIER_COLORS=['#b87333','#c0c0c0','#9fb6cd','#ffd700','#7cfc00','#00cfff','#c86bff','#ff6ec7','#ff3366','#ffffff'];
 const WEAPON_TIER_NAMES=['青銅','鋼鐵','白銀','黃金','翡翠','湛藍','紫晶','桃紅','血紅','神話'];
-const meta={weaponMat:30,charMat:30,weaponLevels:{},charLevels:{},specialMats:{},weaponEnchants:{}};
+const meta={weaponMat:40,charMat:40,weaponLevels:{},charLevels:{},specialMats:{},weaponEnchants:{}};
 function loadMeta(){try{const s=JSON.parse(localStorage.getItem(META_KEY)||'{}');Object.assign(meta,s);meta.weaponLevels=meta.weaponLevels||{};meta.charLevels=meta.charLevels||{};meta.specialMats=meta.specialMats||{};meta.weaponEnchants=meta.weaponEnchants||{};meta.weaponMat=Math.max(0,Number(meta.weaponMat)||0);meta.charMat=Math.max(0,Number(meta.charMat)||0)}catch(e){}}
 function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(meta))}catch(e){}}
-function wLevel(id,cl){if(cl&&cl.w&&cl.w[id])return Math.max(1,Math.min(MAX_WLV,Number(cl.w[id])||1));return Math.max(1,Math.min(MAX_WLV,Number(meta.weaponLevels[id])||1))}
-function cLevel(id,cl){if(cl&&cl.c&&cl.c[id])return Math.max(1,Math.min(MAX_CLV,Number(cl.c[id])||1));return Math.max(1,Math.min(MAX_CLV,Number(meta.charLevels[id])||1))}
+function wLevel(id,cl){if(cl&&cl.w&&cl.w[id]!==undefined)return Math.max(1,Math.min(MAX_WLV,Number(cl.w[id])||1));return Math.max(1,Math.min(MAX_WLV,Number(meta.weaponLevels[id])||1))}
+function cLevel(id,cl){if(cl&&cl.c&&cl.c[id]!==undefined)return Math.max(1,Math.min(MAX_CLV,Number(cl.c[id])||1));return Math.max(1,Math.min(MAX_CLV,Number(meta.charLevels[id])||1))}
 function wEnchant(id,cl){const eid=(cl&&cl.e&&cl.e[id])||meta.weaponEnchants[id];return WEAPON_ENCHANT_POOL.find(x=>x.id===eid)||null}
 function weaponUpgradeCost(id){const lv=wLevel(id);return 18+(lv-1)*22}
 function charUpgradeCost(id){const lv=cLevel(id);return 20+(lv-1)*25}
 function weaponStats(w,cl){
-  const lv=wLevel(w.id,cl),k=1+(lv-1)*.18,enc=wEnchant(w.id,cl);
+  const lv=wLevel(w.id,cl),k=1+(lv-1)*.22,enc=wEnchant(w.id,cl);
   const dmgMul=enc?enc.dmgMul:1,cdMul=enc?enc.cdMul:1,rangeMul=enc?enc.rangeMul:1;
   return{
     level:lv,
     damage:w.damage*k*dmgMul,
     range:w.range*(1+(lv-1)*.06)*rangeMul,
-    cooldown:Math.max(5,w.cooldown*(1-(lv-1)*.035)*cdMul),
+    cooldown:Math.max(5,w.cooldown*(1-(lv-1)*.038)*cdMul),
     color:enc?enc.color:WEAPON_TIER_COLORS[Math.min(9,lv-1)],
     proj:w.projectile+Math.floor((lv-1)/2),
     evolved:lv>=MAX_WLV,
     enchant:enc
   };
 }
-function charBonus(id,cl){const lv=cLevel(id,cl)-1;return{hp:1+lv*.12,dmg:1+lv*.10,spd:1+lv*.03,crit:lv*.015}}
+/* 強化職業等級加成：每升1級顯著提升生命(+20%)、基礎與技能傷害(+18%)、職業專精倍率(+12%)、移速(+3%)、暴擊(+2%)、冷卻縮減(4%) */
+function charBonus(id,cl){
+  const lv=cLevel(id,cl)-1;
+  return{
+    lv:lv+1,
+    hp:1+lv*.20,
+    dmg:1+lv*.18,
+    mastery:1+lv*.12,
+    spd:1+lv*.03,
+    crit:lv*.02,
+    cdMul:Math.max(0.55,1-lv*.04)
+  };
+}
 loadMeta();
 
 const SPECIAL_MATS = {
@@ -203,22 +215,30 @@ const SPECIAL_MATS = {
 
 const skinList=[
   {id:'default',name:'預設馬鈴薯',desc:'經典深空馬鈴薯戰士，耀眼金黃色刀光與彈幕。'},
-  {id:'summer_skin',name:'🏖 夏日海灘（精修立繪）',desc:'精雕女性曼妙曲線：豐滿立體胸型、流暢無折痕雙臂、飽滿大腿與清晰膝蓋小腿比例、微濕順滑的絲縷飄逸紅髮，搭配小黃鴨水槍與水花刀光。'},
+  {id:'summer_skin',name:'🏖 夏日海灘（動態隨風秀髮）',desc:'即時演算隨海風波浪飄逸的柔順S型紅長髮！豐滿立體胸型與沙漏腰臀、流暢雙臂、飽滿大腿與自然膝蓋比例，附帶小黃鴨水槍與水花刀光。'},
   {id:'maid_skin',name:'🌊 深海女僕',desc:'深藍波浪長髮，女僕裝與藍色小鯨魚圍裙。水藍色水波斬擊、移動水花、受擊水泡特效。'}
 ];
 let currentSkinId='summer_skin';try{const s=localStorage.getItem(SKIN_KEY);if(skinList.some(x=>x.id===s))currentSkinId=s}catch(e){}
 
-/* ===== 高精度皮膚繪製（320x450 向量動漫立繪精修版） ===== */
+/* ===== 高精度皮膚繪製（320x450 即時隨風波浪長髮渲染） ===== */
 const paperCanvas=document.createElement('canvas');
 paperCanvas.width=320; paperCanvas.height=450;
 const pctx=paperCanvas.getContext('2d');
 
-/* 深度精修：夏日海灘紅髮少女（微濕絲縷飄逸長髮、豐滿立體胸型、無折疊自然手臂關節、飽滿大腿+清晰膝蓋+修長小腿比例） */
-function renderDetailedSummerSkin(){
+const maidCanvas=document.createElement('canvas');
+maidCanvas.width=320; maidCanvas.height=450;
+const mctx=maidCanvas.getContext('2d');
+
+/* Live2D 級隨風飄逸柔順紅長髮 + 精修曼妙身姿 */
+function renderDetailedSummerSkin(windPhase = 0.6){
   pctx.clearRect(0,0,320,450);
   pctx.save();
   pctx.lineCap='round';
   pctx.lineJoin='round';
+
+  const sw1 = Math.sin(windPhase) * 9 + 8;
+  const sw2 = Math.sin(windPhase - 0.7) * 14 + 14;
+  const sw3 = Math.cos(windPhase - 1.2) * 18 + 20;
 
   // 0. 柔和夏日海風陽光光暈
   const auraGrad=pctx.createRadialGradient(160,205,15,160,205,155);
@@ -228,48 +248,67 @@ function renderDetailedSummerSkin(){
   pctx.fillStyle=auraGrad;
   pctx.beginPath(); pctx.arc(160,205,155,0,Math.PI*2); pctx.fill();
 
-  // 輔助函數：繪製單束絲滑微濕長髮（根部順滑貼合，中段S型飄逸，髮尾收尖分明，留出通透空隙，絕不像披風）
-  const hairGrad=pctx.createLinearGradient(160,32,160,330);
-  hairGrad.addColorStop(0,'#b51222');
-  hairGrad.addColorStop(0.35,'#e01e37');
-  hairGrad.addColorStop(0.75,'#b81426');
-  hairGrad.addColorStop(1,'#6e0814');
+  // 1. Live2D 級隨風波浪傳導的柔順緋紅長髮（沿 Y 軸行進的正弦波浪，頂部嚴格收於頭顱輪廓內，絲滑柔順、絕無生硬尖角！）
+  const hairBackGrad=pctx.createLinearGradient(145,40,185,320);
+  hairBackGrad.addColorStop(0,'#c9182b');
+  hairBackGrad.addColorStop(0.4,'#e6223b');
+  hairBackGrad.addColorStop(0.8,'#b51222');
+  hairBackGrad.addColorStop(1,'#7a0916');
 
-  const drawHairRibbon=(x0,y0,cx1,cy1,cx2,cy2,tx,ty,cx3,cy3,cx4,cy4,x1,y1,color)=>{
-    pctx.fillStyle=color||hairGrad;
+  const drawSilkyWaveLock=(baseXTop, baseXBot, yStart, yEnd, widthTop, widthBot, phaseOffset, ampScale, color)=>{
+    const steps = 16;
+    const leftPts = [], rightPts = [];
+    for(let i=0;i<=steps;i++){
+      const t = i / steps;
+      const y = yStart + (yEnd - yStart) * t;
+      const env = Math.pow(t, 1.35);
+      const wave = Math.sin(windPhase * 1.4 - t * 3.6 + phaseOffset) * 11 * ampScale
+                 + Math.cos(windPhase * 0.7 - t * 2.0 + phaseOffset) * 5 * ampScale
+                 + 10 * ampScale;
+      const cx = baseXTop + (baseXBot - baseXTop) * t + env * wave;
+      const w = (widthTop * (1 - t * 0.55) + widthBot * (t * 0.55)) * (t > 0.78 ? Math.cos((t - 0.78) / 0.22 * Math.PI * 0.5) : 1);
+      leftPts.push([cx - w, y]);
+      rightPts.push([cx + w, y]);
+    }
+    pctx.fillStyle = color || hairBackGrad;
     pctx.beginPath();
-    pctx.moveTo(x0,y0);
-    pctx.bezierCurveTo(cx1,cy1,cx2,cy2,tx,ty);
-    pctx.bezierCurveTo(cx3,cy3,cx4,cy4,x1,y1);
+    pctx.moveTo(leftPts[0][0], leftPts[0][1]);
+    for(let i=1;i<=steps;i++) pctx.lineTo(leftPts[i][0], leftPts[i][1]);
+    for(let i=steps;i>=0;i--) pctx.lineTo(rightPts[i][0], rightPts[i][1]);
     pctx.closePath();
     pctx.fill();
+    return {leftPts, rightPts};
   };
 
-  // 1. 後層微濕飄逸長髮束（分成獨立絲縷S型髮束，彼此之間有明顯通透空隙，呈現剛出水微濕順滑而不凌亂的質感）
-  // 左側三束飄逸絲帶髮（由外至內，各自收尖，中間留白通透）
-  drawHairRibbon(128,62, 92,98, 66,152, 52,228, 72,192, 96,142, 134,82, hairGrad);
-  drawHairRibbon(133,70, 102,122, 82,186, 74,268, 92,228, 110,168, 139,92, '#c9182b');
-  drawHairRibbon(138,78, 118,140, 108,208, 102,292, 114,248, 124,182, 144,98, '#9e0e1c');
+  // 底層深紅豐盈底髮（頂部嚴格收於頭顱輪廓 x=131..189 內，向下隨風展開成柔順S型波浪）
+  drawSilkyWaveLock(160, 174, 64, 282, 28, 28, 0.0, 1.05, '#8f0d1b');
+  // 中層四束交疊的S型波浪長髮（隨海風向側後方柔順飄拂，層次分明且無任何生硬外翹）
+  const lockL = drawSilkyWaveLock(145, 146, 65, 274, 14, 12, 0.45, 0.90, hairBackGrad);
+  const lockM1 = drawSilkyWaveLock(156, 168, 65, 288, 16, 14, 0.10, 1.15, '#d61c32');
+  const lockM2 = drawSilkyWaveLock(167, 188, 65, 284, 16, 13, -0.30, 1.35, hairBackGrad);
+  const lockR = drawSilkyWaveLock(175, 206, 66, 272, 13, 11, -0.70, 1.55, '#e01e37');
+  // 兩縷輕盈隨風浮動的柔順細髮絲（從肩部下方隨風揚起）
+  drawSilkyWaveLock(184, 222, 122, 258, 6.0, 3.2, -1.15, 1.65, '#ef233c');
+  drawSilkyWaveLock(136, 134, 124, 256, 5.0, 2.8, 0.85, 0.75, '#c9182b');
 
-  // 右側三束飄逸絲帶髮
-  drawHairRibbon(192,62, 228,98, 254,150, 268,224, 248,188, 224,140, 186,82, hairGrad);
-  drawHairRibbon(187,70, 218,122, 238,184, 246,264, 228,225, 210,166, 181,92, '#c9182b');
-  drawHairRibbon(182,78, 202,140, 212,206, 218,288, 206,245, 196,180, 176,98, '#9e0e1c');
-
-  // 髮束上的水潤光澤線（表現微濕秀髮的鏡面反光）
-  pctx.strokeStyle='rgba(255,195,205,0.55)';
+  // 順著波浪曲線繪製絲綢水光高光線
+  pctx.strokeStyle='rgba(255,205,212,0.52)';
   pctx.lineWidth=1.5;
-  pctx.beginPath();
-  pctx.moveTo(116,84); pctx.bezierCurveTo(92,125,74,172,58,218);
-  pctx.moveTo(124,96); pctx.bezierCurveTo(102,146,88,198,79,254);
-  pctx.moveTo(204,84); pctx.bezierCurveTo(228,125,246,170,261,214);
-  pctx.moveTo(196,96); pctx.bezierCurveTo(218,146,232,196,241,250);
-  pctx.stroke();
+  for(const lk of [lockL, lockM1, lockM2, lockR]){
+    pctx.beginPath();
+    for(let i=3;i<lk.leftPts.length-2;i++){
+      const mx = (lk.leftPts[i][0] + lk.rightPts[i][0]) * 0.5;
+      const my = lk.leftPts[i][1];
+      if(i===3) pctx.moveTo(mx, my);
+      else pctx.lineTo(mx, my);
+    }
+    pctx.stroke();
+  }
 
-  // 2. 身側可愛的小黃鴨透明泳圈 (左下側裝飾)
+  // 2. 身側可愛的小黃鴨透明泳圈 (左下側裝飾，隨海浪微浮)
   pctx.save();
-  pctx.translate(82,298);
-  pctx.rotate(-0.14);
+  pctx.translate(82, 298 + Math.sin(windPhase*1.2)*2.5);
+  pctx.rotate(-0.14 + Math.cos(windPhase)*0.03);
   const ringGrad=pctx.createLinearGradient(-30,-16,30,20);
   ringGrad.addColorStop(0,'rgba(255,214,10,0.92)');
   ringGrad.addColorStop(1,'rgba(251,133,0,0.88)');
@@ -297,7 +336,7 @@ function renderDetailedSummerSkin(){
   skinGrad.addColorStop(0.45,'#ffe6d8');
   skinGrad.addColorStop(1,'#f8d0c4');
 
-  // 3. 完美女性雙腿比例（飽滿圓潤大腿 -> 收窄膝蓋關節與膝蓋窩 -> 優美外擴小腿肚 -> 纖細腳踝 -> 涼鞋）
+  // 3. 完美女性雙腿比例（飽滿圓潤大腿 -> 收窄膝蓋關節 -> 優美外擴小腿肚 -> 纖細腳踝 -> 涼鞋）
   const drawNaturalFemaleLeg=(hipOuterX, hipInnerX, kneeCenterX, ankleCenterX, isRight)=>{
     const dir = isRight ? 1 : -1;
     const kneeTopY = 302, kneeBotY = 319, ankleY = 394, footY = 415;
@@ -305,31 +344,23 @@ function renderDetailedSummerSkin(){
 
     pctx.fillStyle=skinGrad;
     pctx.beginPath();
-    // 大腿外側豐滿弧度 -> 收攏至膝蓋外側
     pctx.moveTo(hipOuterX, 222);
     pctx.bezierCurveTo(hipOuterX + dir*6.5, 250, kneeCenterX + dir*(kneeHalfW+3.5), 282, kneeCenterX + dir*kneeHalfW, kneeTopY);
-    // 膝蓋外側微凹關節
     pctx.quadraticCurveTo(kneeCenterX + dir*(kneeHalfW-0.6), (kneeTopY+kneeBotY)/2, kneeCenterX + dir*kneeHalfW, kneeBotY);
-    // 小腿肚外側飽滿肌肉弧線 -> 纖細腳踝
     pctx.bezierCurveTo(kneeCenterX + dir*(calfOuterW+2.2), 336, kneeCenterX + dir*(calfOuterW+1.2), 364, ankleCenterX + dir*ankleHalfW, ankleY);
-    // 腳背與腳底
     pctx.lineTo(ankleCenterX + dir*(ankleHalfW+2.8), footY);
     pctx.quadraticCurveTo(ankleCenterX, footY+4.5, ankleCenterX - dir*(ankleHalfW+1.5), footY);
     pctx.lineTo(ankleCenterX - dir*ankleHalfW, ankleY);
-    // 小腿內側柔和曲線 -> 膝蓋內側
     pctx.bezierCurveTo(kneeCenterX - dir*(calfInnerW+0.6), 364, kneeCenterX - dir*calfInnerW, 336, kneeCenterX - dir*kneeHalfW, kneeBotY);
     pctx.quadraticCurveTo(kneeCenterX - dir*(kneeHalfW+0.5), (kneeTopY+kneeBotY)/2, kneeCenterX - dir*kneeHalfW, kneeTopY);
-    // 大腿內側飽滿曲線（大腿根部豐潤）
     pctx.bezierCurveTo(kneeCenterX - dir*(kneeHalfW+2.2), 280, hipInnerX - dir*2.5, 254, hipInnerX, 232);
     pctx.closePath();
     pctx.fill();
 
-    // 腿部柔和邊緣線
     pctx.strokeStyle='#e2a396';
     pctx.lineWidth=1.4;
     pctx.stroke();
 
-    // 大腿立体高光與內側陰影（凸顯大腿渾圓飽滿感）
     const thighHl=pctx.createLinearGradient(kneeCenterX,228,kneeCenterX,298);
     thighHl.addColorStop(0,'rgba(255,255,255,0.62)');
     thighHl.addColorStop(1,'rgba(255,255,255,0.0)');
@@ -338,7 +369,6 @@ function renderDetailedSummerSkin(){
     pctx.ellipse((hipOuterX+hipInnerX)/2 + dir*1.5, 264, 5.2, 29, isRight?-0.04:0.04, 0, Math.PI*2);
     pctx.fill();
 
-    // 清晰精緻的膝蓋刻畫（粉潤膝蓋紅暈 + 上下膝蓋骨弧線 + 側面髕骨高光點）
     const kneeMidY = (kneeTopY + kneeBotY) / 2;
     pctx.fillStyle='rgba(255,132,145,0.34)';
     pctx.beginPath();
@@ -348,20 +378,13 @@ function renderDetailedSummerSkin(){
     pctx.beginPath();
     pctx.arc(kneeCenterX - dir*1.5, kneeMidY - 1.5, 2.2, 0, Math.PI*2);
     pctx.fill();
-    pctx.strokeStyle='#d48375';
-    pctx.lineWidth=1.5;
+    pctx.strokeStyle='rgba(212,131,117,0.6)';
+    pctx.lineWidth=1.2;
     pctx.beginPath();
-    // 膝蓋上方弧窩與下方髕韌帶凹線
-    pctx.arc(kneeCenterX, kneeTopY+4.5, 4.8, 0.2*Math.PI, 0.8*Math.PI);
-    pctx.stroke();
-    pctx.beginPath();
-    pctx.arc(kneeCenterX - dir*2.2, kneeBotY-3.5, 3.2, 1.25*Math.PI, 1.85*Math.PI);
-    pctx.stroke();
-    pctx.beginPath();
-    pctx.arc(kneeCenterX + dir*2.5, kneeBotY-3.5, 2.8, 1.15*Math.PI, 1.75*Math.PI);
+    pctx.arc(kneeCenterX + dir*1.2, kneeMidY+1, 4.2, 0.15*Math.PI, 0.78*Math.PI);
     pctx.stroke();
 
-    // 4. 貼合小腿肚曲線的交叉綁帶羅馬涼鞋（嚴格位於膝蓋下方 y=322..392，完全露出膝蓋與大腿！）
+    // 4. 貼合小腿肚曲線的交叉綁帶羅馬涼鞋
     pctx.strokeStyle='#1d3557';
     pctx.lineWidth=2.2;
     const strapTop = 322, strapBot = 392, steps = 5;
@@ -376,7 +399,6 @@ function renderDetailedSummerSkin(){
     pctx.quadraticCurveTo(kneeCenterX, strapTop+2.5, kneeCenterX + topW, strapTop);
     pctx.moveTo(kneeCenterX - topW, strapTop+5);
     pctx.quadraticCurveTo(kneeCenterX, strapTop+7.5, kneeCenterX + topW, strapTop+5);
-    // 側面小蝴蝶結
     const bowX = kneeCenterX + dir * topW;
     pctx.moveTo(bowX, strapTop+2.5);
     pctx.quadraticCurveTo(bowX + dir*9, strapTop-3, bowX + dir*6, strapTop+7);
@@ -395,7 +417,6 @@ function renderDetailedSummerSkin(){
       pctx.stroke();
     }
 
-    // 涼鞋鞋底與鞋面
     pctx.fillStyle='#1d3557';
     pctx.beginPath(); pctx.roundRect(ankleCenterX - 9, footY - 9, 18, 8, 4); pctx.fill();
     pctx.fillStyle='#e76f51';
@@ -407,145 +428,110 @@ function renderDetailedSummerSkin(){
   drawNaturalFemaleLeg(125, 155, 142, 145, false);
   drawNaturalFemaleLeg(195, 165, 178, 175, true);
 
-  // 5. 一體成形無折痕的圓潤雙臂（使用單一連續貝茲路徑繪製整條手臂，內部絕無接縫折線！）
-  // 左手（畫面左側：從左肩 (132,128) 順滑延伸至圓潤手肘 (97,162)，再柔和彎向耳畔 (112,106) 輕撫秀髮）
+  // 5. 自然柔美的雙臂（左臂自然下垂輕扶腰胯，右臂優雅托起水槍，無任何折疊感）
   pctx.save();
   pctx.fillStyle=skinGrad;
   pctx.strokeStyle='#e2a396';
   pctx.lineWidth=1.4;
-  pctx.beginPath();
-  pctx.moveTo(134,126); // 肩頂
-  pctx.bezierCurveTo(116,134, 96,146, 93,159); // 上臂外緣順滑接手肘
-  pctx.bezierCurveTo(91,167, 99,170, 104,162); // 圓潤手肘尖端
-  // 改為從手腕外側包回，讓上臂與前臂成為一條無折痕的柔美曲線：
-  pctx.restore();
-
-  // 重新以單一封閉流暢輪廓繪製左臂（無任何內折線）：
-  pctx.save();
-  pctx.fillStyle=skinGrad;
-  pctx.strokeStyle='#e2a396';
-  pctx.lineWidth=1.4;
-  pctx.beginPath();
-  pctx.moveTo(134,126); // 左肩上緣
-  pctx.bezierCurveTo(116,134, 98,148, 94,158); // 上臂外上側
-  pctx.bezierCurveTo(90,165, 92,169, 98,167); // 圓滑外手肘底
-  pctx.bezierCurveTo(106,164, 122,152, 136,140); // 上臂下緣回腋下
-  pctx.closePath();
-  pctx.fill(); pctx.stroke();
-
-  // 左前臂與纖纖玉手（先填色後僅描外緣，肘窩處自然柔和過渡）
-  pctx.beginPath();
-  pctx.moveTo(94,158);
-  pctx.bezierCurveTo(93,140, 99,122, 106,108); // 前臂外側至手腕
-  pctx.bezierCurveTo(109,98, 117,95, 120,101); // 柔美手掌與指尖輕觸髮絲
-  pctx.bezierCurveTo(121,106, 116,111, 114,114); // 手掌內側
-  pctx.bezierCurveTo(109,130, 105,146, 103,160); // 前臂內側
-  pctx.closePath();
-  pctx.fill();
-  // 只描繪前臂與手掌外側輪廓，不在手肘內部畫切割線
-  pctx.beginPath();
-  pctx.moveTo(94,157);
-  pctx.bezierCurveTo(93,140, 99,122, 106,108);
-  pctx.bezierCurveTo(109,98, 117,95, 120,101);
-  pctx.bezierCurveTo(121,106, 116,111, 114,114);
-  pctx.bezierCurveTo(109,128, 106,144, 104,156);
-  pctx.stroke();
-  pctx.restore();
-
-  // 右臂（畫面右側：從右肩 (186,126) 順滑延伸至圓潤右手肘 (222,158)，再自然舉起水槍至 (234,116)）
-  pctx.save();
-  pctx.fillStyle=skinGrad;
-  pctx.strokeStyle='#e2a396';
-  pctx.lineWidth=1.4;
-  // 右上臂
-  pctx.beginPath();
-  pctx.moveTo(186,126);
-  pctx.bezierCurveTo(204,134, 222,146, 226,156);
-  pctx.bezierCurveTo(230,163, 228,167, 222,165);
-  pctx.bezierCurveTo(214,162, 198,150, 184,140);
-  pctx.closePath();
-  pctx.fill(); pctx.stroke();
-
-  // 右前臂與持槍手部（無內部折線）
-  pctx.beginPath();
-  pctx.moveTo(217,158);
-  pctx.bezierCurveTo(220,142, 224,126, 229,114);
-  pctx.arc(234,114,5.8,Math.PI,0,false);
-  pctx.bezierCurveTo(235,130, 230,146, 226,157);
-  pctx.closePath();
-  pctx.fill();
-  pctx.beginPath();
-  pctx.moveTo(217,154);
-  pctx.bezierCurveTo(220,140, 224,126, 229,114);
-  pctx.arc(234,114,5.8,Math.PI,0.2,false);
-  pctx.bezierCurveTo(235,130, 230,146, 226,156);
-  pctx.stroke();
-  pctx.restore();
-
-  // 6. 輕盈柔順的半透明白色薄紗寬袖（自然垂墜包裹雙肩與手肘，無尖銳折角）
-  pctx.save();
-  const sleeveGrad=pctx.createLinearGradient(88,124,232,174);
-  sleeveGrad.addColorStop(0,'rgba(255,255,255,0.64)');
-  sleeveGrad.addColorStop(0.5,'rgba(240,249,255,0.45)');
-  sleeveGrad.addColorStop(1,'rgba(255,255,255,0.64)');
-  pctx.fillStyle=sleeveGrad;
-  pctx.strokeStyle='rgba(255,255,255,0.92)';
-  pctx.lineWidth=1.5;
-
-  // 左紗袖（水滴狀柔美弧線）
   pctx.beginPath();
   pctx.moveTo(132,126);
-  pctx.bezierCurveTo(110,126, 88,138, 86,158);
-  pctx.bezierCurveTo(85,174, 108,176, 126,156);
+  pctx.bezierCurveTo(116,136, 106,154, 108,170);
+  pctx.bezierCurveTo(110,184, 117,198, 123,208);
+  pctx.bezierCurveTo(126,214, 132,212, 130,204);
+  pctx.bezierCurveTo(124,192, 118,180, 118,168);
+  pctx.bezierCurveTo(119,156, 126,144, 135,138);
+  pctx.closePath();
+  pctx.fill(); pctx.stroke();
+  pctx.restore();
+
+  pctx.save();
+  pctx.fillStyle=skinGrad;
+  pctx.strokeStyle='#e2a396';
+  pctx.lineWidth=1.4;
+  pctx.beginPath();
+  pctx.moveTo(188,126);
+  pctx.bezierCurveTo(204,134, 220,146, 224,156);
+  pctx.bezierCurveTo(228,163, 226,167, 220,165);
+  pctx.bezierCurveTo(212,162, 198,150, 185,140);
+  pctx.closePath();
+  pctx.fill(); pctx.stroke();
+
+  pctx.beginPath();
+  pctx.moveTo(215,158);
+  pctx.bezierCurveTo(218,142, 222,126, 227,114);
+  pctx.arc(232,114,5.6,Math.PI,0,false);
+  pctx.bezierCurveTo(233,130, 228,146, 224,157);
+  pctx.closePath();
+  pctx.fill();
+  pctx.beginPath();
+  pctx.moveTo(215,154);
+  pctx.bezierCurveTo(218,140, 222,126, 227,114);
+  pctx.arc(232,114,5.6,Math.PI,0.2,false);
+  pctx.bezierCurveTo(233,130, 228,146, 224,156);
+  pctx.stroke();
+  pctx.restore();
+
+  // 6. 輕盈柔順的半透明白色薄紗寬袖
+  pctx.save();
+  const sleeveGrad=pctx.createLinearGradient(96,124,232,185);
+  sleeveGrad.addColorStop(0,'rgba(255,255,255,0.62)');
+  sleeveGrad.addColorStop(0.5,'rgba(240,249,255,0.44)');
+  sleeveGrad.addColorStop(1,'rgba(255,255,255,0.62)');
+  pctx.fillStyle=sleeveGrad;
+  pctx.strokeStyle='rgba(255,255,255,0.90)';
+  pctx.lineWidth=1.5;
+
+  pctx.beginPath();
+  pctx.moveTo(132,126);
+  pctx.bezierCurveTo(112,132, 98,152, 102,178);
+  pctx.bezierCurveTo(106,192, 122,194, 126,178);
+  pctx.bezierCurveTo(124,160, 128,146, 135,138);
   pctx.closePath();
   pctx.fill(); pctx.stroke();
   pctx.strokeStyle='#1d3557'; pctx.lineWidth=1.8;
-  pctx.beginPath(); pctx.moveTo(99,122); pctx.quadraticCurveTo(106,125,112,123); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(112,188); pctx.quadraticCurveTo(118,191,124,187); pctx.stroke();
 
-  // 右紗袖
   pctx.fillStyle=sleeveGrad;
-  pctx.strokeStyle='rgba(255,255,255,0.92)';
+  pctx.strokeStyle='rgba(255,255,255,0.90)';
   pctx.lineWidth=1.5;
   pctx.beginPath();
   pctx.moveTo(188,126);
-  pctx.bezierCurveTo(210,126, 232,136, 234,156);
-  pctx.bezierCurveTo(235,172, 212,174, 194,156);
+  pctx.bezierCurveTo(210,126, 230,136, 232,156);
+  pctx.bezierCurveTo(233,172, 210,174, 192,156);
   pctx.closePath();
   pctx.fill(); pctx.stroke();
   pctx.strokeStyle='#1d3557'; pctx.lineWidth=1.8;
-  pctx.beginPath(); pctx.moveTo(222,124); pctx.quadraticCurveTo(228,127,235,125); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(220,124); pctx.quadraticCurveTo(226,127,233,125); pctx.stroke();
   pctx.restore();
 
-  // 7. 沙漏型性感女性軀幹（纖細柳腰 x=142..178 + 圓潤蜜桃臀胯 x=125..195）
+  // 7. 沙漏型性感女性軀幹
   pctx.fillStyle=skinGrad;
   pctx.beginPath();
-  pctx.moveTo(151,105); pctx.lineTo(169,105); // 修長脖頸
-  pctx.quadraticCurveTo(172,118,188,126); // 右肩
+  pctx.moveTo(151,105); pctx.lineTo(169,105);
+  pctx.quadraticCurveTo(172,118,188,126);
   pctx.lineTo(184,168);
-  pctx.bezierCurveTo(176,181, 175,193, 189,210); // 纖細右腰凹陷 -> 豐滿右臀外擴
+  pctx.bezierCurveTo(176,181, 175,193, 189,210);
   pctx.lineTo(195,226);
   pctx.lineTo(125,226);
-  pctx.lineTo(131,210); // 豐滿左臀外擴
-  pctx.bezierCurveTo(145,193, 144,181, 136,168); // 纖細左腰凹陷
-  pctx.lineTo(132,126); // 左肩
+  pctx.lineTo(131,210);
+  pctx.bezierCurveTo(145,193, 144,181, 136,168);
+  pctx.lineTo(132,126);
   pctx.quadraticCurveTo(148,118,151,105);
   pctx.closePath();
   pctx.fill();
 
-  // 鎖骨、馬甲線與性感肚臍
   pctx.strokeStyle='#df9c8e';
   pctx.lineWidth=1.4;
   pctx.beginPath();
   pctx.moveTo(142,124); pctx.quadraticCurveTo(150,127,157,125);
   pctx.moveTo(178,124); pctx.quadraticCurveTo(170,127,163,125);
-  // 腰部外輪廓線加深
   pctx.moveTo(136,172); pctx.bezierCurveTo(144,183, 144,194, 131,208);
   pctx.moveTo(184,172); pctx.bezierCurveTo(176,183, 176,194, 189,208);
   pctx.stroke();
   pctx.fillStyle='#d48375';
   pctx.beginPath(); pctx.ellipse(160,195,1.5,2.5,0,0,Math.PI*2); pctx.fill();
 
-  // 8. 海軍藍高叉性感泳褲（V型低腰 + 高叉剪裁完美展現大腿根部）
+  // 8. 海軍藍高叉性感泳褲與隨風飄帶
   pctx.fillStyle='#1d3557';
   pctx.beginPath();
   pctx.moveTo(132,204);
@@ -564,47 +550,42 @@ function renderDetailedSummerSkin(){
   pctx.moveTo(126,224); pctx.quadraticCurveTo(142,221,155,234);
   pctx.moveTo(194,224); pctx.quadraticCurveTo(178,221,165,234);
   pctx.stroke();
-  // 腰側飄逸紅白沙灘絲帶
   pctx.strokeStyle='#e63946';
-  pctx.lineWidth=3.2;
+  pctx.lineWidth=3.0;
   pctx.beginPath();
-  pctx.moveTo(190,209); pctx.bezierCurveTo(208,236,212,270,204,306);
-  pctx.moveTo(130,209); pctx.bezierCurveTo(114,236,112,268,118,298);
+  pctx.moveTo(190,209); pctx.bezierCurveTo(204+sw1*0.3,236, 208+sw2*0.4,270, 202+sw3*0.5,302);
+  pctx.moveTo(130,209); pctx.bezierCurveTo(118+sw1*0.2,236, 116+sw2*0.3,268, 120+sw3*0.4,296);
   pctx.stroke();
   pctx.strokeStyle='#f1faee';
-  pctx.lineWidth=2.2;
+  pctx.lineWidth=2.0;
   pctx.beginPath();
-  pctx.moveTo(192,212); pctx.bezierCurveTo(214,240,220,272,214,300);
+  pctx.moveTo(192,212); pctx.bezierCurveTo(210+sw1*0.3,240, 214+sw2*0.45,272, 210+sw3*0.55,296);
   pctx.stroke();
 
-  // 9. 豐滿挺拔的 3D 女性胸部與藍白水手領泳裝上衣（重點強化胸部立體飽滿感與事業線！）
-  // 上衣基底（下胸圍收緊至纖腰 x=140..180，上胸兩側飽滿突出至 x=120..200）
+  // 9. 豐滿挺拔的 3D 女性胸部與藍白水手領泳裝上衣
   pctx.fillStyle='#f1f5f9';
   pctx.strokeStyle='#1d3557';
   pctx.lineWidth=2;
   pctx.beginPath();
   pctx.moveTo(132,127);
-  pctx.quadraticCurveTo(148,136,160,145); // V領口露出酥胸與事業線
+  pctx.quadraticCurveTo(148,136,160,145);
   pctx.quadraticCurveTo(172,136,188,127);
-  pctx.bezierCurveTo(202,136, 203,160, 186,168); // 右胸渾圓外擴曲線
-  pctx.lineTo(179,182); // 收束至纖細下胸腰線
+  pctx.bezierCurveTo(202,136, 203,160, 186,168);
+  pctx.lineTo(179,182);
   pctx.quadraticCurveTo(160,188,141,182);
   pctx.lineTo(134,168);
-  pctx.bezierCurveTo(117,160, 118,136, 132,127); // 左胸渾圓外擴曲線
+  pctx.bezierCurveTo(117,160, 118,136, 132,127);
   pctx.closePath();
   pctx.fill(); pctx.stroke();
 
-  // V領口露出的立體酥胸上緣弧線與深邃事業線（乳溝）
   pctx.strokeStyle='#c97a6d';
   pctx.lineWidth=2.0;
   pctx.beginPath();
-  pctx.moveTo(160,133); pctx.lineTo(160,148); // 深邃事業線
-  pctx.moveTo(149,131); pctx.quadraticCurveTo(156,134,160,141); // 左上胸肉感弧線
-  pctx.moveTo(171,131); pctx.quadraticCurveTo(164,134,160,141); // 右上胸肉感弧線
+  pctx.moveTo(160,133); pctx.lineTo(160,148);
+  pctx.moveTo(149,131); pctx.quadraticCurveTo(156,134,160,141);
+  pctx.moveTo(171,131); pctx.quadraticCurveTo(164,134,160,141);
   pctx.stroke();
 
-  // 繪製左右兩側渾圓飽滿的 3D 罩杯球體（利用徑向漸層與下胸深陰影塑造極強的胸部立體感！）
-  // 左罩杯 3D 球面
   const leftCupGrad=pctx.createRadialGradient(138,146,3, 141,151,21);
   leftCupGrad.addColorStop(0,'#ffffff');
   leftCupGrad.addColorStop(0.6,'#f8fafc');
@@ -617,7 +598,6 @@ function renderDetailedSummerSkin(){
   pctx.closePath();
   pctx.fill();
 
-  // 右罩杯 3D 球面
   const rightCupGrad=pctx.createRadialGradient(182,146,3, 179,151,21);
   rightCupGrad.addColorStop(0,'#ffffff');
   rightCupGrad.addColorStop(0.6,'#f8fafc');
@@ -630,32 +610,23 @@ function renderDetailedSummerSkin(){
   pctx.closePath();
   pctx.fill();
 
-  // 雙乳下緣明顯的立體托胸陰影弧線（Underbust contour）與中央乳溝陰影
   pctx.strokeStyle='#475569';
   pctx.lineWidth=2.4;
-  pctx.beginPath();
-  pctx.arc(141,149,18.5,0.12*Math.PI,0.92*Math.PI,false); // 左乳渾圓下弧
-  pctx.stroke();
-  pctx.beginPath();
-  pctx.arc(179,149,18.5,0.08*Math.PI,0.88*Math.PI,false); // 右乳渾圓下弧
-  pctx.stroke();
+  pctx.beginPath(); pctx.arc(141,149,18.5,0.12*Math.PI,0.92*Math.PI,false); pctx.stroke();
+  pctx.beginPath(); pctx.arc(179,149,18.5,0.08*Math.PI,0.88*Math.PI,false); pctx.stroke();
 
-  // 胸部最高點水潤高光斑
   pctx.fillStyle='rgba(255,255,255,0.95)';
   pctx.beginPath(); pctx.ellipse(137,146,6.5,4,-0.25,0,Math.PI*2); pctx.fill();
   pctx.beginPath(); pctx.ellipse(183,146,6.5,4,0.25,0,Math.PI*2); pctx.fill();
 
-  // 深藍水手領邊（精緻貼合領口，不遮擋雙乳球體）
   pctx.fillStyle='#1d3557';
   pctx.beginPath();
   pctx.moveTo(131,126); pctx.lineTo(160,146); pctx.lineTo(189,126);
   pctx.lineTo(183,123); pctx.lineTo(160,139); pctx.lineTo(137,123);
   pctx.closePath();
   pctx.fill();
-  // 頸部深藍項圈 (Choker)
   pctx.fillRect(151,113,18,4.2);
 
-  // 胸口小巧蝴蝶結與粉白花朵胸針（精準點綴於事業線下端，不遮蓋左右雙峰）
   pctx.fillStyle='#457b9d';
   pctx.beginPath();
   pctx.moveTo(160,149); pctx.lineTo(150,143); pctx.lineTo(151,154); pctx.closePath();
@@ -683,7 +654,6 @@ function renderDetailedSummerSkin(){
   pctx.closePath();
   pctx.fill(); pctx.stroke();
 
-  // 動漫紅寶石大眼睛
   const drawAnimeEye=(ex,ey)=>{
     pctx.fillStyle='#ffffff';
     pctx.beginPath(); pctx.ellipse(ex,ey,7.2,8.2,0,0,Math.PI*2); pctx.fill();
@@ -708,7 +678,6 @@ function renderDetailedSummerSkin(){
   drawAnimeEye(146,80);
   drawAnimeEye(174,80);
 
-  // 小巧鼻尖、臉頰紅暈與甜美微笑
   pctx.fillStyle='#d48375';
   pctx.beginPath(); pctx.arc(160,88,1.1,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='rgba(255,117,143,0.42)';
@@ -718,32 +687,41 @@ function renderDetailedSummerSkin(){
   pctx.lineWidth=1.7;
   pctx.beginPath(); pctx.arc(160,96,3.8,0.18,Math.PI-0.18); pctx.stroke();
 
-  // 11. 順著鎖骨滑落胸側的絲滑微濕前髮束（纖細柔順，繞過胸部外緣自然飄落，不遮擋胸型！）
-  drawHairRibbon(132,68, 123,102, 114,142, 112,196, 119,158, 126,118, 137,76, '#e01e37');
-  drawHairRibbon(188,68, 197,102, 206,142, 208,196, 201,158, 194,118, 183,76, '#e01e37');
+  // 11. 臉頰兩側柔順垂落鎖骨的S型鬢角細髮束（採用絲滑波浪曲線，自然貼合臉頰與鎖骨）
+  drawSilkyWaveLock(132, 134, 64, 152, 4.2, 2.2, 0.3, 0.25, '#d90429');
+  drawSilkyWaveLock(188, 186, 64, 152, 4.2, 2.2, -0.3, 0.30, '#d90429');
 
-  // 12. 絲滑貼合的微濕感前髮瀏海（整齊柔順不凌亂，帶有水潤天使環高光與晶瑩小水珠）
+  // 12. 柔順微濕感前髮瀏海
+  pctx.fillStyle='rgba(212,131,117,0.28)';
+  pctx.beginPath();
+  pctx.arc(160,66,28,Math.PI*1.08,Math.PI*1.92,false);
+  pctx.fill();
+
   const bangGrad=pctx.createLinearGradient(160,34,160,92);
   bangGrad.addColorStop(0,'#f02d42');
   bangGrad.addColorStop(0.55,'#d90429');
-  bangGrad.addColorStop(1,'#9b0012');
+  bangGrad.addColorStop(1,'#a80018');
   pctx.fillStyle=bangGrad;
   pctx.beginPath();
   pctx.arc(160,64,31,Math.PI,0,false);
-  pctx.bezierCurveTo(191,78,187,92,184,100);
-  pctx.quadraticCurveTo(182,82,178,70);
-  pctx.quadraticCurveTo(174,80,170,85);
-  pctx.quadraticCurveTo(167,72,164,66);
-  pctx.quadraticCurveTo(162,80,159,86);
-  pctx.quadraticCurveTo(156,74,153,67);
-  pctx.quadraticCurveTo(149,80,145,84);
-  pctx.quadraticCurveTo(141,72,138,70);
-  pctx.quadraticCurveTo(135,84,133,100);
-  pctx.bezierCurveTo(130,90,129,76,129,64);
+  pctx.bezierCurveTo(191,75, 189,88, 185,96);
+  pctx.bezierCurveTo(183,82, 180,72, 175,68);
+  pctx.bezierCurveTo(173,75, 169,80, 164,82);
+  pctx.bezierCurveTo(163,74, 161,68, 159,66);
+  pctx.bezierCurveTo(158,74, 154,80, 149,82);
+  pctx.bezierCurveTo(146,75, 143,70, 140,68);
+  pctx.bezierCurveTo(137,76, 136,86, 134,96);
+  pctx.bezierCurveTo(130,88, 129,75, 129,64);
   pctx.closePath();
   pctx.fill();
 
-  // 水潤雙層天使環高光
+  pctx.strokeStyle='rgba(128,0,22,0.35)';
+  pctx.lineWidth=1.1;
+  pctx.beginPath();
+  pctx.moveTo(159,44); pctx.quadraticCurveTo(157,58,151,78);
+  pctx.moveTo(163,44); pctx.quadraticCurveTo(166,58,166,78);
+  pctx.stroke();
+
   pctx.strokeStyle='rgba(255,220,225,0.85)';
   pctx.lineWidth=2.8;
   pctx.beginPath(); pctx.arc(160,60,23,Math.PI*1.16,Math.PI*1.84); pctx.stroke();
@@ -751,7 +729,6 @@ function renderDetailedSummerSkin(){
   pctx.lineWidth=1.4;
   pctx.beginPath(); pctx.arc(160,57,25,Math.PI*1.25,Math.PI*1.55); pctx.stroke();
 
-  // 髮絲與鎖骨處晶瑩的小水珠（表現「頭有點濕水了，但沒有亂」的清爽夏日質感）
   const drawWaterDrop=(wx,wy,r)=>{
     pctx.fillStyle='rgba(144,224,239,0.9)';
     pctx.beginPath();
@@ -762,12 +739,10 @@ function renderDetailedSummerSkin(){
     pctx.fillStyle='#ffffff';
     pctx.beginPath(); pctx.arc(wx-r*0.25,wy+r*0.1,r*0.32,0,Math.PI*2); pctx.fill();
   };
-  drawWaterDrop(116,148,2.2);
-  drawWaterDrop(204,144,2.1);
-  drawWaterDrop(78,232,2.3);
-  drawWaterDrop(242,226,2.2);
-  drawWaterDrop(139,75,1.6);
-  drawWaterDrop(176,74,1.5);
+  drawWaterDrop(139,74,1.6);
+  drawWaterDrop(176,73,1.5);
+  drawWaterDrop(131+sw1*0.2,145,1.9);
+  drawWaterDrop(196+sw1*0.3,142,1.9);
 
   // 13. 左上側白色夏日雞蛋花頭飾與珍珠髮夾
   const drawHairFlower=(fx,fy,r)=>{
@@ -786,127 +761,123 @@ function renderDetailedSummerSkin(){
     pctx.beginPath(); pctx.arc(0,0,r*0.24,0,Math.PI*2); pctx.fill();
     pctx.restore();
   };
-  drawHairFlower(135,44,10.5);
-  drawHairFlower(149,38,8);
-  drawHairFlower(125,54,6.8);
+  drawHairFlower(136,44,10.2);
+  drawHairFlower(150,39,7.8);
+  drawHairFlower(126,54,6.5);
   pctx.fillStyle='#fff';
   pctx.beginPath();
-  pctx.arc(159,37,2.2,0,Math.PI*2);
-  pctx.arc(120,63,2,0,Math.PI*2);
+  pctx.arc(160,38,2.2,0,Math.PI*2);
+  pctx.arc(122,63,2,0,Math.PI*2);
   pctx.fill();
 
-  // 14. 青綠色夏日科技水槍 + 小黃鴨吊飾 (自然握在右手中)
+  // 14. 青綠色夏日科技水槍 + 小黃鴨吊飾
   pctx.save();
-  pctx.translate(236,108);
+  pctx.translate(234,108);
   pctx.rotate(-0.36);
   pctx.fillStyle='#e76f51';
   pctx.beginPath(); pctx.roundRect(-10,2,11,19,4); pctx.fill();
   pctx.fillStyle='#f4a261';
   pctx.beginPath(); pctx.roundRect(-22,-8,22,12,5); pctx.fill();
-  const gunGrad=pctx.createLinearGradient(-6,-14,50,-14);
-  gunGrad.addColorStop(0,'#00b4d8');
-  gunGrad.addColorStop(0.6,'#48cae4');
-  gunGrad.addColorStop(1,'#90e0ef');
-  pctx.fillStyle=gunGrad;
+  pctx.fillStyle='#00b4d8';
   pctx.strokeStyle='#1d3557';
   pctx.lineWidth=1.8;
   pctx.beginPath(); pctx.roundRect(-6,-14,50,16,6); pctx.fill(); pctx.stroke();
+  pctx.fillStyle='#48cae4';
+  pctx.beginPath(); pctx.roundRect(-3,-12,42,11,4); pctx.fill();
   pctx.fillStyle='#ffffff';
   pctx.fillRect(0,-10,32,3.5);
   pctx.fillStyle='#f77f00';
   pctx.beginPath(); pctx.roundRect(42,-11,8,10,3); pctx.fill();
 
-  // 小黃鴨掛飾
   pctx.strokeStyle='#ffd166';
   pctx.lineWidth=1.5;
-  pctx.beginPath(); pctx.moveTo(-5,20); pctx.lineTo(-8,33); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(-5,20); pctx.lineTo(-8+sw1*0.2,33); pctx.stroke();
   pctx.fillStyle='#ffd60a';
-  pctx.beginPath(); pctx.arc(-8,38,5.2,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(-8+sw1*0.2,38,5.2,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#f77f00';
-  pctx.beginPath(); pctx.ellipse(-12,38,2.6,1.5,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(-12+sw1*0.2,38,2.6,1.5,0,0,Math.PI*2); pctx.fill();
   pctx.restore();
 
   pctx.restore();
 }
-renderDetailedSummerSkin();
-const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
+renderDetailedSummerSkin(0.6);
 
-// 深海女僕皮膚（同步適配 320x450 畫布）
+// 深海女僕皮膚（獨立畫布 maidCanvas，避免被動態重繪覆蓋）
 function renderMaidSkin(){
-  pctx.clearRect(0,0,320,450);
-  pctx.save();
-  pctx.scale(2.5,2.5);
-  pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(64,90,36,56,0,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#2b3b6b';
-  pctx.beginPath(); pctx.moveTo(90,130); pctx.quadraticCurveTo(120,140,110,170); pctx.quadraticCurveTo(96,156,90,150); pctx.fill();
-  pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(96,136); pctx.quadraticCurveTo(114,144,106,164); pctx.quadraticCurveTo(100,152,96,148); pctx.fill();
-  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(40,120); pctx.lineTo(88,120); pctx.lineTo(96,160); pctx.lineTo(32,160); pctx.fill();
-  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(32,120); pctx.lineTo(96,120); pctx.lineTo(104,150); pctx.lineTo(24,150); pctx.fill();
-  pctx.fillStyle='#ffffff';
-  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(30+i*10.6,150,5,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#ffffff'; pctx.fillRect(48,160,10,16); pctx.fillRect(70,160,10,16);
-  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(53,176,8,4,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(75,176,8,4,0,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(40,90,12,20,0.2,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(88,90,12,20,-0.2,0,Math.PI*2); pctx.fill();
-  pctx.fillRect(48,72,32,50);
-  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(52,76); pctx.lineTo(76,76); pctx.lineTo(84,150); pctx.lineTo(44,150); pctx.fill();
-  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(46+i*9,150,5,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(64,116,10,6,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(74,116); pctx.lineTo(80,110); pctx.lineTo(78,122); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(58,115,2,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ffffff'; pctx.fillRect(50,72,28,8);
-  pctx.fillStyle='#ffd700'; pctx.fillRect(52,84,4,4); pctx.fillRect(72,84,4,4); pctx.fillRect(52,92,4,4); pctx.fillRect(72,92,4,4);
-  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(64,52,20,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(48,60,5,0,Math.PI*2); pctx.arc(80,60,5,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(64,62,3,0,Math.PI); pctx.fill();
-  pctx.fillStyle='#0a2a4a';
-  pctx.beginPath(); pctx.ellipse(52,52,6,8,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(76,52,6,8,0,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.ellipse(52,54,4,6,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(76,54,4,6,0,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ffffff';
-  pctx.beginPath(); pctx.arc(50,50,2,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(74,50,2,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#90e0ef';
-  pctx.beginPath(); pctx.moveTo(40,48); pctx.lineTo(28,40); pctx.lineTo(36,56); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(88,48); pctx.lineTo(100,40); pctx.lineTo(92,56); pctx.fill();
-  pctx.fillStyle='#2b3b6b'; 
-  pctx.beginPath(); pctx.moveTo(40,52); pctx.quadraticCurveTo(64,32,88,52); pctx.quadraticCurveTo(76,44,64,56); pctx.quadraticCurveTo(52,44,40,52); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(44,48); pctx.quadraticCurveTo(36,80,44,100); pctx.quadraticCurveTo(52,80,52,60); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(84,48); pctx.quadraticCurveTo(92,80,84,100); pctx.quadraticCurveTo(76,80,76,60); pctx.fill();
-  pctx.strokeStyle='#4ea8de'; pctx.lineWidth=1.5;
-  pctx.beginPath(); pctx.moveTo(48,56); pctx.quadraticCurveTo(44,76,48,90); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(80,56); pctx.quadraticCurveTo(84,76,80,90); pctx.stroke();
-  pctx.fillStyle='#ffffff';
-  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(44+i*8,32,4,0,Math.PI*2); pctx.fill(); }
-  pctx.fillRect(44,32,40,4);
-  pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(80,28); pctx.lineTo(92,20); pctx.lineTo(90,32); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(80,28); pctx.lineTo(92,36); pctx.lineTo(88,28); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(80,28,3,0,Math.PI*2); pctx.fill();
-  pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=2;
-  pctx.beginPath(); pctx.moveTo(64,28); pctx.bezierCurveTo(56,12,72,8,80,16); pctx.stroke();
-  pctx.restore();
+  mctx.clearRect(0,0,320,450);
+  mctx.save();
+  mctx.scale(2.5,2.5);
+  mctx.fillStyle='#1e2a4a';
+  mctx.beginPath(); mctx.ellipse(64,90,36,56,0,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#2b3b6b';
+  mctx.beginPath(); mctx.moveTo(90,130); mctx.quadraticCurveTo(120,140,110,170); mctx.quadraticCurveTo(96,156,90,150); mctx.fill();
+  mctx.fillStyle='#4ea8de';
+  mctx.beginPath(); mctx.moveTo(96,136); mctx.quadraticCurveTo(114,144,106,164); mctx.quadraticCurveTo(100,152,96,148); mctx.fill();
+  mctx.fillStyle='#90e0ef'; mctx.beginPath(); mctx.moveTo(40,120); mctx.lineTo(88,120); mctx.lineTo(96,160); mctx.lineTo(32,160); mctx.fill();
+  mctx.fillStyle='#151c33'; mctx.beginPath(); mctx.moveTo(32,120); mctx.lineTo(96,120); mctx.lineTo(104,150); mctx.lineTo(24,150); mctx.fill();
+  mctx.fillStyle='#ffffff';
+  for(let i=0;i<7;i++){ mctx.beginPath(); mctx.arc(30+i*10.6,150,5,0,Math.PI); mctx.fill(); }
+  mctx.fillStyle='#ffffff'; mctx.fillRect(48,160,10,16); mctx.fillRect(70,160,10,16);
+  mctx.fillStyle='#101218'; mctx.beginPath(); mctx.ellipse(53,176,8,4,0,0,Math.PI*2); mctx.fill(); mctx.beginPath(); mctx.ellipse(75,176,8,4,0,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#1e2a4a';
+  mctx.beginPath(); mctx.ellipse(40,90,12,20,0.2,0,Math.PI*2); mctx.fill();
+  mctx.beginPath(); mctx.ellipse(88,90,12,20,-0.2,0,Math.PI*2); mctx.fill();
+  mctx.fillRect(48,72,32,50);
+  mctx.fillStyle='#ffffff'; mctx.beginPath(); mctx.moveTo(52,76); mctx.lineTo(76,76); mctx.lineTo(84,150); mctx.lineTo(44,150); mctx.fill();
+  for(let i=0;i<5;i++){ mctx.beginPath(); mctx.arc(46+i*9,150,5,0,Math.PI); mctx.fill(); }
+  mctx.fillStyle='#4ea8de'; mctx.beginPath(); mctx.ellipse(64,116,10,6,0,0,Math.PI*2); mctx.fill();
+  mctx.beginPath(); mctx.moveTo(74,116); mctx.lineTo(80,110); mctx.lineTo(78,122); mctx.fill();
+  mctx.fillStyle='#fff'; mctx.beginPath(); mctx.arc(58,115,2,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#ffffff'; mctx.fillRect(50,72,28,8);
+  mctx.fillStyle='#ffd700'; mctx.fillRect(52,84,4,4); mctx.fillRect(72,84,4,4); mctx.fillRect(52,92,4,4); mctx.fillRect(72,92,4,4);
+  mctx.fillStyle='#ffe0bd'; mctx.beginPath(); mctx.arc(64,52,20,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='rgba(255,143,163,0.5)'; mctx.beginPath(); mctx.arc(48,60,5,0,Math.PI*2); mctx.arc(80,60,5,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#ff8fa3'; mctx.beginPath(); mctx.arc(64,62,3,0,Math.PI); mctx.fill();
+  mctx.fillStyle='#0a2a4a';
+  mctx.beginPath(); mctx.ellipse(52,52,6,8,0,0,Math.PI*2); mctx.fill();
+  mctx.beginPath(); mctx.ellipse(76,52,6,8,0,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#4ea8de';
+  mctx.beginPath(); mctx.ellipse(52,54,4,6,0,0,Math.PI*2); mctx.fill();
+  mctx.beginPath(); mctx.ellipse(76,54,4,6,0,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#ffffff';
+  mctx.beginPath(); mctx.arc(50,50,2,0,Math.PI*2); mctx.fill(); mctx.beginPath(); mctx.arc(74,50,2,0,Math.PI*2); mctx.fill();
+  mctx.fillStyle='#90e0ef';
+  mctx.beginPath(); mctx.moveTo(40,48); mctx.lineTo(28,40); mctx.lineTo(36,56); mctx.fill();
+  mctx.beginPath(); mctx.moveTo(88,48); mctx.lineTo(100,40); mctx.lineTo(92,56); mctx.fill();
+  mctx.fillStyle='#2b3b6b'; 
+  mctx.beginPath(); mctx.moveTo(40,52); mctx.quadraticCurveTo(64,32,88,52); mctx.quadraticCurveTo(76,44,64,56); mctx.quadraticCurveTo(52,44,40,52); mctx.fill();
+  mctx.beginPath(); mctx.moveTo(44,48); mctx.quadraticCurveTo(36,80,44,100); mctx.quadraticCurveTo(52,80,52,60); mctx.fill();
+  mctx.beginPath(); mctx.moveTo(84,48); mctx.quadraticCurveTo(92,80,84,100); mctx.quadraticCurveTo(76,80,76,60); mctx.fill();
+  mctx.strokeStyle='#4ea8de'; mctx.lineWidth=1.5;
+  mctx.beginPath(); mctx.moveTo(48,56); mctx.quadraticCurveTo(44,76,48,90); mctx.stroke();
+  mctx.beginPath(); mctx.moveTo(80,56); mctx.quadraticCurveTo(84,76,80,90); mctx.stroke();
+  mctx.fillStyle='#ffffff';
+  for(let i=0;i<6;i++){ mctx.beginPath(); mctx.arc(44+i*8,32,4,0,Math.PI*2); mctx.fill(); }
+  mctx.fillRect(44,32,40,4);
+  mctx.fillStyle='#4ea8de';
+  mctx.beginPath(); mctx.moveTo(80,28); mctx.lineTo(92,20); mctx.lineTo(90,32); mctx.fill();
+  mctx.beginPath(); mctx.moveTo(80,28); mctx.lineTo(92,36); mctx.lineTo(88,28); mctx.fill();
+  mctx.fillStyle='#fff'; mctx.beginPath(); mctx.arc(80,28,3,0,Math.PI*2); mctx.fill();
+  mctx.strokeStyle='#2b3b6b'; mctx.lineWidth=2;
+  mctx.beginPath(); mctx.moveTo(64,28); mctx.bezierCurveTo(56,12,72,8,80,16); mctx.stroke();
+  mctx.restore();
 }
 renderMaidSkin();
-const maidSkinImg=new Image(); maidSkinImg.src=paperCanvas.toDataURL();
+const maidSkinImg=new Image(); maidSkinImg.src=maidCanvas.toDataURL();
 
 function saveSelectedSkin(){try{localStorage.setItem(SKIN_KEY,currentSkinId)}catch(e){}}
 
-/* ===== BOSS 定義與數值強化 ===== */
+/* ===== BOSS 定義與波次動態強度 ===== */
 const BOSS_ORDER=['slime','boneKing','zulan','lavaDragons','headlessKnight','darkKnight','voidWhale','mechTyrant'];
 const BOSS_DEFS={
-  slime:{name:'劇毒史萊姆王',color:'#4ade80',hpMul:1.25,dmgMul:1.15,speed:1.15,defense:.08,summonType:'slime_mini',summonCd:150},
-  boneKing:{name:'深淵骨王',color:'#e5e7eb',hpMul:1.55,dmgMul:1.25,speed:1.08,defense:.12,summonType:'skeleton',summonCd:135},
-  zulan:{name:'星界大祭司·祖藍',color:'#a78bfa',hpMul:1.8,dmgMul:1.35,speed:1.05,defense:.15,summonType:'zulan_minion',summonCd:125},
-  lavaDragons:{name:'煉獄熔岩雙龍',color:'#ff6b35',hpMul:2.1,dmgMul:1.4,speed:1.05,defense:.16,summonType:'lava_spawn',summonCd:140},
-  headlessKnight:{name:'夢魘無頭騎士',color:'#94a3b8',hpMul:2.35,dmgMul:1.5,speed:1.12,defense:.18,summonType:'skeleton',summonCd:145,phases:2},
-  darkKnight:{name:'墮落暗黑劍聖',color:'#7c3aed',hpMul:2.7,dmgMul:1.6,speed:1.1,defense:.22,summonType:'dark_minion',summonCd:130,phases:3},
-  voidWhale:{name:'噬星虛空巨鯨',color:'#38bdf8',hpMul:3.1,dmgMul:1.7,speed:.98,defense:.25,summonType:'void_spawn',summonCd:140},
-  mechTyrant:{name:'終焉機械暴君',color:'#f43f5e',hpMul:3.6,dmgMul:1.85,speed:.95,defense:.28,summonType:'mech_drone',summonCd:110}
+  slime:{name:'劇毒史萊姆王',color:'#4ade80',hpMul:.85,dmgMul:.90,speed:1.0,defense:.06,summonType:'slime_mini',summonCd:155},
+  boneKing:{name:'深淵骨王',color:'#e5e7eb',hpMul:1.25,dmgMul:1.15,speed:1.05,defense:.12,summonType:'skeleton',summonCd:135},
+  zulan:{name:'星界大祭司·祖藍',color:'#a78bfa',hpMul:1.65,dmgMul:1.30,speed:1.05,defense:.18,summonType:'zulan_minion',summonCd:125},
+  lavaDragons:{name:'煉獄熔岩雙龍',color:'#ff6b35',hpMul:2.1,dmgMul:1.45,speed:1.08,defense:.22,summonType:'lava_spawn',summonCd:135},
+  headlessKnight:{name:'夢魘無頭騎士',color:'#94a3b8',hpMul:2.5,dmgMul:1.6,speed:1.12,defense:.26,summonType:'skeleton',summonCd:140,phases:2},
+  darkKnight:{name:'墮落暗黑劍聖',color:'#7c3aed',hpMul:3.0,dmgMul:1.75,speed:1.12,defense:.32,summonType:'dark_minion',summonCd:125,phases:3},
+  voidWhale:{name:'噬星虛空巨鯨',color:'#38bdf8',hpMul:3.6,dmgMul:1.9,speed:1.0,defense:.36,summonType:'void_spawn',summonCd:130},
+  mechTyrant:{name:'終焉機械暴君',color:'#f43f5e',hpMul:4.2,dmgMul:2.1,speed:1.0,defense:.40,summonType:'mech_drone',summonCd:105}
 };
 
 const beastSprites={};
@@ -958,20 +929,29 @@ function buildBossSprites(){
 buildBossSprites();
 function bossForWave(w){const idx=Math.floor(w/5)-1;return idx>=0&&idx<BOSS_ORDER.length?BOSS_ORDER[idx]:BOSS_ORDER[Math.floor(Math.random()*BOSS_ORDER.length)]}
 
+/* ===== 雙人模式已驗證的匯入等級快取 ===== */
+let dualVerifiedP1=null, dualVerifiedP2=null;
+
 /* ===== UI 渲染 ===== */
 function showMenu(id){document.querySelectorAll('.modal-overlay').forEach(el=>el.style.display='none');const el=document.getElementById(id);if(el)el.style.display='flex';if(id==='none'&&document.activeElement&&document.activeElement.blur)document.activeElement.blur()}
 function renderChoices(){
-  document.getElementById('classChoices').innerHTML=classes.map(c=>`<button class="choice-card ${classId===c.id?'selected':''}" data-job="${c.id}"><strong>${c.name} Lv.${cLevel(c.id)}</strong><small>${c.desc}</small></button>`).join('');
+  document.getElementById('classChoices').innerHTML=classes.map(c=>{
+    const lv=cLevel(c.id), b=charBonus(c.id);
+    const bonusLine = lv>1 ? `<br><span style="color:#32d59d;font-weight:700">✦ Lv.${lv}加成：生命+${Math.round((b.hp-1)*100)}% · 傷害+${Math.round((b.dmg*b.mastery-1)*100)}% · 冷卻-${Math.round((1-b.cdMul)*100)}%</span>` : '';
+    return `<button class="choice-card ${classId===c.id?'selected':''}" data-job="${c.id}"><strong>${c.name} Lv.${lv}</strong><small>${c.desc}${bonusLine}</small></button>`;
+  }).join('');
   document.getElementById('weaponChoices').innerHTML=weapons.map(w=>{const ws=weaponStats(w);const encTag=ws.enchant?` <span style="color:${ws.enchant.color}">[${ws.enchant.name}]</span>`:'';return `<button class="weapon-card ${weaponId===w.id?'selected':''}" data-weapon="${w.id}"><strong>${w.name} Lv.${ws.level} ${WEAPON_TIER_NAMES[ws.level-1]}${encTag}</strong><small>${w.desc}<br>傷害 x${ws.damage.toFixed(2)} · 距離 ${Math.round(ws.range)} · 間隔 ${ws.cooldown.toFixed(0)} 幀</small></button>`}).join('');
   document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>{classId=b.dataset.job;renderChoices()});
   document.querySelectorAll('[data-weapon]').forEach(b=>b.onclick=()=>{weaponId=b.dataset.weapon;renderChoices()});
 }
 function renderDualChoices(){
+  const p1Lv = dualVerifiedP1;
+  const p2Lv = dualVerifiedP2;
   const mk=(gid,cur,list,render)=>document.getElementById(gid).innerHTML=list.map(x=>render(x,cur===x.id)).join('');
-  mk('p1ClassChoices',dualClassId1,classes,(c,sel)=>`<button class="choice-card ${sel?'selected':''}" data-p1job="${c.id}"><strong>${c.name} Lv.${cLevel(c.id)}</strong><small>${c.skillName}</small></button>`);
-  mk('p2ClassChoices',dualClassId2,classes,(c,sel)=>`<button class="choice-card ${sel?'selected':''}" data-p2job="${c.id}"><strong>${c.name} Lv.${cLevel(c.id)}</strong><small>${c.skillName}</small></button>`);
-  mk('p1WeaponChoices',dualWeaponId1,weapons,(w,sel)=>`<button class="weapon-card ${sel?'selected':''}" data-p1w="${w.id}"><strong>${w.name}</strong><small>Lv.${wLevel(w.id)}</small></button>`);
-  mk('p2WeaponChoices',dualWeaponId2,weapons,(w,sel)=>`<button class="weapon-card ${sel?'selected':''}" data-p2w="${w.id}"><strong>${w.name}</strong><small>Lv.${wLevel(w.id)}</small></button>`);
+  mk('p1ClassChoices',dualClassId1,classes,(c,sel)=>`<button class="choice-card ${sel?'selected':''}" data-p1job="${c.id}"><strong>${c.name} Lv.${cLevel(c.id,p1Lv)}</strong><small>${c.skillName}</small></button>`);
+  mk('p2ClassChoices',dualClassId2,classes,(c,sel)=>`<button class="choice-card ${sel?'selected':''}" data-p2job="${c.id}"><strong>${c.name} Lv.${cLevel(c.id,p2Lv)}</strong><small>${c.skillName}</small></button>`);
+  mk('p1WeaponChoices',dualWeaponId1,weapons,(w,sel)=>`<button class="weapon-card ${sel?'selected':''}" data-p1w="${w.id}"><strong>${w.name}</strong><small>Lv.${wLevel(w.id,p1Lv)}</small></button>`);
+  mk('p2WeaponChoices',dualWeaponId2,weapons,(w,sel)=>`<button class="weapon-card ${sel?'selected':''}" data-p2w="${w.id}"><strong>${w.name}</strong><small>Lv.${wLevel(w.id,p2Lv)}</small></button>`);
   document.querySelectorAll('[data-p1job]').forEach(b=>b.onclick=()=>{dualClassId1=b.dataset.p1job;renderDualChoices()});
   document.querySelectorAll('[data-p2job]').forEach(b=>b.onclick=()=>{dualClassId2=b.dataset.p2job;renderDualChoices()});
   document.querySelectorAll('[data-p1w]').forEach(b=>b.onclick=()=>{dualWeaponId1=b.dataset.p1w;renderDualChoices()});
@@ -981,7 +961,7 @@ function renderSkins(){
   document.getElementById('skinChoices').innerHTML=skinList.map(s=>{
     let previewHtml='';
     if(s.id==='summer_skin'){
-      previewHtml=`<img class="skin-art-banner" src="${SUMMER_ART_REF}" alt="夏日海灘原畫立繪"><img class="skin-preview" src="${summerSkinImg.src}" alt="夏日海灘局內精繪模型">`;
+      previewHtml=`<img class="skin-art-banner" src="${SUMMER_ART_REF}" alt="夏日海灘原畫立繪"><canvas class="skin-preview" id="liveSummerPreview" width="320" height="450"></canvas>`;
     }else if(s.id==='maid_skin'){
       previewHtml=`<img class="skin-preview" src="${maidSkinImg.src}" alt="深海女僕預覽">`;
     }else{
@@ -989,6 +969,8 @@ function renderSkins(){
     }
     return `<button class="skin-card ${currentSkinId===s.id?'selected':''}" data-skin="${s.id}">${previewHtml}<strong>${s.name}</strong><small>${s.desc}</small></button>`;
   }).join('');
+  const livePrev=document.getElementById('liveSummerPreview');
+  if(livePrev){const lctx=livePrev.getContext('2d');lctx.drawImage(paperCanvas,0,0)}
   document.querySelectorAll('[data-skin]').forEach(b=>b.onclick=()=>{currentSkinId=b.dataset.skin;saveSelectedSkin();renderSkins();showToast('已切換皮膚：'+(skinList.find(x=>x.id===currentSkinId)?.name||''))});
 }
 function renderForge(){
@@ -1042,7 +1024,7 @@ function renderForge(){
       if(SPECIAL_MATS[bossKey] && (meta.specialMats[bossKey]||0) < 1)return;
       if(SPECIAL_MATS[bossKey]) meta.specialMats[bossKey]--;
     }
-    meta.weaponMat-=cost;meta.weaponLevels[id]=lv+1;saveMeta();renderForge();playSound('coin');
+    meta.weaponMat-=cost;meta.weaponLevels[id]=lv+1;saveMeta();renderForge();renderChoices();playSound('coin');
     showToast(`武器升級成功！目前 Lv.${lv+1}`);
   });
   document.querySelectorAll('[data-enchant]').forEach(b=>b.onclick=()=>{
@@ -1053,44 +1035,100 @@ function renderForge(){
     const pool=WEAPON_ENCHANT_POOL.filter(x=>x.id!==cur);
     const pick=pool[Math.floor(Math.random()*pool.length)]||WEAPON_ENCHANT_POOL[0];
     meta.weaponEnchants[id]=pick.id;
-    saveMeta();renderForge();playSound('coin');
+    saveMeta();renderForge();renderChoices();playSound('coin');
     showToast(`附魔成功！獲得【${pick.name}】(${pick.desc})`);
   });
 }
 function renderChar(){
   document.getElementById('charMat').textContent=meta.charMat;
-  document.getElementById('charGrid').innerHTML=classes.map(c=>{const lv=cLevel(c.id),cost=charUpgradeCost(c.id),maxed=lv>=MAX_CLV,b=charBonus(c.id);return `<button class="choice-card" data-char="${c.id}" ${maxed||meta.charMat<cost?'disabled':''}><strong>${c.name} Lv.${lv}</strong><small>生命 +${Math.round((b.hp-1)*100)}% · 傷害 +${Math.round((b.dmg-1)*100)}% · 速度 +${Math.round((b.spd-1)*100)}% · 暴擊 +${Math.round(b.crit*100)}%<br>技能：${c.skillName}<br>${maxed?'已達最高等級':'升級需要 '+cost+' 角色靈魂'}</small></button>`}).join('');
+  document.getElementById('charGrid').innerHTML=classes.map(c=>{const lv=cLevel(c.id),cost=charUpgradeCost(c.id),maxed=lv>=MAX_CLV,b=charBonus(c.id);return `<button class="choice-card" data-char="${c.id}" ${maxed||meta.charMat<cost?'disabled':''}><strong>${c.name} Lv.${lv} ${maxed?'【滿級覺醒】':''}</strong><small>生命 +${Math.round((b.hp-1)*100)}% · 總傷害 +${Math.round((b.dmg*b.mastery-1)*100)}%<br>移速 +${Math.round((b.spd-1)*100)}% · 暴擊 +${Math.round(b.crit*100)}% · 技能冷卻 -${Math.round((1-b.cdMul)*100)}%<br>技能：${c.skillName}<br>${maxed?'已達最高等級 (Lv.10)':'升級需要 '+cost+' 角色靈魂'}</small></button>`}).join('');
   document.querySelectorAll('[data-char]').forEach(b=>b.onclick=()=>{
     const id=b.dataset.char,lv=cLevel(id);
     if(lv>=MAX_CLV)return;
     const cost=charUpgradeCost(id);
     if(meta.charMat<cost)return;
-    meta.charMat-=cost;meta.charLevels[id]=lv+1;saveMeta();renderChar();playSound('coin');
-    showToast(`${classes.find(x=>x.id===id)?.name||'角色'} 升至 Lv.${lv+1}！`);
+    meta.charMat-=cost;meta.charLevels[id]=lv+1;saveMeta();renderChar();renderChoices();playSound('coin');
+    showToast(`${classes.find(x=>x.id===id)?.name||'角色'} 升至 Lv.${lv+1}！全屬性與專精大幅提升！`);
   });
 }
+
+/* ===== 等級碼系統全面修復（支援完整匯出、Base64與快捷碼MAX匯入、雙人即時預覽生效） ===== */
+function makeMaxLevelData(){
+  const w={},c={},s={},e={};
+  for(const wp of weapons) w[wp.id]=MAX_WLV;
+  for(const cl of classes) c[cl.id]=MAX_CLV;
+  for(const k of Object.keys(SPECIAL_MATS)) s[k]=99;
+  for(const wp of weapons) e[wp.id]=meta.weaponEnchants[wp.id]||'flame';
+  return {w,c,s,e,wm:9999,cm:9999,v:6};
+}
 function generateCode(){
-  const data={w:meta.weaponLevels,c:meta.charLevels,s:meta.specialMats,e:meta.weaponEnchants};
-  try{return btoa(JSON.stringify(data))}catch(e){return ""}
+  const w={},c={};
+  for(const wp of weapons) w[wp.id]=wLevel(wp.id);
+  for(const cl of classes) c[cl.id]=cLevel(cl.id);
+  const data={w,c,s:meta.specialMats,e:meta.weaponEnchants,wm:meta.weaponMat,cm:meta.charMat,v:6};
+  try{return btoa(JSON.stringify(data))}catch(err){return ""}
+}
+function decodeLevelString(raw){
+  if(!raw)return null;
+  const clean=raw.trim().replace(/\s+/g,'');
+  if(/^(MAX|FULL|ALL10|10|VIP666|9999)$/i.test(clean)){
+    return makeMaxLevelData();
+  }
+  try{
+    const jsonStr = clean.startsWith('{') ? clean : atob(clean);
+    const data = JSON.parse(jsonStr);
+    if(data && typeof data === 'object' && (data.w || data.c || data.s || data.e)){
+      return {
+        w: data.w || {},
+        c: data.c || {},
+        s: data.s || {},
+        e: data.e || {},
+        wm: data.wm,
+        cm: data.cm
+      };
+    }
+  }catch(err){}
+  return null;
 }
 function importCode(code){
-  if(!code)return false;
-  try{
-    const data=JSON.parse(atob(code));
-    if(data.w)meta.weaponLevels=data.w;
-    if(data.c)meta.charLevels=data.c;
-    if(data.s)meta.specialMats=data.s;
-    if(data.e)meta.weaponEnchants=data.e;
-    saveMeta();renderForge();renderChar();
-    return true;
-  }catch(e){return false}
+  const data = decodeLevelString(code);
+  if(!data)return false;
+  if(data.w) Object.assign(meta.weaponLevels, data.w);
+  if(data.c) Object.assign(meta.charLevels, data.c);
+  if(data.s) Object.assign(meta.specialMats, data.s);
+  if(data.e) Object.assign(meta.weaponEnchants, data.e);
+  if(typeof data.wm==='number') meta.weaponMat=Math.max(meta.weaponMat, data.wm);
+  if(typeof data.cm==='number') meta.charMat=Math.max(meta.charMat, data.cm);
+  try{localStorage.removeItem(SAVE_KEY)}catch(_e){}
+  saveMeta();
+  player=newPlayer(classId);player.weaponId=weaponId;
+  renderForge();renderChar();renderChoices();renderDualChoices();
+  return true;
 }
 function parseCodeToLevels(code){
-  if(!code)return {w:meta.weaponLevels,c:meta.charLevels,s:meta.specialMats,e:meta.weaponEnchants};
-  try{
-    const data=JSON.parse(atob(code));
-    return {w:data.w||{},c:data.c||{},s:data.s||{},e:data.e||{}};
-  }catch(e){return {w:{},c:{},s:{},e:{}}}
+  if(!code||!code.trim())return {w:meta.weaponLevels,c:meta.charLevels,s:meta.specialMats,e:meta.weaponEnchants};
+  const decoded = decodeLevelString(code);
+  if(decoded) return decoded;
+  return null;
+}
+function unlockAllMaxLevels(){
+  const d=makeMaxLevelData();
+  meta.weaponLevels=d.w;
+  meta.charLevels=d.c;
+  meta.specialMats=d.s;
+  meta.weaponEnchants=d.e;
+  meta.weaponMat=Math.max(meta.weaponMat,9999);
+  meta.charMat=Math.max(meta.charMat,9999);
+  try{localStorage.removeItem(SAVE_KEY)}catch(_e){}
+  saveMeta();
+  player=newPlayer(classId);player.weaponId=weaponId;
+  const code=generateCode();
+  const i1=document.getElementById('importCodeInput'),i2=document.getElementById('importCodeInput2');
+  if(i1)i1.value=code;
+  if(i2)i2.value=code;
+  renderForge();renderChar();renderChoices();renderDualChoices();
+  playSound('coin');
+  showToast('⚡ 已一鍵解鎖全武器 Lv.10（含附魔）與全職業 Lv.10！');
 }
   
 /* ===== 設定與音效 ===== */
@@ -1113,23 +1151,24 @@ let playerIdCounter=0;
 function newPlayer(cid,customLevels){
   cid=cid||classId;
   const job=classes.find(c=>c.id===cid)||classes[1],b=charBonus(cid,customLevels);
-  const hp=Math.round(115*b.hp*(job.hpBonus||1));
+  const hp=Math.round(125*b.hp*(job.hpBonus||1));
   const baseSpd=4.2*b.spd*(job.speedBonus||1);
   return {
     id:++playerIdCounter,x:innerWidth/2,y:innerHeight/2,radius:18,
     speed:baseSpd,speedCap:Math.max(4.5,baseSpd),maxHp:hp,hp:hp,
-    hpRegen:job.regenBonus||0,armor:job.armorBonus||0,gold:55,
+    hpRegen:(job.regenBonus||0)*b.mastery,armor:job.armorBonus||0,gold:60,
     attackSpeed:Math.round(30*(job.atkSpeedBonus||1)),
-    damage:22*b.dmg,range:240,vampire:job.vampBonus||0,
-    critChance:Math.min(.85,.15+(job.crit||0)+b.crit),
-    critDamage:1.5+(job.critDamage||0),
-    dodgeChance:job.dodgeBonus||0,attractionRange:135,
-    summonDamage:18*b.dmg,incomeBonus:0,revives:0,reflect:job.reflectBonus||0,
+    damage:24*b.dmg,masteryMul:b.mastery,range:240,vampire:job.vampBonus||0,
+    critChance:Math.min(.88,.15+(job.crit||0)+b.crit),
+    critDamage:1.5+(job.critDamage||0)+(b.lv-1)*0.05,
+    dodgeChance:job.dodgeBonus||0,attractionRange:140,
+    summonDamage:20*b.dmg*b.mastery,incomeBonus:0,revives:0,reflect:job.reflectBonus||0,
     droneCount:job.startDrones||0,turretCount:0,lastDamageFeedback:0,
     truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,pendingPetUpgrades:0,
     invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,
     multishot:0,thunderLevel:0,berserkHorn:false,goldCrown:false,frostCore:false,
-    giantSlayer:0,aegisCore:false,aegisTimer:0,soulHarvester:false,soulKills:0,cdReduction:0,
+    giantSlayer:0,aegisCore:false,aegisTimer:0,soulHarvester:false,soulKills:0,
+    cdReduction:1-b.cdMul,
     classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,skillSpeedBoost:0,
     facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,
     customLevels:customLevels||null,lastMoveX:1,lastMoveY:0,isMoving:false,speedLock:0
@@ -1210,12 +1249,14 @@ function updateBossIntro(){
   }
 }
 
-/* ===== BOSS 強化版彈幕生成與全新攻擊方式 ===== */
+/* ===== BOSS 彈幕生成（依據波次前期溫和、中後期狂暴化） ===== */
 function addBossBullet(x,y,angle,speed,damage,radius,color,opts={}){
+  // 第5波前期BOSS彈速減緩25%，第15波後後期BOSS彈速加快15%~30%
+  const waveSpdMul = wave<=5 ? 0.74 : wave<=10 ? 0.95 : Math.min(1.35, 1 + (wave-10)*0.025);
   bossBullets.push({
     x,y,
-    vx:Math.cos(angle)*speed,
-    vy:Math.sin(angle)*speed,
+    vx:Math.cos(angle)*speed*waveSpdMul,
+    vy:Math.sin(angle)*speed*waveSpdMul,
     damage,radius:radius||7,color,
     life:opts.life||210,
     homing:opts.homing||false,
@@ -1226,29 +1267,38 @@ function addBossBullet(x,y,angle,speed,damage,radius,color,opts={}){
     accel:opts.accel||1
   });
 }
+function bossDensityMul(){
+  if(wave<=5) return 0.65;
+  if(wave<=10) return 0.95;
+  return Math.min(1.6, 1 + (wave-10)*0.04);
+}
 function bossPattern_radial(boss,n,speed,dmg,color,offset=0,accel=1){
-  for(let i=0;i<n;i++){
-    const a=offset+Math.PI*2*i/n;
+  const cnt=Math.max(6,Math.round(n*bossDensityMul()));
+  for(let i=0;i<cnt;i++){
+    const a=offset+Math.PI*2*i/cnt;
     addBossBullet(boss.x,boss.y,a,speed,dmg,7.5,color,{owner:boss,accel});
   }
 }
 function bossPattern_spiral(boss,baseAngle,arms,speed,dmg,color){
-  for(let i=0;i<arms;i++){
-    const a=baseAngle+Math.PI*2*i/arms;
+  const cnt=Math.max(2,Math.round(arms*bossDensityMul()));
+  for(let i=0;i<cnt;i++){
+    const a=baseAngle+Math.PI*2*i/cnt;
     addBossBullet(boss.x,boss.y,a,speed,dmg,6.5,color,{owner:boss});
   }
 }
 function bossPattern_homing(boss,n,speed,dmg,color,spread=0.85){
   const tgt=nearestPlayer(boss.x,boss.y);if(!tgt)return;
+  const cnt=Math.max(3,Math.round(n*bossDensityMul()));
   const base=Math.atan2(tgt.y-boss.y,tgt.x-boss.x);
-  for(let i=0;i<n;i++){
-    const a=base+(i-(n-1)/2)*spread/Math.max(1,n-1);
-    addBossBullet(boss.x,boss.y,a,speed,dmg,8,color,{owner:boss,homing:true,homingRate:0.016});
+  for(let i=0;i<cnt;i++){
+    const a=base+(i-(cnt-1)/2)*spread/Math.max(1,cnt-1);
+    addBossBullet(boss.x,boss.y,a,speed,dmg,8,color,{owner:boss,homing:true,homingRate:0.015});
   }
 }
 function bossPattern_bloom(boss,speed,dmg,color){
-  for(let ring=0;ring<4;ring++){
-    const n=14+ring*4,off=ring*0.22;
+  const rings=wave<=5?2:wave<=10?3:4;
+  for(let ring=0;ring<rings;ring++){
+    const n=Math.max(8,Math.round((12+ring*4)*bossDensityMul())),off=ring*0.22;
     for(let i=0;i<n;i++){
       const a=off+Math.PI*2*i/n;
       addBossBullet(boss.x,boss.y,a,speed*(0.85+ring*0.18),dmg*(1-ring*0.1),7-ring*0.8,color,{owner:boss});
@@ -1257,23 +1307,26 @@ function bossPattern_bloom(boss,speed,dmg,color){
 }
 function bossPattern_shotgunWave(boss,count,speed,dmg,color,spread=0.9){
   const tgt=nearestPlayer(boss.x,boss.y);if(!tgt)return;
+  const cnt=Math.max(5,Math.round(count*bossDensityMul()));
+  const waves=wave<=5?2:3;
   const base=Math.atan2(tgt.y-boss.y,tgt.x-boss.x);
-  for(let w=0;w<3;w++){
-    const spd=speed+w*1.6;
-    for(let i=0;i<count;i++){
-      const a=base+(i-(count-1)/2)*(spread/Math.max(1,count-1))+(w%2===1?0.04:0);
+  for(let w=0;w<waves;w++){
+    const spd=speed+w*1.5;
+    for(let i=0;i<cnt;i++){
+      const a=base+(i-(cnt-1)/2)*(spread/Math.max(1,cnt-1))+(w%2===1?0.04:0);
       addBossBullet(boss.x,boss.y,a,spd,dmg,7,color,{owner:boss,delay:w*8});
     }
   }
 }
 function bossPattern_ringTrap(boss,count,radius,speed,dmg,color){
   const tgt=nearestPlayer(boss.x,boss.y);if(!tgt)return;
-  for(let i=0;i<count;i++){
-    const a=Math.PI*2*i/count;
+  const cnt=Math.max(8,Math.round(count*bossDensityMul()));
+  for(let i=0;i<cnt;i++){
+    const a=Math.PI*2*i/cnt;
     const bx=clamp(tgt.x+Math.cos(a)*radius,20,innerWidth-20);
     const by=clamp(tgt.y+Math.sin(a)*radius,20,innerHeight-20);
     const inwardAngle=Math.atan2(tgt.y-by,tgt.x-bx);
-    addBossBullet(bx,by,inwardAngle,speed,dmg,7.5,color,{owner:boss,delay:24,accel:1.012});
+    addBossBullet(bx,by,inwardAngle,speed,dmg,7.5,color,{owner:boss,delay:26,accel:1.012});
   }
   spawnParticles(tgt.x,tgt.y,color,14,1.5);
 }
@@ -1288,7 +1341,7 @@ function bossPattern_dashCharge(boss,speed,dmg,color){
   const a=Math.atan2(tgt.y-boss.y,tgt.x-boss.x);
   boss.dashVx=Math.cos(a)*speed;
   boss.dashVy=Math.sin(a)*speed;
-  boss.dashTimer=28;
+  boss.dashTimer=26;
   boss.dashColor=color;
   boss.dashDmg=dmg;
   addBossBeam(boss.x,boss.y,a,360,44,24,dmg*1.2,boss,color);
@@ -1298,12 +1351,10 @@ function bossPattern_dashCharge(boss,speed,dmg,color){
 function updateBossSkill(e){
   const tgt=nearestPlayer(e.x,e.y);if(!tgt)return;
   const phase=e.bossPhase||1;
-  // 史萊姆分裂後傷害已在分裂時衰減，這裡直接依據 e.damage 計算，並對分裂體適度縮減彈幕數量防止卡頓
   const splitLv=e.splitLevel||0;
-  const countScale=splitLv>0?Math.max(0.5,Math.pow(0.7,splitLv)):1;
+  const countScale=splitLv>0?Math.max(0.45,Math.pow(0.65,splitLv)):1;
   const dmgBase=e.damage*0.95;
 
-  // 突進狀態更新
   if(e.dashTimer>0){
     e.dashTimer--;
     e.x=clamp(e.x+(e.dashVx||0),e.radius,innerWidth-e.radius);
@@ -1315,28 +1366,28 @@ function updateBossSkill(e){
     }
   }
 
-  // 持續副彈幕壓制
+  // 持續副彈幕：第5波較慢，10波以上逐漸密集
   e.barrageTick=(e.barrageTick||0)+1;
-  const barrageFreq=splitLv>0?28:18;
+  const barrageFreq=(wave<=5?32:wave<=10?22:15)+(splitLv*12);
   if(e.barrageTick%barrageFreq===0){
-    bossPattern_spiral(e,skillFrame*0.07,Math.max(2,Math.round((2+Math.min(3,phase))*countScale)),8.2+phase*0.6,dmgBase*0.55,e.color);
+    bossPattern_spiral(e,skillFrame*0.07,Math.max(2,Math.round((2+Math.min(3,phase))*countScale)),8.2+phase*0.5,dmgBase*0.55,e.color);
   }
 
   if(e.skillCd>0){e.skillCd--;return}
   e.comboStep=((e.comboStep||0)+1)%3;
+  const earlyCdAdd = wave<=5 ? 28 : wave<=10 ? 10 : 0;
 
   switch(e.bossType){
     case 'slime':
       if(e.comboStep===0){
-        bossPattern_radial(e,Math.max(8,Math.round(20*countScale)),9.0,dmgBase*0.85,'#4ade80',Math.random()*Math.PI,1.008);
-        addBossZone(tgt.x,tgt.y,Math.round(95*countScale),48,e.damage*1.6,e,'#4ade80');
+        bossPattern_radial(e,Math.max(8,Math.round(18*countScale)),8.6,dmgBase*0.85,'#4ade80',Math.random()*Math.PI,1.008);
+        addBossZone(tgt.x,tgt.y,Math.round(90*countScale),52,e.damage*1.5,e,'#4ade80');
       }else if(e.comboStep===1){
-        bossPattern_shotgunWave(e,Math.max(5,Math.round(9*countScale)),9.5,dmgBase*0.8,'#86efac',1.05);
+        bossPattern_shotgunWave(e,Math.max(5,Math.round(9*countScale)),9.0,dmgBase*0.8,'#86efac',1.05);
       }else{
-        bossPattern_ringTrap(e,Math.max(8,Math.round(14*countScale)),220,8.5,dmgBase*0.85,'#22c55e');
-        bossPattern_radial(e,Math.max(8,Math.round(16*countScale)),8.0,dmgBase*0.75,'#4ade80');
+        bossPattern_ringTrap(e,Math.max(8,Math.round(14*countScale)),220,8.2,dmgBase*0.85,'#22c55e');
       }
-      e.skillCd=Math.max(42,78-wave+splitLv*14);
+      e.skillCd=Math.max(38,76-wave+earlyCdAdd+splitLv*16);
       break;
 
     case 'boneKing':
@@ -1350,7 +1401,7 @@ function updateBossSkill(e){
         bossPattern_dashCharge(e,11,dmgBase,'#fbbf24');
         bossPattern_ringTrap(e,16,240,9.2,dmgBase*0.9,'#f87171');
       }
-      e.skillCd=Math.max(40,74-wave);
+      e.skillCd=Math.max(36,74-wave+earlyCdAdd);
       break;
 
     case 'zulan':{
@@ -1366,7 +1417,7 @@ function updateBossSkill(e){
         bossPattern_crossBeams(e,6,40,e.damage*1.65,'#c084fc',Math.random()*Math.PI);
         bossPattern_ringTrap(e,18,230,9.5,dmgBase*0.9,'#38bdf8');
       }
-      e.skillCd=Math.max(38,72-wave);
+      e.skillCd=Math.max(34,70-wave+earlyCdAdd);
       break;
     }
 
@@ -1384,7 +1435,7 @@ function updateBossSkill(e){
         }
         bossPattern_homing(e,6,9.5,dmgBase*0.9,'#fb923c',0.9);
       }
-      e.skillCd=Math.max(38,70-wave);
+      e.skillCd=Math.max(34,68-wave+earlyCdAdd);
       break;
     }
 
@@ -1397,7 +1448,7 @@ function updateBossSkill(e){
           bossPattern_shotgunWave(e,11,11.0,dmgBase*0.9,'#f97316',0.95);
           bossPattern_spiral(e,skillFrame*0.05,5,9.5,dmgBase*0.85,'#fbbf24');
         }
-        e.skillCd=Math.max(38,68-wave);
+        e.skillCd=Math.max(34,66-wave+earlyCdAdd);
       }else{
         if(e.comboStep===0){
           bossPattern_homing(e,8,10.5,dmgBase*1.05,'#f97316',1.2);
@@ -1408,7 +1459,7 @@ function updateBossSkill(e){
         }else{
           bossPattern_ringTrap(e,20,210,10.2,dmgBase*1.0,'#fb923c');
         }
-        e.skillCd=Math.max(32,58-wave);
+        e.skillCd=Math.max(28,56-wave+earlyCdAdd);
       }
       break;
 
@@ -1436,7 +1487,7 @@ function updateBossSkill(e){
           bossPattern_shotgunWave(e,13,12.0,dmgBase*1.0,'#ff0000',1.15);
         }
       }
-      e.skillCd=Math.max(30,66-wave-phase*8);
+      e.skillCd=Math.max(26,64-wave-phase*8+earlyCdAdd);
       break;
 
     case 'voidWhale':
@@ -1451,7 +1502,7 @@ function updateBossSkill(e){
         bossPattern_crossBeams(e,6,42,e.damage*1.8,'#38bdf8',skillFrame*0.03);
         bossPattern_shotgunWave(e,13,11.2,dmgBase*0.95,'#bae6fd',1.1);
       }
-      e.skillCd=Math.max(36,68-wave);
+      e.skillCd=Math.max(32,66-wave+earlyCdAdd);
       break;
 
     default:
@@ -1469,24 +1520,24 @@ function updateBossSkill(e){
         bossPattern_ringTrap(e,22,220,10.8,dmgBase*1.0,'#fb7185');
         bossPattern_dashCharge(e,14.5,dmgBase*1.2,'#f43f5e');
       }
-      e.skillCd=Math.max(32,64-wave);
+      e.skillCd=Math.max(28,62-wave+earlyCdAdd);
       break;
   }
 }
 
 /* ===== 局內商店道具 ===== */
 const itemPool=[
-  {id:'hp_percent_dmg',title:'🗡️ 割裂利刃',desc:'每次攻擊額外造成敵方當前血量 1% 的傷害（唯一）。',price:150,unique:true,apply:p=>{p.hpDamagePercent=true}},
-  {id:'multishot',title:'🌟 多重鏡像',desc:'【新·唯一】遠程武器額外發射 +1 發投射物；近戰斬擊範圍 +25% 且目標上限 +2。',price:160,unique:true,apply:p=>{p.multishot=(p.multishot||0)+1}},
-  {id:'thunder_amulet',title:'⚡ 雷霆護符',desc:'【新】攻擊命中時有 30% 機率觸發連鎖閃電，造成額外電擊傷害（可疊加）。',price:55,apply:p=>{p.thunderLevel=(p.thunderLevel||0)+1}},
-  {id:'berserk_horn',title:'📯 狂戰號角',desc:'【新·唯一】生命低於 60% 時，所有傷害提升 +45%，移速提升 +15%。',price:110,unique:true,apply:p=>{p.berserkHorn=true}},
-  {id:'gold_crown',title:'👑 貪婪王冠',desc:'【新·唯一】每持有 50 金幣，最終傷害額外增加 +4%（最高加成 +80%）。',price:130,unique:true,apply:p=>{p.goldCrown=true}},
-  {id:'frost_core',title:'❄️ 極寒核心',desc:'【新·唯一】攻擊命中敵人時附加霜凍，使其移動速度降低 35%，持續 2.5 秒。',price:95,unique:true,apply:p=>{p.frostCore=true}},
-  {id:'giant_slayer',title:'🪓 破巨者之刃',desc:'【新】對菁英怪與 BOSS 造成的傷害額外提升 +25%（可疊加）。',price:65,apply:p=>{p.giantSlayer=(p.giantSlayer||0)+.25}},
-  {id:'aegis_core',title:'💠 神盾發生器',desc:'【新·唯一】每隔 12 秒自動獲得一層持續 2 秒的無敵能量護盾。',price:125,unique:true,apply:p=>{p.aegisCore=true;p.aegisTimer=120}},
-  {id:'lucky_clover',title:'🍀 幸運四葉草',desc:'【新】暴擊率 +8%，暴擊傷害 +0.2 倍，閃避率 +5%。',price:50,apply:p=>{p.critChance=Math.min(.85,p.critChance+.08);p.critDamage+=.2;p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.05)}},
-  {id:'soul_harvester',title:'💀 靈魂收割者',desc:'【新·唯一】每擊殺 15 隻敵人，永久增加 +3 最大生命與 +1.2 基礎傷害。',price:140,unique:true,apply:p=>{p.soulHarvester=true}},
-  {id:'skill_accelerator',title:'⏳ 冷卻懷錶',desc:'【新】主動技能冷卻時間縮短 18%（最多疊加 54%）。',price:55,apply:p=>{p.cdReduction=Math.min(.54,(p.cdReduction||0)+.18)}},
+  {id:'hp_percent_dmg',title:'🗡️ 割裂利刃',desc:'每次攻擊額外造成普通怪當前血量 1%（BOSS為 0.25%）的傷害（唯一）。',price:150,unique:true,apply:p=>{p.hpDamagePercent=true}},
+  {id:'multishot',title:'🌟 多重鏡像',desc:'【唯一】遠程武器額外發射 +1 發投射物；近戰斬擊範圍 +25% 且目標上限 +2。',price:160,unique:true,apply:p=>{p.multishot=(p.multishot||0)+1}},
+  {id:'thunder_amulet',title:'⚡ 雷霆護符',desc:'攻擊命中時有 30% 機率觸發連鎖閃電，造成額外電擊傷害（可疊加）。',price:55,apply:p=>{p.thunderLevel=(p.thunderLevel||0)+1}},
+  {id:'berserk_horn',title:'📯 狂戰號角',desc:'【唯一】生命低於 60% 時，所有傷害提升 +45%，移速提升 +15%。',price:110,unique:true,apply:p=>{p.berserkHorn=true}},
+  {id:'gold_crown',title:'👑 貪婪王冠',desc:'【唯一】每持有 50 金幣，最終傷害額外增加 +4%（最高加成 +80%）。',price:130,unique:true,apply:p=>{p.goldCrown=true}},
+  {id:'frost_core',title:'❄️ 極寒核心',desc:'【唯一】攻擊命中敵人時附加霜凍，使其移動速度降低 35%，持續 2.5 秒。',price:95,unique:true,apply:p=>{p.frostCore=true}},
+  {id:'giant_slayer',title:'🪓 破巨者之刃',desc:'對菁英怪與 BOSS 造成的傷害額外提升 +25%（可疊加）。',price:65,apply:p=>{p.giantSlayer=(p.giantSlayer||0)+.25}},
+  {id:'aegis_core',title:'💠 神盾發生器',desc:'【唯一】每隔 12 秒自動獲得一層持續 2 秒的無敵能量護盾。',price:125,unique:true,apply:p=>{p.aegisCore=true;p.aegisTimer=120}},
+  {id:'lucky_clover',title:'🍀 幸運四葉草',desc:'暴擊率 +8%，暴擊傷害 +0.2 倍，閃避率 +5%。',price:50,apply:p=>{p.critChance=Math.min(.88,p.critChance+.08);p.critDamage+=.2;p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.05)}},
+  {id:'soul_harvester',title:'💀 靈魂收割者',desc:'【唯一】每擊殺 15 隻敵人，永久增加 +3 最大生命與 +1.2 基礎傷害。',price:140,unique:true,apply:p=>{p.soulHarvester=true}},
+  {id:'skill_accelerator',title:'⏳ 冷卻懷錶',desc:'主動技能冷卻時間縮短 18%（最多疊加 60%）。',price:55,apply:p=>{p.cdReduction=Math.min(.60,(p.cdReduction||0)+.18)}},
   {id:'crit_dmg_up',title:'致命瞄準鏡',desc:'暴擊傷害增加 +0.25 倍。',price:45,apply:p=>p.critDamage+=.25},
   {id:'dodge_glove',title:'輕盈手套',desc:'閃避機率 +5%（最高 65%）。',price:35,apply:p=>p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.05)},
   {id:'dodge_cloak',title:'影子斗篷',desc:'閃避機率 +10%（最高 65%）。',price:55,apply:p=>p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.1)},
@@ -1506,7 +1557,7 @@ const itemPool=[
   {id:'maxhp',title:'🫀生命補給',desc:'最大生命與目前生命 +40。',price:30,apply:p=>{p.maxHp+=40;p.hp+=40}},
   {id:'regen',title:'修復藥劑',desc:'每秒回復 +1.8 生命。',price:35,apply:p=>p.hpRegen+=1.8},
   {id:'armor',title:'🛡️護盾模組',desc:'防禦 +8%（最高 85%）。',price:45,apply:p=>p.armor=Math.min(MAX_DEFENSE_RATE,p.armor+.08)},
-  {id:'crit',title:'會心瞄準器',desc:'暴擊率 +10%。',price:45,apply:p=>p.critChance=Math.min(.85,p.critChance+.1)},
+  {id:'crit',title:'會心瞄準器',desc:'暴擊率 +10%。',price:45,apply:p=>p.critChance=Math.min(.88,p.critChance+.1)},
   {id:'magnet',title:'磁力腰帶',desc:'吸收範圍 +25。',price:35,apply:p=>p.attractionRange+=25},
   {id:'summon',title:'元素契約',desc:'召喚與無人機傷害 +35%。',price:50,apply:p=>p.summonDamage*=1.35},
   {id:'income',title:'戰利品協議',desc:'擊殺金幣與戰利品收益 +25%（上限40次）。',price:45,apply:p=>p.incomeBonus+=.25},
@@ -1551,35 +1602,46 @@ function drawSlash(s){
   ctx.restore();
 }
 
-/* ===== 怪物生成 ===== */
+/* ===== 怪物生成（前期輕鬆發育、中期穩步遞進、後期高強度指數挑戰） ===== */
 function makeEnemy(type,x,y){
   const boss=type==='boss',elite=type==='elite';
   const dualMul=player2?1.65:1;
+  // 前期 (1~5波) 溫和發育：0.45 -> 1.35；中期 (6~10波) 穩步進階：1.8 -> 5.8；後期 (11波+) 強勁指數成長匹配商店神裝！
   let hpFactor=1;
-  if(wave<=5) hpFactor=1+(wave-1)*0.25;
-  else if(wave<=10) hpFactor=2.0+(wave-5)*0.44;
-  else hpFactor=4.2*Math.pow(1.22,wave-10);
+  if(wave<=5) hpFactor=0.45+(wave-1)*0.225;
+  else if(wave<=10) hpFactor=1.35+(wave-5)*0.89;
+  else if(wave<=15) hpFactor=5.8*Math.pow(1.95,wave-10);
+  else if(wave<=20) hpFactor=5.8*Math.pow(1.95,5)*Math.pow(2.65,wave-15);
+  else hpFactor=5.8*Math.pow(1.95,5)*Math.pow(2.65,5)*Math.pow(3.5,wave-20);
 
-  let dmgFactor=1+(wave-1)*0.16+(wave>10?Math.pow(1.12,wave-10)-1:0);
+  let dmgFactor=1;
+  if(wave<=5) dmgFactor=0.65+(wave-1)*0.12;
+  else if(wave<=10) dmgFactor=1.13+(wave-5)*0.28;
+  else dmgFactor=2.53*Math.pow(1.32,wave-10);
+
   const hpScale=hpFactor*dualMul, damageScale=dmgFactor*dualMul;
-  const speedScale=1+Math.min(0.65,(wave-1)*0.025);
+  const speedScale=wave<=5 ? 0.88+wave*0.02 : 1+Math.min(0.85,(wave-5)*0.032);
   const radiusBoost=wave>=10?Math.min(1.4,1+(wave-10)*.025):1;
 
-  const hp=(boss?2600+wave*420:elite?240+wave*70:32+wave*15)*hpScale,
+  const hp=(boss?1600+wave*320:elite?180+wave*60:24+wave*12)*hpScale,
         radius=(boss?38:elite?25:(Math.random()<.25?13:16))*radiusBoost,
-        speed=(boss?.95:elite?1.25:(Math.random()<.22?2.45:1.65))*speedScale;
-  const e={x,y,type,radius,hp,maxHp:hp,speed,color:boss?'#c86bff':elite?'#ff9d42':'#ff3366',damage:(boss?24:elite?15:7+wave*.35)*damageScale,cooldown:elite?20+Math.random()*18:boss?35+Math.random()*20:0,attack:null,hitCooldown:0,playerHitCooldowns:{},defense:0,invulnerable:false,bossPhase:1,_secondDamage:0,_secondTimer:0,splitLevel:0,hasSplit:false,slowTimer:0,barrageTick:0,comboStep:0};
-  if(elite)e.defense=0.05;
+        speed=(boss?.92:elite?1.22:(Math.random()<.22?2.35:1.58))*speedScale;
+  // 後期普通怪與菁英怪也獲得護甲減傷，避免後期一刀秒全屏
+  const lateDefense = wave>10 ? Math.min(0.60, (wave-10)*0.04) : 0;
+  const e={x,y,type,radius,hp,maxHp:hp,speed,color:boss?'#c86bff':elite?'#ff9d42':'#ff3366',damage:(boss?18:elite?12:5+wave*.35)*damageScale,cooldown:elite?24+Math.random()*18:boss?40+Math.random()*20:0,attack:null,hitCooldown:0,playerHitCooldowns:{},defense:lateDefense,invulnerable:false,bossPhase:1,_secondDamage:0,_secondTimer:0,splitLevel:0,hasSplit:false,slowTimer:0,barrageTick:0,comboStep:0};
+  if(elite)e.defense=Math.min(0.68, 0.08 + lateDefense);
   if(boss){
     const bt=bossForWave(wave);
     const def=BOSS_DEFS[bt];
     e.bossType=bt;e.bossName=def.name;
-    e.hp*=def.hpMul*2.2;e.maxHp=e.hp;
-    e.damage*=def.dmgMul*1.2;
+    // 第5波BOSS血量親民(x1.1)，第10波標準(x2.2)，第15波以後巨幅強化避免被後期神裝秒殺
+    const bossWaveScale = wave<=5 ? 1.1 : wave<=10 ? 2.2 : 3.2*Math.pow(1.45, Math.floor((wave-10)/5));
+    e.hp*=def.hpMul*bossWaveScale;e.maxHp=e.hp;
+    e.damage*=def.dmgMul*(wave<=5?0.85:1.25);
     e.speed*=def.speed;
     e.color=def.color;
-    e.defense=def.defense||0.15;
-    e.skillCd=55;e.summonCd=def.summonCd||140;
+    e.defense=Math.min(0.75, (def.defense||0.15) + lateDefense*0.6);
+    e.skillCd=wave<=5?80:52;e.summonCd=def.summonCd||140;
     if(bt==='headlessKnight'){e.horseHp=e.hp*0.55;e.horseMaxHp=e.horseHp}
   }
   return e;
@@ -1668,7 +1730,7 @@ function startDual(mode,p1Levels,p2Levels){
   }else{initWave();showMenu('none');updateStatsDisplay();updateHUD()}
 }
 
-/* ===== 商店（支援「🔒鎖定商品」保留至下一波與下次刷新） ===== */
+/* ===== 商店 ===== */
 function rollShopForPlayer(p, currentChoices, lockedIds, boughtIds){
   const kept = lockedIds.filter(id => !boughtIds.includes(id) && !(itemPool.find(x=>x.id===id)?.unique && p.permanentPurchasedIds.includes(id)));
   const needed = Math.max(0, 4 - kept.length);
@@ -1792,7 +1854,7 @@ function renderShop(){
     const item=itemPool.find(x=>x.id===id);if(!item)continue;
     const isBought=purchasedItemIds.includes(id);
     const isMaxedIncome = item.id==='income' && player.incomeBonus>=10;
-    const isMaxedCd = item.id==='skill_accelerator' && (player.cdReduction||0)>=0.54;
+    const isMaxedCd = item.id==='skill_accelerator' && (player.cdReduction||0)>=0.60;
     const isLocked = lockedShopIds.includes(id);
     grid1.appendChild(makeShopCard(item.title,item.desc,item.price,()=>{
       if(player.gold<item.price||isBought)return;
@@ -1817,7 +1879,7 @@ function renderShop(){
       const item=itemPool.find(x=>x.id===id);if(!item)continue;
       const isBought=purchasedItemIds2.includes(id);
       const isMaxedIncome = item.id==='income' && player2.incomeBonus>=10;
-      const isMaxedCd = item.id==='skill_accelerator' && (player2.cdReduction||0)>=0.54;
+      const isMaxedCd = item.id==='skill_accelerator' && (player2.cdReduction||0)>=0.60;
       const isLocked2 = lockedShopIds2.includes(id);
       grid2.appendChild(makeShopCard(item.title,item.desc,item.price,()=>{
         if(player2.gold<item.price||isBought)return;
@@ -1910,7 +1972,8 @@ function updateStatsDisplay(){
   const c=classes.find(x=>x.id===player.classId)||classes[1];
   const w=weapons.find(x=>x.id===player.weaponId)||weapons[3];
   const ws=weaponStats(w,player.customLevels);
-  const rate=60/Math.max(5,Math.round(player.attackSpeed*ws.cooldown/32)),dmg=player.damage*ws.damage*(w.kind==='melee'?c.melee:c.range),critChance=clamp(player.critChance+(ws.enchant?ws.enchant.critAdd:0),0,.9),critMult=player.critDamage,expected=dmg*(1+critChance*(critMult-1)),finalMultiplier=truthDamageMultiplier(player)*petDamageMultiplier(player)*dynamicBonusMultiplier(player);
+  const mastery=player.masteryMul||charBonus(c.id,player.customLevels).mastery;
+  const rate=60/Math.max(5,Math.round(player.attackSpeed*ws.cooldown/32)),dmg=player.damage*ws.damage*(w.kind==='melee'?c.melee:c.range)*mastery,critChance=clamp(player.critChance+(ws.enchant?ws.enchant.critAdd:0),0,.9),critMult=player.critDamage,expected=dmg*(1+critChance*(critMult-1)),finalMultiplier=truthDamageMultiplier(player)*petDamageMultiplier(player)*dynamicBonusMultiplier(player);
   const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id,player.customLevels)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['附魔',ws.enchant?ws.enchant.name:'無'],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DODGE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${(player.vampire+(w.vampAdd||0)+(ws.enchant?ws.enchant.vampAdd:0)).toFixed(2)} 生命／命中`],['吸收範圍',`${player.attractionRange} px`],['技能冷卻縮減',`${Math.round((player.cdReduction||0)*100)}%`]]};
   const metaGroups=[{title:'基本',items:groups.basic},{title:'戰鬥',items:groups.combat},{title:'生存',items:groups.survival},{title:'收益',items:groups.economy}];
   document.getElementById('statsGrid').innerHTML=metaGroups.map(g=>`<div class="stats-group"><div class="stats-group-title">${g.title}</div>${g.items.map(([k,v])=>`<div class="stat-item"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`).join('');
@@ -1920,7 +1983,7 @@ function togglePause(){if(gameState==='PLAYING'||gameState==='BOSS_INTRO'){gameS
 /* ===== 存檔 ===== */
 function saveGame(){if(!['PLAYING','PAUSE','SHOP','BOSS_INTRO'].includes(gameState))return;if(gameMode!=='solo')return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:6,gameState,wave,waveTimer,kills,player,enemies,bullets,materials,particles,damageNumbers,slashes,classId,weaponId,shopChoiceIds,purchasedItemIds,lockedShopIds,shopRerollCount,turrets,isBossWave}))}catch(e){}}
 function hasSave(){try{return!!localStorage.getItem(SAVE_KEY)}catch(e){return false}}
-function loadSavedGame(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));if(!s||![2,3,4,5,6].includes(s.version))throw Error('invalid save');gameMode='solo';player2=null;wave=s.wave||1;waveTimer=Math.min(100,s.waveTimer||0);kills=s.kills||0;classId=s.classId||'archer';weaponId=s.weaponId||'bow';shopRerollCount=Math.max(0,Number(s.shopRerollCount)||0);isBossWave=s.isBossWave||false;player={...newPlayer(classId),...s.player};player.pendingPetUpgrades=Math.max(0,Number(player.pendingPetUpgrades)||0);player.truthLevel=Math.max(0,Number(player.truthLevel)||(player.truthUnlocked?1:0));player.truthUnlocked=player.truthLevel>0;player.armor=clamp(Number(player.armor)||0,0,MAX_DEFENSE_RATE);player.dodgeChance=clamp(Number(player.dodgeChance)||0,0,MAX_DODGE_RATE);player.skillCd=player.skillCd||0;player.speedLock=settings.speedLock;clampPlayerSpeed();enemies=s.enemies||[];bullets=s.bullets||[];materials=s.materials||[];particles=s.particles||[];damageNumbers=s.damageNumbers||[];slashes=s.slashes||[];turrets=s.turrets||[];shopChoiceIds=s.shopChoiceIds||[];purchasedItemIds=s.purchasedItemIds||[];lockedShopIds=s.lockedShopIds||[];bossBullets=[];bossIntro=null;if(s.gameState==='SHOP'){gameState='SHOP';document.getElementById('shopMenu').style.display='flex';renderShop()}else if(s.gameState==='PAUSE'){gameState='PAUSE';document.getElementById('pauseMenu').style.display='flex'}else{gameState='PLAYING';startInvulnerability();startTimer()}updateHUD();updateStatsDisplay()}catch(e){try{localStorage.removeItem(SAVE_KEY)}catch(_e){}}}
+function loadSavedGame(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));if(!s||![2,3,4,5,6].includes(s.version))throw Error('invalid save');gameMode='solo';player2=null;wave=s.wave||1;waveTimer=Math.min(100,s.waveTimer||0);kills=s.kills||0;classId=s.classId||'archer';weaponId=s.weaponId||'bow';shopRerollCount=Math.max(0,Number(s.shopRerollCount)||0);isBossWave=s.isBossWave||false;const fresh=newPlayer(classId);player={...fresh,...s.player};player.damage=Math.max(player.damage||0,fresh.damage);player.maxHp=Math.max(player.maxHp||0,fresh.maxHp);player.masteryMul=fresh.masteryMul;player.pendingPetUpgrades=Math.max(0,Number(player.pendingPetUpgrades)||0);player.truthLevel=Math.max(0,Number(player.truthLevel)||(player.truthUnlocked?1:0));player.truthUnlocked=player.truthLevel>0;player.armor=clamp(Number(player.armor)||0,0,MAX_DEFENSE_RATE);player.dodgeChance=clamp(Number(player.dodgeChance)||0,0,MAX_DODGE_RATE);player.skillCd=player.skillCd||0;player.speedLock=settings.speedLock;clampPlayerSpeed();enemies=s.enemies||[];bullets=s.bullets||[];materials=s.materials||[];particles=s.particles||[];damageNumbers=s.damageNumbers||[];slashes=s.slashes||[];turrets=s.turrets||[];shopChoiceIds=s.shopChoiceIds||[];purchasedItemIds=s.purchasedItemIds||[];lockedShopIds=s.lockedShopIds||[];bossBullets=[];bossIntro=null;if(s.gameState==='SHOP'){gameState='SHOP';document.getElementById('shopMenu').style.display='flex';renderShop()}else if(s.gameState==='PAUSE'){gameState='PAUSE';document.getElementById('pauseMenu').style.display='flex'}else{gameState='PLAYING';startInvulnerability();startTimer()}updateHUD();updateStatsDisplay()}catch(e){try{localStorage.removeItem(SAVE_KEY)}catch(_e){}}}
 
 /* ===== 繪製 ===== */
 function getBossSprite(e){
@@ -1977,10 +2040,9 @@ function drawPlayerEntity(p){
   if(p.invulnerabilityFrames>0){ctx.strokeStyle=currentSkinId==='summer_skin'?'#ff2d55':currentSkinId==='maid_skin'?'#00b4d8':'#6fffe0';ctx.lineWidth=3;ctx.shadowBlur=15;ctx.shadowColor=ctx.strokeStyle;ctx.beginPath();ctx.arc(p.x,p.y,33,0,Math.PI*2);ctx.stroke()}
   if(p===player2){ctx.strokeStyle='#ff6ec7';ctx.lineWidth=3;ctx.beginPath();ctx.arc(p.x,p.y,28,0,Math.PI*2);ctx.stroke()}
   
-  // 腳下技能冷卻進度環（餘光即可確認技能是否就緒，提升移動施放流暢度）
   const job=classes.find(c=>c.id===p.classId);
   if(job){
-    const maxCd=Math.max(1,Math.round(job.skillCd*(1-clamp(p.cdReduction||0,0,.6))));
+    const maxCd=Math.max(1,Math.round(job.skillCd*(1-clamp(p.cdReduction||0,0,.65))));
     const ratio=p.skillCd<=0?1:clamp(1-p.skillCd/maxCd,0,1);
     ctx.save();
     ctx.beginPath();
@@ -2013,7 +2075,7 @@ function drawPlayerEntity(p){
   if(currentSkinId==='maid_skin'){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);const floatY=Math.sin(skillFrame*.08)*3;
     ctx.shadowBlur=16;ctx.shadowColor='rgba(0,180,216,.55)';
-    ctx.drawImage(maidSkinImg,-22,-32+floatY,44,64);
+    ctx.drawImage(maidCanvas,-22,-32+floatY,44,64);
   } else if(currentSkinId==='summer_skin'){
     ctx.save();
     ctx.beginPath();
@@ -2028,13 +2090,28 @@ function drawPlayerEntity(p){
     ctx.translate(p.x,p.y);if(!p.facingRight)ctx.scale(-1,1);
     const walkBob=p.isMoving?Math.sin(skillFrame*.24)*2.5:Math.sin(skillFrame*.08)*2.5;
     ctx.shadowBlur=18;ctx.shadowColor='rgba(255,45,85,.52)';
-    ctx.drawImage(summerSkinImg,-26,-37+walkBob,52,74);
+    // 直接繪製即時動態隨風飄逸的 paperCanvas！
+    ctx.drawImage(paperCanvas,-26,-37+walkBob,52,74);
   }else{
     ctx.shadowBlur=14;ctx.shadowColor=p===player2?'#ff6ec7':'#fc0';ctx.fillStyle='#d4883b';ctx.strokeStyle='#5a3818';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(p.x,p.y,18,22,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.shadowBlur=0;ctx.fillStyle='#101218';ctx.beginPath();ctx.arc(p.x-5,p.y-3,2.5,0,Math.PI*2);ctx.arc(p.x+5,p.y-3,2.5,0,Math.PI*2);ctx.fill()
   }
   ctx.restore();
 }
+
+let windAnimTick=0;
 function draw(){
+  windAnimTick++;
+  // 每2幀即時更新夏日海灘少女的隨風飄逸秀髮（包含皮膚選單預覽與局內戰鬥）
+  if(windAnimTick%2===0&&(currentSkinId==='summer_skin'||document.getElementById('skinMenu').style.display==='flex')){
+    renderDetailedSummerSkin(windAnimTick*0.045);
+    const livePrev=document.getElementById('liveSummerPreview');
+    if(livePrev&&document.getElementById('skinMenu').style.display==='flex'){
+      const lctx=livePrev.getContext('2d');
+      lctx.clearRect(0,0,320,450);
+      lctx.drawImage(paperCanvas,0,0);
+    }
+  }
+
   ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
   const dpr=Math.min(window.devicePixelRatio||1,1.5);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.restore();
   ctx.strokeStyle='#ffffff0a';ctx.lineWidth=1;
@@ -2063,8 +2140,9 @@ function draw(){
   }
   for(const bc of bossCircles){
     ctx.save();const p=clamp((bc.elapsed||0)/bc.duration,0,1);
-    if(bc.isExploding){ctx.fillStyle=`rgba(200, 107, 255, ${bc.life * 0.7})`;ctx.strokeStyle=`rgba(255, 255, 255, ${bc.life})`;ctx.lineWidth=3;ctx.beginPath();ctx.arc(bc.x,bc.y,bc.radius,0,Math.PI*2);ctx.fill();ctx.stroke()}
-    else{ctx.fillStyle=`rgba(200, 107, 255, ${0.1 + p * 0.3})`;ctx.strokeStyle=`rgba(200, 107, 255, ${0.5 + p * 0.5})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(bc.x,bc.y,bc.radius * p,0,Math.PI*2);ctx.fill();ctx.stroke()}
+    const col=bc.color||'200, 107, 255';
+    if(bc.isExploding){ctx.fillStyle=`rgba(${col}, ${bc.life * 0.45})`;ctx.strokeStyle=`rgba(255, 255, 255, ${bc.life})`;ctx.lineWidth=3;ctx.beginPath();ctx.arc(bc.x,bc.y,bc.radius,0,Math.PI*2);ctx.fill();ctx.stroke()}
+    else{ctx.fillStyle=`rgba(${col}, ${0.1 + p * 0.3})`;ctx.strokeStyle=`rgba(${col}, ${0.5 + p * 0.5})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(bc.x,bc.y,bc.radius * p,0,Math.PI*2);ctx.fill();ctx.stroke()}
     ctx.restore();
   }
   for(const e of enemies){
@@ -2155,9 +2233,12 @@ function dealEnemyDamage(e,amount,critical=false,srcPlayer){
   const wdef=weapons.find(w=>w.id===owner.weaponId)||weapons[0];
   const ws=weaponStats(wdef,owner.customLevels);
   let finalAmount=amount;
-  if(owner.hpDamagePercent){finalAmount+=e.hp*0.01}
+  if(owner.hpDamagePercent){
+    // 對普通怪造成 1% 當前生命，對BOSS造成 0.25% 當前生命，避免後期BOSS被百分比瞬間蒸發
+    finalAmount+=e.hp*(e.type==='boss'?0.0025:0.01);
+  }
   if((e.type==='elite'||e.type==='boss')&&owner.giantSlayer>0){finalAmount*=(1+owner.giantSlayer)}
-  const defenseRate=clamp(e.defense||0,0,0.6);
+  const defenseRate=clamp(e.defense||0,0,0.75);
   finalAmount*=(1-defenseRate);
   const finalMultiplier=truthDamageMultiplier(owner)*petDamageMultiplier(owner)*dynamicBonusMultiplier(owner);
   let finalAmountWithMult=Math.max(1,finalAmount*finalMultiplier);
@@ -2178,16 +2259,18 @@ function dealEnemyDamage(e,amount,critical=false,srcPlayer){
     }
   }
 
+  // BOSS 每秒傷害上限：第5波 11%（前期輕鬆打），第10波 7.5%，第15波+ 5%（後期BOSS耐打有壓迫感）
   if(e.type==='boss'){
     if(typeof e._secondDamage!=='number')e._secondDamage=0;
-    const maxPerSec=(e.bossType==='headlessKnight'&&e.bossPhase===1?(e.horseMaxHp||e.maxHp):e.maxHp)*0.12;
+    const capRate = wave<=5 ? 0.11 : wave<=10 ? 0.075 : 0.05;
+    const maxPerSec=(e.bossType==='headlessKnight'&&e.bossPhase===1?(e.horseMaxHp||e.maxHp):e.maxHp)*capRate;
     const remaining=maxPerSec-e._secondDamage;
     if(remaining<=0){addDamageNumber(e.x,e.y-e.radius,'護盾減傷','#888');return}
     if(finalAmountWithMult>remaining)finalAmountWithMult=remaining;
     e._secondDamage+=finalAmountWithMult;
   }
 
-  const totalVamp=owner.vampire+(wdef.vampAdd||0)+(ws.enchant?ws.enchant.vampAdd:0)+((owner.skillActive>0&&owner.classId==='berserker')?.3:0);
+  const totalVamp=owner.vampire+(wdef.vampAdd||0)+(ws.enchant?ws.enchant.vampAdd:0)+((owner.skillActive>0&&owner.classId==='berserker')?.35:0);
 
   // 無頭騎士第一階段 (馬)
   if(e.bossType==='headlessKnight'&&e.bossPhase===1){
@@ -2204,7 +2287,7 @@ function dealEnemyDamage(e,amount,critical=false,srcPlayer){
   if(e.bossType==='darkKnight' && e.hp - finalAmountWithMult <= 0){
     if(e.bossPhase === 1){
       e.bossPhase = 2; e.hp = e.maxHp; e.invulnerable = true; e.invulnTimer = 90;
-      e.damage *= 1.35; e.defense = Math.min(0.45, (e.defense||0.15) * 1.25); e.speed *= 1.12;
+      e.damage *= 1.35; e.defense = Math.min(0.65, (e.defense||0.15) * 1.25); e.speed *= 1.12;
       e._secondDamage = 0; e._secondTimer = 0;
       spawnParticles(e.x, e.y, '#dc2626', 40, 2);
       showPhaseTag('暗黑劍聖 - 二階段【雙刃狂瀾】！');
@@ -2212,7 +2295,7 @@ function dealEnemyDamage(e,amount,critical=false,srcPlayer){
       return;
     } else if(e.bossPhase === 2){
       e.bossPhase = 3; e.hp = e.maxHp; e.invulnerable = true; e.invulnTimer = 90;
-      e.damage *= 1.25; e.defense = Math.min(0.5, (e.defense||0.15) * 1.2); e.speed *= 1.12;
+      e.damage *= 1.25; e.defense = Math.min(0.72, (e.defense||0.15) * 1.2); e.speed *= 1.12;
       e._secondDamage = 0; e._secondTimer = 0;
       spawnParticles(e.x, e.y, '#7c3aed', 50, 2.5);
       showPhaseTag('暗黑劍聖 - 最終階段【深淵魔神】！');
@@ -2221,12 +2304,12 @@ function dealEnemyDamage(e,amount,critical=false,srcPlayer){
     }
   }
 
-  // 史萊姆半血分裂（分裂後傷害明顯降低：每次分裂傷害降至原本的 45%！）
+  // 史萊姆半血分裂（分裂後傷害大幅降低至 45%）
   if(e.bossType==='slime' && e.type==='boss' && e.splitLevel < 2 && !e.hasSplit && e.hp - finalAmountWithMult <= e.maxHp * 0.5){
     e.hasSplit = true; e.silentDeath = true; e.hp = -1;
     const newSplitLevel = e.splitLevel + 1;
-    const baseHp = Math.max(220, e.maxHp * 0.45);
-    const reducedDamage = e.damage * 0.45; // 史萊姆分裂後傷害大幅降低至 45%
+    const baseHp = Math.max(180, e.maxHp * 0.42);
+    const reducedDamage = e.damage * 0.45;
     for(let k=0;k<2;k++){
       const minion = makeEnemy('boss', e.x + (k===0?-45:45), e.y + 30);
       minion.bossType='slime'; minion.bossName=`分裂史萊姆 (傷害-${Math.round((1-Math.pow(0.45,newSplitLevel))*100)}%)`;
@@ -2285,17 +2368,29 @@ function handlePlayerDown(p){
   gameOver();
 }
 
-/* ===== 10 大職業技能實裝（移動中可無縫施放 + 施放時賦予短暫移速爆發） ===== */
+/* ===== 10 大職業技能實裝（職業等級顯著提升技能規模與實際敵方傷害） ===== */
+function dealPlayerAoeDamage(p, x, y, radius, dmg, colorStr){
+  const targets=gameMode==='pvp'?(p===player?[player2]:[player]):enemies;
+  bossCircles.push({x,y,radius,duration:22,elapsed:22,life:1,isExploding:true,color:colorStr||'255, 51, 102'});
+  for(const e of targets){
+    if(!e||e.dead)continue;
+    if(Math.hypot(e.x-x,e.y-y)<=radius+(e.radius||0)){
+      if(e.isPlayer)damagePlayer(dmg,null,e);
+      else dealEnemyDamage(e,dmg,true,p);
+    }
+  }
+}
+
 function trySkill(p){
   if(!p||p.dead)return;
   if(gameState!=='PLAYING'&&gameState!=='BOSS_INTRO')return;
   if(gameState==='BOSS_INTRO')skipBossIntro();
   if(p.skillCd>0)return;
   const job=classes.find(c=>c.id===p.classId);if(!job)return;
-  p.skillCd=Math.round(job.skillCd*(1-clamp(p.cdReduction||0,0,.6)));
-  // 施放任何技能皆不打斷移動，並額外賦予 1.2 秒 +22% 戰術機動加速，讓走位放招極致絲滑！
-  p.skillSpeedBoost=72;
   const lv=cLevel(p.classId,p.customLevels);
+  const b=charBonus(p.classId,p.customLevels);
+  p.skillCd=Math.round(job.skillCd*(1-clamp(p.cdReduction||0,0,.65)));
+  p.skillSpeedBoost=72;
   const targets=gameMode==='pvp'?(p===player?[player2]:[player]):enemies;
   const effectCount=18+lv*3,effectSpread=1.4+lv*0.1;
   
@@ -2304,15 +2399,19 @@ function trySkill(p){
   const moveAngle = hasMoveDir ? Math.atan2(p.lastMoveY, p.lastMoveX) : (p.facingRight ? 0 : Math.PI);
 
   switch(job.skill){
-    case 'rage':
-      p.skillActive=480;
+    case 'rage':{
+      p.skillActive=480+lv*24;
       spawnParticles(p.x,p.y,'#ff3366',effectCount,effectSpread);
-      if(lv>=5)bossZones.push({x:p.x,y:p.y,r:95,t:0,dur:35,dmg:0,owner:p,color:'#ff3366',fired:false});
-      if(lv>=10){bossZones.push({x:p.x,y:p.y,r:165,t:0,dur:50,dmg:0,owner:p,color:'#ff0000',fired:false});spawnParticles(p.x,p.y,'#ff0000',30,2)}
+      // 修復原本 Lv5/Lv10 狂暴震波 0 傷害問題：現在釋放鮮血新星對周圍敵人造成真實巨額傷害！
+      const novaRadius = 140 + lv*18;
+      const novaDmg = p.damage * (2.5 + lv*0.45) * b.mastery;
+      dealPlayerAoeDamage(p, p.x, p.y, novaRadius, novaDmg, '255, 51, 102');
+      playSound('hit');
       break;
+    }
     
     case 'arrowRain':{
-      const rainCount=Math.min(Math.max(10,targets.length),8+lv*2);
+      const rainCount=10+lv*3;
       let list=targets.filter(e=>e&&!e.dead&&enemyInView(e));
       if(p.isMoving&&list.length>0) {
         const frontList = list.filter(e=>{
@@ -2322,56 +2421,59 @@ function trySkill(p){
         });
         if(frontList.length>0) list=frontList.slice(0,rainCount);
       }
-      const totalArrows=Math.max(10,rainCount);
-      for(let i=0;i<totalArrows;i++){
+      for(let i=0;i<rainCount;i++){
         const e=list[i%Math.max(1,list.length)];
-        const a = (e&&!e.isDummy) ? Math.atan2(e.y-p.y,e.x-p.x)+(Math.random()-0.5)*0.22 : moveAngle+(i-(totalArrows-1)/2)*0.12;
-        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*16,vy:Math.sin(a)*16,damage:p.damage*1.85*(job.range||1)*(1+lv*0.06),radius:5+lv*0.3,color:lv>=10?'#ffd700':'#7bdff2',shape:'arrow',crit:true,life:120,splash:lv>=5?35:0,pierce:true,owner:p,tgt:targets});
+        const a = (e&&!e.isDummy) ? Math.atan2(e.y-p.y,e.x-p.x)+(Math.random()-0.5)*0.22 : moveAngle+(i-(rainCount-1)/2)*0.1;
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*16,vy:Math.sin(a)*16,damage:p.damage*2.0*(job.range||1)*b.mastery*(1+lv*0.08),radius:5+lv*0.3,color:lv>=10?'#ffd700':'#7bdff2',shape:'arrow',crit:true,life:120,splash:lv>=5?45+lv*3:0,pierce:true,owner:p,tgt:targets,evolved:lv>=5});
       }
       spawnParticles(p.x,p.y,'#7bdff2',effectCount,effectSpread);playSound('coin');break;
     }
     
     case 'summonBeast':{
-      const hp=140+lv*45;
+      const hp=Math.round((160+lv*65)*b.hp);
       let r=Math.random(), bType='wolf';
       if(lv<=3) bType = r < 0.6 ? 'wolf' : 'golem';
       else if(lv<=6) bType = r < 0.35 ? 'wolf' : (r < 0.75 ? 'golem' : 'dragon');
       else bType = r < 0.2 ? 'golem' : (r < 0.6 ? 'dragon' : 'slimeking');
       let stage=1; if(lv>=10) stage=3; else if(lv>=5) stage=2;
       
-      p.beast={x:p.x+30,y:p.y,life:1400,cd:18,hp:hp,maxHp:hp,level:lv,stage:stage,type:bType,isBeast:true,radius:22};
+      p.beast={x:p.x+30,y:p.y,life:1500+lv*60,cd:16,hp:hp,maxHp:hp,level:lv,stage:stage,type:bType,isBeast:true,radius:22};
       spawnParticles(p.x,p.y,'#8b5cf6',effectCount,effectSpread);
-      if(lv>=5){
-        for(const e of targets.slice(0,5+lv)){
-          if(e&&!e.dead&&enemyInView(e)){
-            dealEnemyDamage(e,p.summonDamage*2.2,false,p);
-            lightningBeams.push({x1:p.x,y1:p.y,x2:e.x,y2:e.y,life:1});
-          }
+      for(const e of targets.slice(0,4+lv*2)){
+        if(e&&!e.dead&&enemyInView(e)){
+          dealEnemyDamage(e,p.summonDamage*(2.4+lv*0.3),true,p);
+          lightningBeams.push({x1:p.x,y1:p.y,x2:e.x,y2:e.y,life:1});
         }
       }
       playSound('coin');break;
     }
     
-    case 'shield':
-      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,270+lv*12);
+    case 'shield':{
+      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,270+lv*18);
+      const shieldRad = 180 + lv*15;
+      const shieldDmg = p.damage * (2.2 + lv*0.35) * b.mastery;
+      dealPlayerAoeDamage(p, p.x, p.y, shieldRad, shieldDmg, '250, 204, 21');
       for(const e of targets){
-        if(e&&!e.dead&&Math.hypot(e.x-p.x,e.y-p.y)<180){
+        if(e&&!e.dead&&Math.hypot(e.x-p.x,e.y-p.y)<shieldRad){
           const d=Math.hypot(e.x-p.x,e.y-p.y)||1;
-          e.x=clamp(e.x+(e.x-p.x)/d*90,20,innerWidth-20);
-          e.y=clamp(e.y+(e.y-p.y)/d*90,20,innerHeight-20);
-          dealEnemyDamage(e,p.damage*1.8,false,p);
+          e.x=clamp(e.x+(e.x-p.x)/d*100,20,innerWidth-20);
+          e.y=clamp(e.y+(e.y-p.y)/d*100,20,innerHeight-20);
         }
       }
       spawnParticles(p.x,p.y,'#facc15',effectCount,effectSpread);
       playSound('coin');break;
+    }
     
     case 'meteor':{
       const t=nearestTarget(p.x,p.y,900,targets);
       const a = t ? Math.atan2(t.y-p.y,t.x-p.x) : moveAngle;
-      const shots=lv>=10?3:lv>=5?2:1;
+      const shots=lv>=10?4:lv>=5?2:1;
       for(let s=0;s<shots;s++){
         const aa=a+(s-(shots-1)/2)*0.22;
-        bullets.push({x:p.x,y:p.y,vx:Math.cos(aa)*9,vy:Math.sin(aa)*9,damage:p.damage*4.2*(job.summon||1)*(1+lv*0.06),radius:15+lv,color:lv>=10?'#ff0055':'#ff734d',shape:'orb',crit:true,life:150,splash:160+lv*16,owner:p,tgt:targets,evolved:lv>=5});
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(aa)*9.5,vy:Math.sin(aa)*9.5,damage:p.damage*4.5*(job.summon||1)*b.mastery*(1+lv*0.08),radius:15+lv,color:lv>=10?'#ff0055':'#ff734d',shape:'orb',crit:true,life:150,splash:165+lv*18,owner:p,tgt:targets,evolved:lv>=5});
+      }
+      if(lv>=5){
+        dealPlayerAoeDamage(p, p.x, p.y, 140+lv*12, p.damage*2.5*b.mastery, '255, 115, 77');
       }
       playSound('coin');break;
     }
@@ -2380,7 +2482,6 @@ function trySkill(p){
       let targetX = p.x, targetY = p.y;
       const t=nearestTarget(p.x,p.y,600,targets);
       if(p.isMoving){
-        // 若玩家正在移動中施放影襲，優先順著移動方向高速閃現穿刺（手感更流暢可控）
         targetX = clamp(p.x + Math.cos(moveAngle)*220, 24, innerWidth-24);
         targetY = clamp(p.y + Math.sin(moveAngle)*220, 24, innerHeight-24);
       } else if(t) {
@@ -2395,16 +2496,10 @@ function trySkill(p){
       for(let i=1;i<=3;i++) slashes.push({x:p.x+(targetX-p.x)*(i/4),y:p.y+(targetY-p.y)*(i/4),angle:Math.atan2(targetY-p.y,targetX-p.x),length:150,ttl:0.2,life:0.2,isSkin:currentSkinId==='summer_skin',isMaid:currentSkinId==='maid_skin',width:10,color:'#a855f7',type:'sword',glow:'#c084fc',evolved:true});
       p.x=targetX;
       p.y=targetY;
-      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,75);
-      const aoeRadius = 185 + lv * 20;
-      for(const e of targets){
-        if(!e || e.dead) continue;
-        if(Math.hypot(e.x - p.x, e.y - p.y) <= aoeRadius + (e.radius||0)){
-          if(e.isPlayer) damagePlayer(p.damage*2.8, null, e);
-          else if(e.isBeast) damageBeast(e, p.damage*2.8);
-          else dealEnemyDamage(e, p.damage*2.8, true, p);
-        }
-      }
+      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,75+lv*4);
+      const aoeRadius = 185 + lv * 22;
+      const blinkDmg = p.damage * (3.2 + lv*0.35) * b.mastery;
+      dealPlayerAoeDamage(p, p.x, p.y, aoeRadius, blinkDmg, '168, 85, 247');
       spawnParticles(p.x,p.y,'#a855f7',effectCount,effectSpread);
       for(let i=0;i<6;i++){
         const ang = Math.PI*2*i/6 + Math.random()*0.4;
@@ -2415,19 +2510,15 @@ function trySkill(p){
     }
 
     case 'holyJudgment':{
-      const heal=Math.round(p.maxHp*(0.30+lv*0.02));
+      const heal=Math.round(p.maxHp*(0.30+lv*0.025));
       p.hp=Math.min(p.maxHp,p.hp+heal);
-      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,90);
+      p.invulnerabilityFrames=Math.max(p.invulnerabilityFrames,90+lv*6);
       addDamageNumber(p.x,p.y-34,`+${heal} 聖光治療`,'#fde047',true);
-      const rad=220+lv*18;
-      bossCircles.push({x:p.x,y:p.y,radius:rad,duration:24,elapsed:24,life:1,isExploding:true});
+      const rad=220+lv*20;
+      const holyDmg=p.damage*(3.4+lv*0.35)*b.mastery;
+      dealPlayerAoeDamage(p, p.x, p.y, rad, holyDmg, '253, 224, 71');
       for(const e of targets){
-        if(!e||e.dead)continue;
-        if(Math.hypot(e.x-p.x,e.y-p.y)<=rad+(e.radius||0)){
-          const dmg=p.damage*3.1*(1+lv*0.07);
-          if(e.isPlayer)damagePlayer(dmg,null,e);
-          else{dealEnemyDamage(e,dmg,true,p);e.slowTimer=180}
-        }
+        if(e&&!e.dead&&Math.hypot(e.x-p.x,e.y-p.y)<=rad) e.slowTimer=180;
       }
       spawnParticles(p.x,p.y,'#fde047',effectCount+10,effectSpread*1.3);
       playSound('coin');
@@ -2440,9 +2531,9 @@ function trySkill(p){
         const a=Math.PI*2*i/count;
         const t=targets[i%Math.max(1,targets.length)];
         const aim=t&&!t.dead?Math.atan2(t.y-p.y,t.x-p.x)+(Math.random()-.5)*0.4:a;
-        bullets.push({x:p.x,y:p.y,vx:Math.cos(aim)*11,vy:Math.sin(aim)*11,damage:p.summonDamage*2.4*(1+lv*0.06),radius:7,color:'#c084fc',shape:'orb',crit:true,life:130,splash:45,pierce:true,owner:p,tgt:targets,evolved:true});
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(aim)*11.5,vy:Math.sin(aim)*11.5,damage:p.summonDamage*(2.6+lv*0.22),radius:7,color:'#c084fc',shape:'orb',crit:true,life:130,splash:50,pierce:true,owner:p,tgt:targets,evolved:true});
       }
-      const heal=Math.round(p.maxHp*0.18);
+      const heal=Math.round(p.maxHp*(0.18+lv*0.015));
       p.hp=Math.min(p.maxHp,p.hp+heal);
       addDamageNumber(p.x,p.y-30,`+${heal} 噬魂`,'#c084fc');
       spawnParticles(p.x,p.y,'#a855f7',effectCount,effectSpread);
@@ -2451,11 +2542,11 @@ function trySkill(p){
     }
 
     case 'bulletStorm':{
-      p.skillActive=300;
-      const waves=24+lv*2;
+      p.skillActive=300+lv*18;
+      const waves=24+lv*3;
       for(let i=0;i<waves;i++){
         const a=Math.PI*2*i/waves;
-        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*16,vy:Math.sin(a)*16,damage:p.damage*2.0*(job.range||1)*(1+lv*0.05),radius:6,color:'#facc15',shape:'bolt',crit:true,life:110,splash:35,pierce:true,owner:p,tgt:targets,evolved:true});
+        bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*16,vy:Math.sin(a)*16,damage:p.damage*2.2*(job.range||1)*b.mastery*(1+lv*0.07),radius:6,color:'#facc15',shape:'bolt',crit:true,life:110,splash:40,pierce:true,owner:p,tgt:targets,evolved:true});
       }
       spawnParticles(p.x,p.y,'#facc15',effectCount,effectSpread);
       playSound('coin');
@@ -2465,12 +2556,12 @@ function trySkill(p){
     case 'timeStop':{
       const cleared=bossBullets.length;
       bossBullets=[];
+      const timeDmg=p.damage*(2.8+lv*0.3)*b.mastery;
       for(const e of targets){
         if(!e||e.dead)continue;
-        e.slowTimer=300+lv*20;
-        const dmg=p.damage*2.6*(1+lv*0.06);
-        if(e.isPlayer)damagePlayer(dmg,null,e);
-        else dealEnemyDamage(e,dmg,true,p);
+        e.slowTimer=300+lv*24;
+        if(e.isPlayer)damagePlayer(timeDmg,null,e);
+        else dealEnemyDamage(e,timeDmg,true,p);
       }
       addDamageNumber(p.x,p.y-35,`⏳時空凝滯 (${cleared}彈幕湮滅)`,'#38bdf8',true);
       spawnParticles(p.x,p.y,'#38bdf8',effectCount+12,effectSpread*1.5);
@@ -2480,7 +2571,7 @@ function trySkill(p){
   }
 }
 
-/* ===== 玩家移動與戰鬥（保留最後移動方向，讓移動放招無縫銜接） ===== */
+/* ===== 玩家移動與戰鬥 ===== */
 function movePlayerEntity(p,mx,my){
   if(!p||p.dead)return;
   if(p.pullTimer>0&&p.pullX!==undefined){p.x=clamp(p.x+p.pullX*3.2,20,innerWidth-20);p.y=clamp(p.y+p.pullY*3.2,20,innerHeight-20);p.pullTimer--}
@@ -2506,9 +2597,11 @@ function playerCombat(p,mx,my,targets){
   const wdef=weapons.find(w=>w.id===p.weaponId)||weapons[3];
   const job=classes.find(c=>c.id===p.classId)||classes[1];
   const ws=weaponStats(wdef,p.customLevels);
-  const rageDmg=(p.skillActive>0&&job.skill==='rage')?1.7:1;
-  const rageAs=(p.skillActive>0&&(job.skill==='rage'||job.skill==='bulletStorm'))?.55:1;
-  const interval=Math.max(5,Math.round(player.attackSpeed*ws.cooldown/32*rageAs));
+  const b=charBonus(p.classId,p.customLevels);
+  const mastery=p.masteryMul||b.mastery;
+  const rageDmg=(p.skillActive>0&&job.skill==='rage')?(1.7+b.lv*0.05):1;
+  const rageAs=(p.skillActive>0&&(job.skill==='rage'||job.skill==='bulletStorm'))?.52:1;
+  const interval=Math.max(5,Math.round(p.attackSpeed*ws.cooldown/32*rageAs));
   p.shootCounter=Math.min((p.shootCounter||0)+1,interval);
   if(p.shootCounter>=interval){
     const list=targets||enemies;
@@ -2529,12 +2622,12 @@ function playerCombat(p,mx,my,targets){
         const maxTargets=(wdef.id==='halberd'||wdef.id==='scythe'?5:wdef.id==='sword'?3:2)+(p.multishot>0?2:0);
         for(const e of hits.slice(0,maxTargets)){
           const crit=Math.random()<effCrit;
-          const dmg=p.damage*ws.damage*job.melee*(crit?p.critDamage:1)*rageDmg;
+          const dmg=p.damage*ws.damage*job.melee*mastery*(crit?p.critDamage:1)*rageDmg;
           if(e.isPlayer)damagePlayer(dmg,null,e);else dealEnemyDamage(e,dmg,crit,p);
         }
         if(ws.evolved){
           const waveColor=currentSkinId==='summer_skin'?'#ff2d55':currentSkinId==='maid_skin'?'#00b4d8':ws.color;
-          bullets.push({x:p.x,y:p.y,vx:Math.cos(angle)*14,vy:Math.sin(angle)*14,damage:p.damage*ws.damage*job.melee*0.75*rageDmg,radius:10,color:waveColor,shape:'wave',crit:Math.random()<effCrit,life:48,splash:30,pierce:true,owner:p,tgt:list,evolved:true});
+          bullets.push({x:p.x,y:p.y,vx:Math.cos(angle)*14,vy:Math.sin(angle)*14,damage:p.damage*ws.damage*job.melee*mastery*0.8*rageDmg,radius:10,color:waveColor,shape:'wave',crit:Math.random()<effCrit,life:48,splash:35,pierce:true,owner:p,tgt:list,evolved:true});
         }
         playSound('hit');
       }
@@ -2548,7 +2641,7 @@ function playerCombat(p,mx,my,targets){
         bullets.push({
           x:p.x,y:p.y,
           vx:Math.cos(a)*wdef.speed,vy:Math.sin(a)*wdef.speed,
-          damage:p.damage*ws.damage*job.range*rageDmg,
+          damage:p.damage*ws.damage*job.range*mastery*rageDmg,
           radius:wdef.projectile,color:bulletColor,shape:wdef.shape,
           crit:Math.random()<effCrit,life:120,
           splash:(wdef.splash||0)*(ws.evolved?1.35:1),
@@ -2644,7 +2737,6 @@ function updateBossBullets(){
     b.x+=b.vx;b.y+=b.vy;b.life--;
     let hit=false;
     for(const p of alivePlayers()){
-      // 彈幕擦彈判定優化：核心受擊半徑略小於視覺貼圖（p.radius*0.78），讓高密度彈幕走位更精準流暢
       if(Math.hypot(b.x-p.x,b.y-p.y)<p.radius*0.78+b.radius){damagePlayer(b.damage,b.owner,p);hit=true;break}
     }
     if(hit||b.life<=0||b.x<-80||b.x>innerWidth+80||b.y<-80||b.y>innerHeight+80){
@@ -2758,10 +2850,10 @@ function update(){
       z.fired=true;
       for(const p of alivePlayers()){if(Math.hypot(p.x-z.x,p.y-z.y)<=z.r+p.radius*0.8)damagePlayer(z.dmg,z.owner,p)}
       if(z.owner&&z.owner.type==='boss'&&z.dmg>0){
-        const ringN=z.owner.splitLevel>0?5:8;
+        const ringN=z.owner.splitLevel>0?4:(wave<=5?5:8);
         for(let k=0;k<ringN;k++){
           const ba=Math.PI*2*k/ringN;
-          addBossBullet(z.x,z.y,ba,8.2,z.dmg*0.45,6,z.color,{owner:z.owner});
+          addBossBullet(z.x,z.y,ba,8.0,z.dmg*0.45,6,z.color,{owner:z.owner});
         }
       }
       spawnParticles(z.x,z.y,z.color,20,1.5);
@@ -2784,12 +2876,12 @@ function update(){
     updateHUD();return;
   }
 
-  const spawnRate=Math.max(28,92-wave*4)/(player2?1.45:1);
+  const spawnRate=Math.max(24,96-wave*4)/(player2?1.45:1);
   if(!isBossWave&&++enemySpawnCounter>=spawnRate){
     enemySpawnCounter=0;
-    const count=Math.min(player2?11:8,1+Math.floor((wave-1)/2))*(player2?1.4:1);
+    const count=Math.min(player2?12:9,1+Math.floor((wave-1)/2))*(player2?1.4:1);
     for(let n=0;n<count;n++){
-      const eliteChance=wave>=3?Math.min(.24,.07+(wave-3)*.012):0,fastChance=Math.min(.38,.18+wave*.005),roll=Math.random();
+      const eliteChance=wave>=3?Math.min(.26,.06+(wave-3)*.014):0,fastChance=Math.min(.40,.18+wave*.006),roll=Math.random();
       spawnEnemy(roll<eliteChance?'elite':roll<eliteChance+fastChance?'fast':'normal');
     }
   }
@@ -2886,12 +2978,12 @@ function update(){
         }
       }
       if((e.type==='elite'||e.type==='boss')&&wave>=10){player.pendingPetUpgrades++;if(player2)player2.pendingPetUpgrades++}
-      const gold=(e.type==='boss'?80:e.type==='elite'?28:4);
+      const gold=(e.type==='boss'?85:e.type==='elite'?28:5);
       const gain1=Math.round(gold*(1+(player.incomeBonus||0)));
       player.gold+=gain1;
       if(player2){const gain2=Math.round(gold*(1+(player2.incomeBonus||0)));player2.gold+=gain2}
-      const dropW=e.type==='boss'?Math.round(5+Math.random()*4):e.type==='elite'?Math.round(1+Math.random()*2):(Math.random()<.14?1:0);
-      const dropC=e.type==='boss'?Math.round(4+Math.random()*4):e.type==='elite'?Math.round(1+Math.random()*2):(Math.random()<.12?1:0);
+      const dropW=e.type==='boss'?Math.round(5+Math.random()*4):e.type==='elite'?Math.round(1+Math.random()*2):(Math.random()<.15?1:0);
+      const dropC=e.type==='boss'?Math.round(4+Math.random()*4):e.type==='elite'?Math.round(1+Math.random()*2):(Math.random()<.13?1:0);
       if(dropW){meta.weaponMat+=dropW;addDamageNumber(e.x,e.y-30,`+${dropW} 武器素材`,'#7bdff2')}
       if(dropC){meta.charMat+=dropC;addDamageNumber(e.x,e.y-52,`+${dropC} 角色靈魂`,'#c86bff')}
       if(dropW||dropC)saveMeta();
@@ -2936,7 +3028,7 @@ function update(){
 }
 function plY(p,angle){return p.y+Math.sin(angle)*52}
 
-/* ===== 事件綁定（支援移動中多點觸控瞬發技能） ===== */
+/* ===== 事件綁定 ===== */
 function bind(id,fn){const el=document.getElementById(id);if(el)el.addEventListener('click',fn)}
 bind('newGameBtn',()=>{renderChoices();showMenu('loadoutMenu')});
 bind('beginBattleBtn',()=>{if(classes.some(c=>c.id===classId)&&weapons.some(w=>w.id===weaponId))startGame()});
@@ -2956,8 +3048,8 @@ bind('dualStartBtn',()=>{
   const mode=document.getElementById('dualLoadoutTitle').textContent.includes('PVP')?'pvp':'coop';
   const code1=document.getElementById('p1CodeInput').value.trim();
   const code2=document.getElementById('p2CodeInput').value.trim();
-  const p1Levels=parseCodeToLevels(code1);
-  const p2Levels=parseCodeToLevels(code2);
+  const p1Levels=parseCodeToLevels(code1)||{w:meta.weaponLevels,c:meta.charLevels,s:meta.specialMats,e:meta.weaponEnchants};
+  const p2Levels=parseCodeToLevels(code2)||{w:meta.weaponLevels,c:meta.charLevels,s:meta.specialMats,e:meta.weaponEnchants};
   startDual(mode,p1Levels,p2Levels);
 });
 bind('openSettingsBtn',()=>{syncSettings();showMenu('settingsMenu')});
@@ -2974,8 +3066,9 @@ bind('petQuickUpgradeBtn2',()=>quickUpgradePet(2));
 bind('nextWaveBtn',startNextWave);
 bind('restartBtn',()=>{document.getElementById('gameOverMenu').style.display='none';startGame()});
 bind('skipBossIntroBtn',skipBossIntro);
+bind('maxAllForgeBtn',unlockAllMaxLevels);
+bind('maxAllCharBtn',unlockAllMaxLevels);
 
-// 技能按鈕綁定：同時監聽 touchstart 與 click，確保左手指按住搖桿移動時，右手指觸碰技能鍵 0 延遲立即施放！
 let isDragMode = false;
 let prevGameState = 'START';
 
@@ -3023,21 +3116,87 @@ function copyCodeToClipboard(targetInputId){
   const code=generateCode();
   if(!code)return;
   const inp=document.getElementById(targetInputId);
-  if(inp)inp.value=code;
+  if(inp){
+    inp.value=code;
+    inp.select();
+  }
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(code).then(()=>showToast('等級碼已複製到剪貼簿並填入輸入框！')).catch(()=>showToast('等級碼已產生於輸入框中，可直接複製！'));
+    navigator.clipboard.writeText(code).then(()=>showToast('✅ 等級碼已複製到剪貼簿並填入輸入框！')).catch(()=>{
+      try{document.execCommand('copy');showToast('✅ 等級碼已複製並填入輸入框！')}catch(_e){showToast('✅ 等級碼已填入輸入框，可直接複製！')}
+    });
   }else{
-    showToast('等級碼已產生於輸入框中，可直接複製！');
+    try{document.execCommand('copy');showToast('✅ 等級碼已複製並填入輸入框！')}catch(_e){showToast('✅ 等級碼已填入輸入框，可直接複製！')}
   }
 }
 bind('exportCodeBtn',()=>copyCodeToClipboard('importCodeInput'));
-bind('importCodeBtn',()=>{const code=document.getElementById('importCodeInput').value.trim();if(importCode(code))showToast('等級碼匯入成功！');else showToast('等級碼格式無效！')});
+bind('importCodeBtn',()=>{
+  const code=document.getElementById('importCodeInput').value.trim();
+  if(importCode(code)){
+    playSound('coin');
+    showToast('✅ 武器與角色等級碼匯入成功！已全面套用新等級！');
+  }else{
+    showToast('❌ 等級碼格式無效（可輸入 MAX 一鍵全滿級）！');
+  }
+});
 bind('exportCodeBtn2',()=>copyCodeToClipboard('importCodeInput2'));
-bind('importCodeBtn2',()=>{const code=document.getElementById('importCodeInput2').value.trim();if(importCode(code))showToast('等級碼匯入成功！');else showToast('等級碼格式無效！')});
-document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim()))showToast('等級碼匯入成功！')}});
-document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim()))showToast('等級碼匯入成功！')}});
-bind('importP1Btn',()=>{const code=document.getElementById('p1CodeInput').value.trim();if(!code){document.getElementById('p1LevelStatus').textContent='當前狀態：使用本機等級';return}const lvls=parseCodeToLevels(code);if(Object.keys(lvls.w).length||Object.keys(lvls.c).length||Object.keys(lvls.s||{}).length){document.getElementById('p1LevelStatus').textContent='✅ 等級碼驗證成功，開始戰鬥將生效！';document.getElementById('p1LevelStatus').style.color='#32d59d'}else{document.getElementById('p1LevelStatus').textContent='❌ 無效等級碼，將使用基礎狀態';document.getElementById('p1LevelStatus').style.color='#ff3366'}});
-bind('importP2Btn',()=>{const code=document.getElementById('p2CodeInput').value.trim();if(!code){document.getElementById('p2LevelStatus').textContent='當前狀態：使用本機等級';return}const lvls=parseCodeToLevels(code);if(Object.keys(lvls.w).length||Object.keys(lvls.c).length||Object.keys(lvls.s||{}).length){document.getElementById('p2LevelStatus').textContent='✅ 等級碼驗證成功，開始戰鬥將生效！';document.getElementById('p2LevelStatus').style.color='#32d59d'}else{document.getElementById('p2LevelStatus').textContent='❌ 無效等級碼，將使用基礎狀態';document.getElementById('p2LevelStatus').style.color='#ff3366'}});
+bind('importCodeBtn2',()=>{
+  const code=document.getElementById('importCodeInput2').value.trim();
+  if(importCode(code)){
+    playSound('coin');
+    showToast('✅ 角色與武器等級碼匯入成功！已全面套用新等級！');
+  }else{
+    showToast('❌ 等級碼格式無效（可輸入 MAX 一鍵全滿級）！');
+  }
+});
+document.getElementById('importCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim())){playSound('coin');showToast('✅ 等級碼匯入成功！')}}});
+document.getElementById('importCodeInput2').addEventListener('keydown',e=>{if(e.key==='Enter'){if(importCode(e.target.value.trim())){playSound('coin');showToast('✅ 等級碼匯入成功！')}}});
+
+bind('importP1Btn',()=>{
+  const code=document.getElementById('p1CodeInput').value.trim();
+  if(!code){
+    dualVerifiedP1=null;
+    document.getElementById('p1LevelStatus').textContent='當前狀態：使用本機工坊等級';
+    document.getElementById('p1LevelStatus').style.color='#b0b5c0';
+    renderDualChoices();
+    return;
+  }
+  const lvls=decodeLevelString(code);
+  if(lvls){
+    dualVerifiedP1=lvls;
+    document.getElementById('p1LevelStatus').textContent='✅ P1 等級碼驗證成功！上方卡片已更新為匯入等級！';
+    document.getElementById('p1LevelStatus').style.color='#32d59d';
+    renderDualChoices();
+    playSound('coin');
+  }else{
+    dualVerifiedP1=null;
+    document.getElementById('p1LevelStatus').textContent='❌ 無效等級碼（可輸入 MAX 解鎖全10級）';
+    document.getElementById('p1LevelStatus').style.color='#ff3366';
+    renderDualChoices();
+  }
+});
+bind('importP2Btn',()=>{
+  const code=document.getElementById('p2CodeInput').value.trim();
+  if(!code){
+    dualVerifiedP2=null;
+    document.getElementById('p2LevelStatus').textContent='當前狀態：使用本機工坊等級';
+    document.getElementById('p2LevelStatus').style.color='#b0b5c0';
+    renderDualChoices();
+    return;
+  }
+  const lvls=decodeLevelString(code);
+  if(lvls){
+    dualVerifiedP2=lvls;
+    document.getElementById('p2LevelStatus').textContent='✅ P2 等級碼驗證成功！上方卡片已更新為匯入等級！';
+    document.getElementById('p2LevelStatus').style.color='#32d59d';
+    renderDualChoices();
+    playSound('coin');
+  }else{
+    dualVerifiedP2=null;
+    document.getElementById('p2LevelStatus').textContent='❌ 無效等級碼（可輸入 MAX 解鎖全10級）';
+    document.getElementById('p2LevelStatus').style.color='#ff3366';
+    renderDualChoices();
+  }
+});
 
 /* ===== UI 拖拽自定義 ===== */
 bind('customUiBtn', () => {
@@ -3169,7 +3328,7 @@ speedLockInput.oninput=e=>{
   }
 };
 
-/* ===== 雙搖桿觸控（支援單手搖桿移動 + 另一手點擊技能互不干擾） ===== */
+/* ===== 雙搖桿觸控 ===== */
 const controlsLayer=document.getElementById('controlsLayer');
 const stickEls={1:{base:document.getElementById('joystickBase'),thumb:document.getElementById('joystickThumb'),data:touchData},2:{base:document.getElementById('joystickBase2'),thumb:document.getElementById('joystickThumb2'),data:touchData2}};
 const stickState={1:{id:null,bx:0,by:0},2:{id:null,bx:0,by:0}};
@@ -3195,7 +3354,6 @@ addEventListener('keydown',e=>{
   keys[e.code]=true;
   if(e.code==='Escape')togglePause();
   if(!e.repeat&&(gameState==='PLAYING'||gameState==='BOSS_INTRO')){
-    // 支援多個順手快捷鍵，解決部分鍵盤斜向移動時按空白鍵衝突的問題
     if(e.code==='Space'||e.code==='KeyF'||e.code==='KeyE'||e.code==='KeyQ'||e.code==='ShiftLeft'){
       e.preventDefault();
       trySkill(player);
@@ -3237,3 +3395,5 @@ requestAnimationFrame(function loop(currentTime) {
   requestAnimationFrame(loop);
 });
 </script>
+</body>
+</html>
