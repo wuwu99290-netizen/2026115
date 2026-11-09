@@ -136,128 +136,234 @@ let currentSkinId='default';try{const s=localStorage.getItem(SKIN_KEY);if(skinLi
 
 /* ===== 皮膚繪製 ===== */
 const paperCanvas=document.createElement('canvas');
-paperCanvas.width=64; paperCanvas.height=90;
+// 嚴格使用 128x180 的高分辨率像素網格
+paperCanvas.width=128; paperCanvas.height=180;
 const pctx=paperCanvas.getContext('2d');
+pctx.imageSmoothingEnabled = false; // 徹底關閉平滑，保證像素銳利
 
-// 夏日皮膚 (優化版像素風：增加光影與細節)
+// 夏日皮膚 (終極精修：像素級光影、比例、細節還原)
 function renderDetailedSummerSkin(){
-  pctx.clearRect(0,0,64,90);
+  pctx.clearRect(0,0,128,180);
   
-  // 1. 後髮 (深紅帶陰影)
-  pctx.fillStyle='#9b2226'; pctx.fillRect(18,12,28,36); pctx.fillRect(16,24,6,20); pctx.fillRect(42,24,6,20);
-  pctx.fillStyle='#c1121f'; pctx.fillRect(20,14,24,32); // 稍微亮一點的紅色增加層次
-  
-  // 2. 腿部 (膚色)
-  pctx.fillStyle='#ffe0bd'; pctx.fillRect(24,48,6,25); pctx.fillRect(34,48,6,25);
-  // 腿部黑線綁帶 (交叉)
-  pctx.strokeStyle='#101218'; pctx.lineWidth=1.5;
-  for(let i=0;i<3;i++){ 
-    let y=56+i*6; 
-    pctx.beginPath(); pctx.moveTo(24,y); pctx.lineTo(30,y+4); pctx.moveTo(34,y+4); pctx.lineTo(40,y); pctx.stroke(); 
+  // --- 1. 後髮與骨架 ---
+  // 頭部 (x:48~80, y:20~56)，脖子(y:56~64)，軀幹(x:48~80, y:64~100)
+  // 腿部 (x:52~66, y:100~150)，手臂(x:36, x:92)
+
+  // 後髮打底 (深紅)
+  pctx.fillStyle='#7a1113';
+  pctx.fillRect(40, 16, 48, 52); // 頭部後方
+  pctx.fillRect(36, 56, 12, 44); // 左側長髮
+  pctx.fillRect(80, 56, 12, 44); // 右側長髮
+
+  // --- 2. 腿部與鞋子 (拉長比例) ---
+  // 膚色
+  pctx.fillStyle='#ffe0bd';
+  pctx.fillRect(52, 100, 10, 46); // 左腿
+  pctx.fillRect(66, 100, 10, 46); // 右腿
+  // 腿部陰影
+  pctx.fillStyle='#e0a87b';
+  pctx.fillRect(58, 100, 4, 46);
+  pctx.fillRect(72, 100, 4, 46);
+
+  // 黑色交叉綁帶 (純色、點對點)
+  pctx.fillStyle='#101218';
+  // 左腿綁帶
+  for(let i=0;i<3;i++){
+    let y = 110 + i*10;
+    pctx.fillRect(52, y, 10, 2);
+    pctx.fillRect(54, y+2, 6, 2);
+    pctx.fillRect(56, y+4, 2, 2);
+    pctx.fillRect(52, y+6, 10, 2);
   }
-  // 鞋子
-  pctx.fillStyle='#101218'; pctx.fillRect(23,73,8,4); pctx.fillRect(33,73,8,4);
-  
-  // 3. 泳褲 (深藍)
-  pctx.fillStyle='#1a365d'; pctx.fillRect(22,45,20,8);
-  
-  // 4. 上衣與肌膚
-  pctx.fillStyle='#ffe0bd'; pctx.fillRect(24,34,16,14);
+  // 右腿綁帶
+  for(let i=0;i<3;i++){
+    let y = 110 + i*10;
+    pctx.fillRect(66, y, 10, 2);
+    pctx.fillRect(68, y+2, 6, 2);
+    pctx.fillRect(70, y+4, 2, 2);
+    pctx.fillRect(66, y+6, 10, 2);
+  }
+
+  // 高跟鞋
+  pctx.fillStyle='#101218';
+  pctx.fillRect(48, 146, 14, 6); // 左鞋
+  pctx.fillRect(66, 146, 14, 6); // 右鞋
+  pctx.fillStyle='#3a3f4b'; // 鞋跟高光
+  pctx.fillRect(50, 146, 10, 1);
+  pctx.fillRect(68, 146, 10, 1);
+  pctx.fillStyle='#101218';
+  pctx.fillRect(48, 152, 4, 12); // 左跟
+  pctx.fillRect(76, 152, 4, 12); // 右跟
+
+  // --- 3. 泳褲 (深藍比基尼) ---
+  pctx.fillStyle='#1a365d';
+  pctx.fillRect(48, 90, 32, 10);
+  pctx.fillStyle='#2b6cb0'; // 亮藍高光
+  pctx.fillRect(50, 92, 28, 3);
+  // 側邊白綁帶
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(46, 88, 4, 6);
+  pctx.fillRect(78, 88, 4, 6);
+
+  // --- 4. 上半身與服裝 ---
+  // 腹部肌膚
+  pctx.fillStyle='#ffe0bd';
+  pctx.fillRect(54, 64, 20, 26); 
   // 白色內衣
-  pctx.fillStyle='#ffffff'; pctx.fillRect(24,35,16,7);
-  // 蝴蝶結
-  pctx.fillStyle='#2b6cb0'; pctx.fillRect(31,36,2,5);
-  pctx.fillRect(27,37,3,2); pctx.fillRect(34,37,3,2);
-  
-  // 5. 半透明外衫 (帶白色高光)
-  pctx.fillStyle='rgba(255,255,255,0.6)'; pctx.fillRect(18,36,5,12); pctx.fillRect(41,36,5,12);
-  pctx.fillStyle='#ffffff'; pctx.fillRect(18,36,1,12); pctx.fillRect(45,36,1,12);
-  
-  // 6. 手臂
-  pctx.fillStyle='#ffe0bd'; pctx.fillRect(19,45,4,12); pctx.fillRect(41,45,4,12);
-  
-  // 7. 頭部
-  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(32,24,11,0,Math.PI*2); pctx.fill();
-  
-  // 8. 五官 (精緻像素風)
-  // 眼睛 (深藍眼眶、紅瞳、白高光)
-  pctx.fillStyle='#1a365d'; pctx.fillRect(26,23,4,3); pctx.fillRect(34,23,4,3);
-  pctx.fillStyle='#e63946'; pctx.fillRect(27,23,2,3); pctx.fillRect(35,23,2,3);
-  pctx.fillStyle='#ffffff'; pctx.fillRect(27,23,1,1); pctx.fillRect(35,23,1,1);
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(48, 60, 32, 10);
+  // 藍色蝴蝶結
+  pctx.fillStyle='#2b6cb0';
+  pctx.fillRect(62, 60, 4, 10);
+  pctx.fillRect(52, 62, 8, 4);
+  pctx.fillRect(68, 62, 8, 4);
+
+  // --- 5. 白色半透明外衫 ---
+  pctx.fillStyle='rgba(255,255,255,0.55)';
+  pctx.fillRect(34, 60, 12, 40);
+  pctx.fillRect(82, 60, 12, 40);
+  // 外衫高光 (絲綢質感)
+  pctx.fillStyle='rgba(255,255,255,0.9)';
+  pctx.fillRect(34, 60, 2, 40);
+  pctx.fillRect(92, 60, 2, 40);
+
+  // --- 6. 手臂 ---
+  pctx.fillStyle='#ffe0bd';
+  pctx.fillRect(38, 74, 8, 20);
+  pctx.fillRect(82, 74, 8, 20);
+
+  // --- 7. 頭部與脖子 ---
+  // 脖子 (修正頭重腳輕)
+  pctx.fillStyle='#ffe0bd';
+  pctx.fillRect(52, 56, 24, 8); 
+  // 臉部
+  pctx.fillRect(46, 22, 36, 36);
+  // 臉頰陰影
+  pctx.fillStyle='#e0a87b';
+  pctx.fillRect(46, 50, 36, 8);
+
+  // --- 8. 精緻五官 ---
+  // 眼睛 (深藍眼眶、紅瞳、白高光，帶點靈氣)
+  pctx.fillStyle='#1a365d';
+  pctx.fillRect(52, 34, 8, 8);
+  pctx.fillRect(68, 34, 8, 8);
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(54, 36, 4, 4);
+  pctx.fillRect(70, 36, 4, 4);
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(54, 36, 1, 1);
+  pctx.fillRect(70, 36, 1, 1);
   // 腮紅
-  pctx.fillStyle='#ffb4a2'; pctx.fillRect(23,26,3,1); pctx.fillRect(38,26,3,1);
+  pctx.fillStyle='#ffb4a2';
+  pctx.fillRect(48, 44, 4, 2);
+  pctx.fillRect(76, 44, 4, 2);
   // 嘴巴
-  pctx.fillStyle='#e63946'; pctx.fillRect(31,28,2,1);
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(62, 46, 4, 1);
+  pctx.fillRect(60, 47, 2, 1);
+  pctx.fillRect(66, 47, 2, 1);
+
+  // --- 9. 前髮與瀏海 (層次感) ---
+  pctx.fillStyle='#a4161a'; // 中紅
+  pctx.fillRect(42, 18, 44, 12); // 頂部
+  pctx.fillRect(44, 30, 6, 8); // 左鬢角
+  pctx.fillRect(78, 30, 6, 10); // 右鬢角
+  // 瀏海參差
+  pctx.fillRect(50, 30, 6, 6);
+  pctx.fillRect(60, 30, 6, 8);
+  pctx.fillRect(70, 30, 6, 4);
   
-  // 9. 前髮 (鮮紅)
-  pctx.fillStyle='#e63946'; pctx.fillRect(21,13,22,11); pctx.fillRect(19,23,5,18); pctx.fillRect(40,23,5,18);
-  // 瀏海參差感
-  pctx.fillRect(22,24,2,2); pctx.fillRect(28,24,2,2); pctx.fillRect(34,24,2,2); pctx.fillRect(40,24,2,2);
-  // 高光
-  pctx.fillStyle='#ff6b6b'; pctx.fillRect(22,13,20,2);
-  // 發飾
-  pctx.fillStyle='#ffb703'; pctx.beginPath(); pctx.arc(32,9,3,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#fb8500'; pctx.fillRect(34,10,2,2); // 發飾陰影
+  // 前髮亮色層次
+  pctx.fillStyle='#e63946';
+  pctx.fillRect(44, 20, 40, 10);
+  pctx.fillRect(46, 30, 4, 6);
+  pctx.fillRect(76, 30, 4, 8);
+  pctx.fillRect(52, 30, 4, 4);
+  pctx.fillRect(62, 30, 4, 6);
+
+  // 頭髮高光
+  pctx.fillStyle='#ff8fa3';
+  pctx.fillRect(46, 20, 36, 2);
+  pctx.fillRect(38, 56, 2, 10);
+  pctx.fillRect(88, 56, 2, 10);
+
+  // --- 10. 頭飾 ---
+  pctx.fillStyle='#ffffff';
+  pctx.fillRect(42, 16, 6, 4);
+  pctx.fillStyle='#90e0ef'; // 藍色點綴
+  pctx.fillRect(44, 17, 2, 2);
+
+  // --- 11. 水槍 (像素立體感) ---
+  pctx.fillStyle='#2a9d8f';
+  pctx.fillRect(82, 76, 16, 6); // 槍身
+  pctx.fillRect(90, 68, 6, 8); // 槍管
+  pctx.fillStyle='#e9c46a';
+  pctx.fillRect(86, 78, 4, 2); // 裝飾
+  pctx.fillRect(92, 70, 2, 2);
+  pctx.fillStyle='#118ab2';
+  pctx.fillRect(78, 76, 4, 6); // 槍口
+  pctx.fillStyle='#ffffff'; // 槍身高光
+  pctx.fillRect(84, 77, 10, 1);
 }
 renderDetailedSummerSkin();
 const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
 
-// 深海女僕皮膚 (保持不變)
+// 深海女僕皮膚 (保持原樣)
 function renderMaidSkin(){
-  pctx.clearRect(0,0,64,90);
+  pctx.clearRect(0,0,128,180);
   pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(32,45,18,28,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(64,90,36,56,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#2b3b6b';
-  pctx.beginPath(); pctx.moveTo(45,65); pctx.quadraticCurveTo(60,70,55,85); pctx.quadraticCurveTo(48,78,45,75); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(90,130); pctx.quadraticCurveTo(120,140,110,170); pctx.quadraticCurveTo(96,156,90,150); pctx.fill();
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(48,68); pctx.quadraticCurveTo(57,72,53,82); pctx.quadraticCurveTo(50,76,48,74); pctx.fill();
-  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(20,60); pctx.lineTo(44,60); pctx.lineTo(48,80); pctx.lineTo(16,80); pctx.fill();
-  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(16,60); pctx.lineTo(48,60); pctx.lineTo(52,75); pctx.lineTo(12,75); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(96,136); pctx.quadraticCurveTo(114,144,106,164); pctx.quadraticCurveTo(100,152,96,148); pctx.fill();
+  pctx.fillStyle='#90e0ef'; pctx.beginPath(); pctx.moveTo(40,120); pctx.lineTo(88,120); pctx.lineTo(96,160); pctx.lineTo(32,160); pctx.fill();
+  pctx.fillStyle='#151c33'; pctx.beginPath(); pctx.moveTo(32,120); pctx.lineTo(96,120); pctx.lineTo(104,150); pctx.lineTo(24,150); pctx.fill();
   pctx.fillStyle='#ffffff';
-  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(15+i*5.3,75,2.5,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#ffffff'; pctx.fillRect(24,80,5,8); pctx.fillRect(35,80,5,8);
-  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(26.5,88,4,2,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(37.5,88,4,2,0,0,Math.PI*2); pctx.fill();
+  for(let i=0;i<7;i++){ pctx.beginPath(); pctx.arc(30+i*10.6,150,5,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#ffffff'; pctx.fillRect(48,160,10,16); pctx.fillRect(70,160,10,16);
+  pctx.fillStyle='#101218'; pctx.beginPath(); pctx.ellipse(53,176,8,4,0,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.ellipse(75,176,8,4,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#1e2a4a';
-  pctx.beginPath(); pctx.ellipse(20,45,6,10,0.2,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(44,45,6,10,-0.2,0,Math.PI*2); pctx.fill();
-  pctx.fillRect(24,36,16,25);
-  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(26,38); pctx.lineTo(38,38); pctx.lineTo(42,75); pctx.lineTo(22,75); pctx.fill();
-  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(23+i*4.5,75,2.5,0,Math.PI); pctx.fill(); }
-  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(32,58,5,3,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(37,58); pctx.lineTo(40,55); pctx.lineTo(39,61); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(29,57.5,1,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ffffff'; pctx.fillRect(25,36,14,4);
-  pctx.fillStyle='#ffd700'; pctx.fillRect(26,42,2,2); pctx.fillRect(36,42,2,2); pctx.fillRect(26,46,2,2); pctx.fillRect(36,46,2,2);
-  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(32,26,10,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(24,30,2.5,0,Math.PI*2); pctx.arc(40,30,2.5,0,Math.PI*2); pctx.fill();
-  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(32,31,1.5,0,Math.PI); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(40,90,12,20,0.2,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(88,90,12,20,-0.2,0,Math.PI*2); pctx.fill();
+  pctx.fillRect(48,72,32,50);
+  pctx.fillStyle='#ffffff'; pctx.beginPath(); pctx.moveTo(52,76); pctx.lineTo(76,76); pctx.lineTo(84,150); pctx.lineTo(44,150); pctx.fill();
+  for(let i=0;i<5;i++){ pctx.beginPath(); pctx.arc(46+i*9,150,5,0,Math.PI); pctx.fill(); }
+  pctx.fillStyle='#4ea8de'; pctx.beginPath(); pctx.ellipse(64,116,10,6,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(74,116); pctx.lineTo(80,110); pctx.lineTo(78,122); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(58,115,2,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ffffff'; pctx.fillRect(50,72,28,8);
+  pctx.fillStyle='#ffd700'; pctx.fillRect(52,84,4,4); pctx.fillRect(72,84,4,4); pctx.fillRect(52,92,4,4); pctx.fillRect(72,92,4,4);
+  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(64,52,20,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='rgba(255,143,163,0.5)'; pctx.beginPath(); pctx.arc(48,60,5,0,Math.PI*2); pctx.arc(80,60,5,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#ff8fa3'; pctx.beginPath(); pctx.arc(64,62,3,0,Math.PI); pctx.fill();
   pctx.fillStyle='#0a2a4a';
-  pctx.beginPath(); pctx.ellipse(26,26,3,4,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(38,26,3,4,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(52,52,6,8,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(76,52,6,8,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.ellipse(26,27,2,3,0,0,Math.PI*2); pctx.fill();
-  pctx.beginPath(); pctx.ellipse(38,27,2,3,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(52,54,4,6,0,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.ellipse(76,54,4,6,0,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#ffffff';
-  pctx.beginPath(); pctx.arc(25,25,1,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(37,25,1,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.arc(50,50,2,0,Math.PI*2); pctx.fill(); pctx.beginPath(); pctx.arc(74,50,2,0,Math.PI*2); pctx.fill();
   pctx.fillStyle='#90e0ef';
-  pctx.beginPath(); pctx.moveTo(20,24); pctx.lineTo(14,20); pctx.lineTo(18,28); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(44,24); pctx.lineTo(50,20); pctx.lineTo(46,28); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(40,48); pctx.lineTo(28,40); pctx.lineTo(36,56); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(88,48); pctx.lineTo(100,40); pctx.lineTo(92,56); pctx.fill();
   pctx.fillStyle='#2b3b6b'; 
-  pctx.beginPath(); pctx.moveTo(20,26); pctx.quadraticCurveTo(32,16,44,26); pctx.quadraticCurveTo(38,22,32,28); pctx.quadraticCurveTo(26,22,20,26); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(22,24); pctx.quadraticCurveTo(18,40,22,50); pctx.quadraticCurveTo(26,40,26,30); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(42,24); pctx.quadraticCurveTo(46,40,42,50); pctx.quadraticCurveTo(38,40,38,30); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(40,52); pctx.quadraticCurveTo(64,32,88,52); pctx.quadraticCurveTo(76,44,64,56); pctx.quadraticCurveTo(52,44,40,52); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(44,48); pctx.quadraticCurveTo(36,80,44,100); pctx.quadraticCurveTo(52,80,52,60); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(84,48); pctx.quadraticCurveTo(92,80,84,100); pctx.quadraticCurveTo(76,80,76,60); pctx.fill();
   pctx.strokeStyle='#4ea8de'; pctx.lineWidth=1.5;
-  pctx.beginPath(); pctx.moveTo(24,28); pctx.quadraticCurveTo(22,38,24,45); pctx.stroke();
-  pctx.beginPath(); pctx.moveTo(40,28); pctx.quadraticCurveTo(42,38,40,45); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(48,56); pctx.quadraticCurveTo(44,76,48,90); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(80,56); pctx.quadraticCurveTo(84,76,80,90); pctx.stroke();
   pctx.fillStyle='#ffffff';
-  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(22+i*4,16,2,0,Math.PI*2); pctx.fill(); }
-  pctx.fillRect(22,16,20,2);
+  for(let i=0;i<6;i++){ pctx.beginPath(); pctx.arc(44+i*8,32,4,0,Math.PI*2); pctx.fill(); }
+  pctx.fillRect(44,32,40,4);
   pctx.fillStyle='#4ea8de';
-  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,10); pctx.lineTo(45,16); pctx.fill();
-  pctx.beginPath(); pctx.moveTo(40,14); pctx.lineTo(46,18); pctx.lineTo(44,14); pctx.fill();
-  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(40,14,1.5,0,Math.PI*2); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(80,28); pctx.lineTo(92,20); pctx.lineTo(90,32); pctx.fill();
+  pctx.beginPath(); pctx.moveTo(80,28); pctx.lineTo(92,36); pctx.lineTo(88,28); pctx.fill();
+  pctx.fillStyle='#fff'; pctx.beginPath(); pctx.arc(80,28,3,0,Math.PI*2); pctx.fill();
   pctx.strokeStyle='#2b3b6b'; pctx.lineWidth=2;
-  pctx.beginPath(); pctx.moveTo(32,14); pctx.bezierCurveTo(28,6,36,4,40,8); pctx.stroke();
+  pctx.beginPath(); pctx.moveTo(64,28); pctx.bezierCurveTo(56,12,72,8,80,16); pctx.stroke();
 }
 renderMaidSkin();
   
@@ -464,7 +570,7 @@ function nearestTarget(x,y,r,list){let t=null,b=r;for(const e of (list||enemies)
 function spawnParticles(x,y,color,n=6,spread=1){const s=Math.max(.25,settings.effects);for(let i=0;i<Math.round(n*s);i++){const a=Math.random()*Math.PI*2,v=(Math.random()*3+1)*spread*s;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,color,radius:Math.random()*3+1,decay:.015+Math.random()*.025})}}
 function addDamageNumber(x,y,text,color='#fff',critical=false){damageNumbers.push({x,y,text,life:1,vy:-1.2,color,critical})}
 
-/* ===== BOSS 出場動畫 (支持雙龍) ===== */
+/* ===== BOSS 出場動畫 ===== */
 function showPhaseTag(text){const el=document.getElementById('bossPhaseTag');el.textContent=text;el.classList.add('show');bossPhaseTagTimer=120}
 function startBossIntro(e){
   const bossList = [e];
@@ -1699,7 +1805,7 @@ function update(){
       if(e.silentDeath||e.ownerBoss){spawnParticles(e.x,e.y,e.color,6);enemies.splice(i,1);continue}
       kills++;
       if((e.type==='elite'||e.type==='boss')&&wave>=10){player.pendingPetUpgrades++;if(player2)player2.pendingPetUpgrades++}
-      const gold=(e.type==='boss'?50:e.type==='elite'?20:3);
+      const gold=(e.type==='boss'?60:e.type==='elite'?25:4);
       const gain1=Math.round(gold*(1+(player.incomeBonus||0)));
       player.gold+=gain1;
       if(player2){const gain2=Math.round(gold*(1+(player2.incomeBonus||0)));player2.gold+=gain2}
@@ -1709,8 +1815,8 @@ function update(){
       if(dropC){meta.charMat+=dropC;addDamageNumber(e.x,e.y-52,`+${dropC} 角色靈魂`,'#c86bff')}
       if(dropW||dropC)saveMeta();
       spawnParticles(e.x,e.y,e.color,e.type==='boss'?35:15,1.6);
-      const baseVal=(e.type==='boss'?60:e.type==='elite'?30:2);
-      const val=Math.max(1,Math.round(baseVal * 0.3 * (1+wave*.05)*(1+(player.incomeBonus||0))));
+      const baseVal=(e.type==='boss'?70:e.type==='elite'?35:3);
+      const val=Math.max(1,Math.round(baseVal * 0.35 * (1+wave*.05)*(1+(player.incomeBonus||0))));
       materials.push({x:clamp(e.x,5,Math.max(5,innerWidth-5)),y:clamp(e.y,5,Math.max(5,innerHeight-5)),value:val});
       enemies.splice(i,1);
     }
@@ -1799,7 +1905,10 @@ bind('importP2Btn',()=>{const code=document.getElementById('p2CodeInput').value.
 
 /* ===== UI 拖拽自定義 ===== */
 let isDragMode = false;
+let prevGameState = 'START'; // 修复局内拖拽后状态错乱的 bug
+
 bind('customUiBtn', () => {
+  prevGameState = gameState; // 记录进入前的状态
   showMenu('none');
   isDragMode = true;
   document.body.classList.add('drag-active');
@@ -1874,7 +1983,16 @@ function handleDragEnd(e) {
   
   // 恢复状态显示
   updateHUD();
-  showMenu('startMenu');
+  
+  // 修复：正确恢复之前的菜单或战斗状态
+  if(prevGameState === 'PAUSE') {
+    showMenu('pauseMenu');
+  } else if(prevGameState === 'PLAYING' || prevGameState === 'BOSS_INTRO') {
+    // 如果是在游戏里，直接恢复战斗界面
+    showMenu('none');
+  } else {
+    showMenu('startMenu');
+  }
 }
 
 setupDrag(document.getElementById('skillBtn'));
