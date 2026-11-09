@@ -74,7 +74,9 @@
 </div>
 <div class="menu-buttons" style="margin-top:20px;margin-bottom:40px;"><button class="btn-menu" id="dualStartBtn" style="padding:15px 40px;font-size:18px;">開始戰鬥</button><button class="btn-menu secondary" id="dualLoadoutBackBtn">返回</button></div></div>
 
-<div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label><div class="menu-buttons"><button class="btn-menu" id="customUiBtn" style="background:#0fc;color:#000;">🎯 自定義技能按鈕位置</button><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
+<div class="modal-overlay" id="settingsMenu" style="display:none"><div class="modal-title">遊戲設定</div><div class="modal-subtitle">設定會自動儲存在此瀏覽器</div><label class="setting"><span>音效開關</span><input type="checkbox" id="soundToggle"></label><label class="setting"><span>音量</span><input type="range" id="volumeSlider" min="0" max="100"><span id="volumeText">65%</span></label><label class="setting"><span>特效強度</span><input type="range" id="fxSlider" min="25" max="150"><span id="fxText">100%</span></label><label class="setting"><span>當前速度</span><input type="number" id="speedValueInput" min="0" max="40" step="0.1"><span id="speedValueText">4.0</span></label>
+<label class="setting"><span>速度鎖定上限 (0為不鎖)</span><input type="number" id="speedLockInput" min="0" max="30" step="0.5" value="0"></label>
+<div class="menu-buttons"><button class="btn-menu" id="customUiBtn" style="background:#0fc;color:#000;">🎯 自定義技能按鈕位置</button><button class="btn-menu secondary" id="settingsBackBtn">返回</button></div></div>
 
 <div class="modal-overlay" id="pauseMenu" style="display:none"><div class="modal-title">遊戲暫停</div><div class="modal-subtitle">角色能力與對局收益（分項整理）</div><div class="stats-grid" id="statsGrid"></div><div class="menu-buttons"><button class="btn-menu" id="resumeBtn">返回戰鬥</button><button class="btn-menu secondary" id="pauseSettingsBtn">設定</button><button class="btn-menu secondary" id="saveExitBtn">離開</button></div></div>
 
@@ -90,18 +92,18 @@
 
 <script>
 'use strict';
-const SAVE_KEY='spaceSpudArenaSaveV1',SETTINGS_KEY='spaceSpudSettingsV1',SKIN_KEY='spaceSpudSkinV1',META_KEY='spaceSpudMetaV2',UI_KEY='spaceSpudUiPosV1',SHOP_REROLL_BASE_COST=10,SHOP_REROLL_COST_STEP=10,TRANSITION_INVULNERABILITY_FRAMES=6,REVIVE_INVULNERABILITY_FRAMES=120,MAX_DEFENSE_RATE=.999,PLAYER_SPEED_CAP_MAX=40,MAX_WLV=10,MAX_CLV=10;
+const SAVE_KEY='spaceSpudArenaSaveV1',SETTINGS_KEY='spaceSpudSettingsV1',SKIN_KEY='spaceSpudSkinV1',META_KEY='spaceSpudMetaV2',UI_KEY='spaceSpudUiPosV1',SHOP_REROLL_BASE_COST=10,SHOP_REROLL_COST_STEP=10,TRANSITION_INVULNERABILITY_FRAMES=6,REVIVE_INVULNERABILITY_FRAMES=120,MAX_DEFENSE_RATE=.999,MAX_DODGE_RATE=.6,PLAYER_SPEED_CAP_MAX=40,MAX_WLV=10,MAX_CLV=10;
 
 const classes=[
 {id:'berserker',name:'狂戰士',desc:'近戰傷害 +100%，暴擊傷害 +75%。技能：狂暴（8 秒內傷害 +60%、攻速 +50%）',melee:2,range:1,crit:0,critDamage:.75,summon:1,skill:'rage',skillCd:600,skillName:'狂暴'},
-{id:'archer',name:'弓箭手',desc:'遠程傷害 +100%，射程 +100%。技能：箭雨（對全場敵人射出追蹤箭）',melee:1,range:2,crit:0,critDamage:0,summon:1,skill:'arrowRain',skillCd:480,skillName:'箭雨'},
+{id:'archer',name:'弓箭手',desc:'遠程傷害 +150%，射程 +150%。技能：箭雨（對全場敵人射出追蹤箭）',melee:1,range:2.5,crit:0,critDamage:0,summon:1,skill:'arrowRain',skillCd:480,skillName:'箭雨'},
 {id:'summoner',name:'召喚師',desc:'召喚與魔法傷害 +180%。技能：召喚一隻戰鬥怪獸協助作戰',melee:1,range:1,summon:2.8,crit:0,critDamage:0,skill:'summonBeast',skillCd:720,skillName:'召喚怪獸'},
-{id:'knight',name:'騎士',desc:'防禦 +30%，生命 +25%。技能：聖盾（4 秒無敵）',melee:1.1,range:1.05,crit:0,critDamage:0,summon:1,skill:'shield',skillCd:900,skillName:'聖盾',armorBonus:.3,hpBonus:1.25},
+{id:'knight',name:'騎士',desc:'防禦 +50%，生命 +50%。技能：聖盾（4 秒無敵）',melee:1.1,range:1.05,crit:0,critDamage:0,summon:1,skill:'shield',skillCd:900,skillName:'聖盾',armorBonus:.5,hpBonus:1.5},
 {id:'mage',name:'法師',desc:'魔法傷害 +45%。技能：隕石火球（大範圍爆炸）',melee:1,range:1.15,crit:0,critDamage:0,summon:1.3,skill:'meteor',skillCd:420,skillName:'隕石火球'},
 {id:'assassin',name:'刺客',desc:'暴擊率 +25%，移動速度 +20%。技能：影襲（瞬移到敵人並造成範圍重擊）',melee:1.2,range:1,crit:.25,critDamage:.5,summon:1,skill:'blink',skillCd:360,skillName:'影襲',speedBonus:1.2}
 ];
 
-const weapons=[{id:'knife',name:'🔪刀',desc:'短距離、高頻率。',damage:1.25,range:110,cooldown:24,speed:14,kind:'melee',projectile:4,shape:'slash'},{id:'sword',name:'🗡️劍',desc:'近中距離，均衡輸出。',damage:1.15,range:150,cooldown:30,speed:13,kind:'melee',projectile:5,shape:'slash'},{id:'halberd',name:'🦽長戟',desc:'長距離斬擊，打擊範圍大。',damage:1.55,range:200,cooldown:48,speed:12,kind:'melee',projectile:6,shape:'slash'},{id:'bow',name:'🏹弓',desc:'快速箭矢。',damage:1.05,range:320,cooldown:38,speed:16,kind:'ranged',projectile:4,shape:'arrow'},{id:'crossbow',name:'🏹🏹十字弩',desc:'高傷害穿透。',damage:1.65,range:290,cooldown:55,speed:18,kind:'ranged',projectile:5,shape:'bolt'},{id:'cannon',name:'💣炮',desc:'重型爆炸砲彈。',damage:2.2,range:300,cooldown:72,speed:11,kind:'ranged',projectile:8,shape:'orb',splash:45}];
+const weapons=[{id:'knife',name:'🔪刀',desc:'短距離、高頻率。',damage:1.25,range:110,cooldown:24,speed:14,kind:'melee',projectile:4,shape:'slash'},{id:'sword',name:'🗡️劍',desc:'近中距離，均衡輸出。',damage:1.15,range:150,cooldown:30,speed:13,kind:'melee',projectile:5,shape:'slash'},{id:'halberd',name:'🦽長戟',desc:'長距離斬擊，打擊範圍大。',damage:1.55,range:200,cooldown:48,speed:12,kind:'melee',projectile:6,shape:'slash'},{id:'bow',name:'🏹弓',desc:'快速箭矢。',damage:1.25,range:350,cooldown:35,speed:16,kind:'ranged',projectile:4,shape:'arrow'},{id:'crossbow',name:'🏹🏹十字弩',desc:'高傷害穿透。',damage:1.65,range:290,cooldown:55,speed:18,kind:'ranged',projectile:5,shape:'bolt'},{id:'cannon',name:'💣炮',desc:'重型爆炸砲彈。',damage:2.2,range:300,cooldown:72,speed:11,kind:'ranged',projectile:8,shape:'orb',splash:45}];
 
 const WEAPON_TIER_COLORS=['#b87333','#c0c0c0','#9fb6cd','#ffd700','#7cfc00','#00cfff','#c86bff','#ff6ec7','#ff3366','#ffffff'];
 const WEAPON_TIER_NAMES=['青銅','鋼鐵','白銀','黃金','翡翠','湛藍','紫晶','桃紅','血紅','神話'];
@@ -137,24 +139,65 @@ const paperCanvas=document.createElement('canvas');
 paperCanvas.width=64; paperCanvas.height=90;
 const pctx=paperCanvas.getContext('2d');
 
-// 夏日皮膚 (完全回退至最初你提供的那一版)
+// 夏日皮膚 (優化版像素風：增加光影與細節)
 function renderDetailedSummerSkin(){
   pctx.clearRect(0,0,64,90);
-  pctx.fillStyle='#e63946';pctx.fillRect(18,26,28,32);
-  pctx.fillStyle='#ffe0bd';pctx.fillRect(24,48,6,25);pctx.fillRect(34,48,6,25);
-  pctx.strokeStyle='#2b6cb0';pctx.lineWidth=1.2;
-  pctx.beginPath();pctx.moveTo(24,56);pctx.lineTo(30,61);pctx.moveTo(30,61);pctx.lineTo(24,66);pctx.moveTo(24,66);pctx.lineTo(30,71);pctx.moveTo(34,56);pctx.lineTo(40,61);pctx.moveTo(40,61);pctx.lineTo(34,66);pctx.moveTo(34,66);pctx.lineTo(40,71);pctx.stroke();
-  pctx.fillStyle='#2b6cb0';pctx.fillRect(23,73,8,3);pctx.fillRect(33,73,8,3);
-  pctx.fillStyle='#ffe0bd';pctx.fillRect(23,34,18,16);
-  pctx.fillStyle='rgba(255,255,255,.75)';pctx.fillRect(18,36,5,12);pctx.fillRect(41,36,5,12);
-  pctx.fillStyle='#fff';pctx.fillRect(24,35,16,7);
-  pctx.fillStyle='#1a365d';pctx.fillRect(24,45,16,5);
-  pctx.fillStyle='#2b6cb0';pctx.beginPath();pctx.arc(30,38,2,0,Math.PI*2);pctx.arc(34,38,2,0,Math.PI*2);pctx.fill();pctx.fillRect(31,37,2,3);
-  pctx.fillStyle='#ffe0bd';pctx.beginPath();pctx.arc(32,24,11,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#e63946';pctx.fillRect(21,14,22,11);pctx.fillRect(19,23,5,18);pctx.fillRect(40,23,5,18);
-  pctx.fillStyle='#1a365d';pctx.beginPath();pctx.arc(28,24,1.8,0,Math.PI*2);pctx.arc(36,24,1.8,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#ffb703';pctx.beginPath();pctx.arc(32,9,4.5,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#fb8500';pctx.beginPath();pctx.arc(35,10,1.8,0,Math.PI*2);pctx.fill();
+  
+  // 1. 後髮 (深紅帶陰影)
+  pctx.fillStyle='#9b2226'; pctx.fillRect(18,12,28,36); pctx.fillRect(16,24,6,20); pctx.fillRect(42,24,6,20);
+  pctx.fillStyle='#c1121f'; pctx.fillRect(20,14,24,32); // 稍微亮一點的紅色增加層次
+  
+  // 2. 腿部 (膚色)
+  pctx.fillStyle='#ffe0bd'; pctx.fillRect(24,48,6,25); pctx.fillRect(34,48,6,25);
+  // 腿部黑線綁帶 (交叉)
+  pctx.strokeStyle='#101218'; pctx.lineWidth=1.5;
+  for(let i=0;i<3;i++){ 
+    let y=56+i*6; 
+    pctx.beginPath(); pctx.moveTo(24,y); pctx.lineTo(30,y+4); pctx.moveTo(34,y+4); pctx.lineTo(40,y); pctx.stroke(); 
+  }
+  // 鞋子
+  pctx.fillStyle='#101218'; pctx.fillRect(23,73,8,4); pctx.fillRect(33,73,8,4);
+  
+  // 3. 泳褲 (深藍)
+  pctx.fillStyle='#1a365d'; pctx.fillRect(22,45,20,8);
+  
+  // 4. 上衣與肌膚
+  pctx.fillStyle='#ffe0bd'; pctx.fillRect(24,34,16,14);
+  // 白色內衣
+  pctx.fillStyle='#ffffff'; pctx.fillRect(24,35,16,7);
+  // 蝴蝶結
+  pctx.fillStyle='#2b6cb0'; pctx.fillRect(31,36,2,5);
+  pctx.fillRect(27,37,3,2); pctx.fillRect(34,37,3,2);
+  
+  // 5. 半透明外衫 (帶白色高光)
+  pctx.fillStyle='rgba(255,255,255,0.6)'; pctx.fillRect(18,36,5,12); pctx.fillRect(41,36,5,12);
+  pctx.fillStyle='#ffffff'; pctx.fillRect(18,36,1,12); pctx.fillRect(45,36,1,12);
+  
+  // 6. 手臂
+  pctx.fillStyle='#ffe0bd'; pctx.fillRect(19,45,4,12); pctx.fillRect(41,45,4,12);
+  
+  // 7. 頭部
+  pctx.fillStyle='#ffe0bd'; pctx.beginPath(); pctx.arc(32,24,11,0,Math.PI*2); pctx.fill();
+  
+  // 8. 五官 (精緻像素風)
+  // 眼睛 (深藍眼眶、紅瞳、白高光)
+  pctx.fillStyle='#1a365d'; pctx.fillRect(26,23,4,3); pctx.fillRect(34,23,4,3);
+  pctx.fillStyle='#e63946'; pctx.fillRect(27,23,2,3); pctx.fillRect(35,23,2,3);
+  pctx.fillStyle='#ffffff'; pctx.fillRect(27,23,1,1); pctx.fillRect(35,23,1,1);
+  // 腮紅
+  pctx.fillStyle='#ffb4a2'; pctx.fillRect(23,26,3,1); pctx.fillRect(38,26,3,1);
+  // 嘴巴
+  pctx.fillStyle='#e63946'; pctx.fillRect(31,28,2,1);
+  
+  // 9. 前髮 (鮮紅)
+  pctx.fillStyle='#e63946'; pctx.fillRect(21,13,22,11); pctx.fillRect(19,23,5,18); pctx.fillRect(40,23,5,18);
+  // 瀏海參差感
+  pctx.fillRect(22,24,2,2); pctx.fillRect(28,24,2,2); pctx.fillRect(34,24,2,2); pctx.fillRect(40,24,2,2);
+  // 高光
+  pctx.fillStyle='#ff6b6b'; pctx.fillRect(22,13,20,2);
+  // 發飾
+  pctx.fillStyle='#ffb703'; pctx.beginPath(); pctx.arc(32,9,3,0,Math.PI*2); pctx.fill();
+  pctx.fillStyle='#fb8500'; pctx.fillRect(34,10,2,2); // 發飾陰影
 }
 renderDetailedSummerSkin();
 const summerSkinImg=new Image(); summerSkinImg.src=paperCanvas.toDataURL();
@@ -379,7 +422,7 @@ function parseCodeToLevels(code){
 }
   
 /* ===== 設定與音效 ===== */
-const settings={sound:true,volume:.65,effects:1};try{Object.assign(settings,JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}'))}catch(e){}
+const settings={sound:true,volume:.65,effects:1,speedLock:0};try{Object.assign(settings,JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}'))}catch(e){}
 const canvas=document.getElementById('gameCanvas'),ctx=canvas.getContext('2d');let audioCtx=null;
 function initAudio(){try{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}catch(e){}}
 function playSound(type){if(!settings.sound||settings.volume<=0)return;initAudio();if(!audioCtx)return;try{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime;let duration=.09;o.connect(g);g.connect(audioCtx.destination);if(type==='playerHit'){duration=.24;o.type='sawtooth';o.frequency.setValueAtTime(105,t);o.frequency.exponentialRampToValueAtTime(42,t+duration)}else if(type==='coin'){duration=.2;o.type='triangle';o.frequency.setValueAtTime(620,t);o.frequency.exponentialRampToValueAtTime(1180,t+duration)}else{o.type=type==='enemyHit'||type==='hit'?'sawtooth':'triangle';o.frequency.setValueAtTime(type==='enemyHit'?230:type==='hit'?180:420,t)}g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime((type==='playerHit'?.16:.08)*settings.volume,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.start(t);o.stop(t+duration+.01)}catch(e){}}
@@ -399,7 +442,7 @@ function newPlayer(cid,customLevels){
   cid=cid||classId;
   const job=classes.find(c=>c.id===cid)||classes[1],b=charBonus(cid,customLevels);
   const hp=Math.round(100*b.hp*(job.hpBonus||1));
-  return {id:++playerIdCounter,x:innerWidth/2,y:innerHeight/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,pendingPetUpgrades:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,customLevels:customLevels||null,lastMoveX:0,lastMoveY:0}
+  return {id:++playerIdCounter,x:innerWidth/2,y:innerHeight/2,radius:18,speed:4*b.spd*(job.speedBonus||1),speedCap:4,maxHp:hp,hp:hp,hpRegen:0,armor:job.armorBonus||0,gold:50,attackSpeed:32,damage:20*b.dmg,range:240,vampire:0,critChance:.15,critDamage:1.5,dodgeChance:0,attractionRange:120,summonDamage:16,incomeBonus:0,revives:0,reflect:.0,droneCount:0,turretCount:0,lastDamageFeedback:0,truthUnlocked:false,truthLevel:0,petUnlocked:false,petLevel:0,pendingPetUpgrades:0,invulnerabilityFrames:0,permanentPurchasedIds:[],hpDamagePercent:false,classId:cid,weaponId:weaponId,shootCounter:0,summonCounter:0,skillCd:0,skillActive:0,facingRight:true,isPlayer:true,dead:false,respawnTimer:0,beast:null,customLevels:customLevels||null,lastMoveX:0,lastMoveY:0,speedLock:0}
 }
 let player=newPlayer(),enemies=[],bullets=[],materials=[],particles=[],damageNumbers=[],slashes=[],turrets=[],lightningBeams=[],eliteFlashes=[],bossCircles=[],bossZones=[],bossBeams=[],skillFrame=0;
 const keys={};
@@ -421,7 +464,7 @@ function nearestTarget(x,y,r,list){let t=null,b=r;for(const e of (list||enemies)
 function spawnParticles(x,y,color,n=6,spread=1){const s=Math.max(.25,settings.effects);for(let i=0;i<Math.round(n*s);i++){const a=Math.random()*Math.PI*2,v=(Math.random()*3+1)*spread*s;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,color,radius:Math.random()*3+1,decay:.015+Math.random()*.025})}}
 function addDamageNumber(x,y,text,color='#fff',critical=false){damageNumbers.push({x,y,text,life:1,vy:-1.2,color,critical})}
 
-/* ===== BOSS 出場動畫 ===== */
+/* ===== BOSS 出場動畫 (支持雙龍) ===== */
 function showPhaseTag(text){const el=document.getElementById('bossPhaseTag');el.textContent=text;el.classList.add('show');bossPhaseTagTimer=120}
 function startBossIntro(e){
   const bossList = [e];
@@ -506,11 +549,19 @@ function updateBossSkill(e){
 const itemPool=[
 {id:'hp_percent_dmg',title:'割裂利刃',desc:'每次攻擊額外造成敵方當前血量 1% 的傷害（只能購買一次）。',price:150,unique:true,apply:p=>{p.hpDamagePercent=true}},
 {id:'crit_dmg_up',title:'致命瞄準鏡',desc:'暴擊傷害增加 +0.25 倍。',price:45,apply:p=>p.critDamage+=.25},
-{id:'dodge_glove',title:'輕盈手套',desc:'閃避機率 +5%（最高 99.9%）。',price:35,apply:p=>p.dodgeChance=Math.min(MAX_DEFENSE_RATE,p.dodgeChance+.05)},
-{id:'dodge_cloak',title:'影子斗篷',desc:'閃避機率 +10%（最高 99.9%）。',price:55,apply:p=>p.dodgeChance=Math.min(MAX_DEFENSE_RATE,p.dodgeChance+.1)},
+{id:'dodge_glove',title:'輕盈手套',desc:'閃避機率 +5%（最高 60%）。',price:35,apply:p=>p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.05)},
+{id:'dodge_cloak',title:'影子斗篷',desc:'閃避機率 +10%（最高 60%）。',price:55,apply:p=>p.dodgeChance=Math.min(MAX_DODGE_RATE,p.dodgeChance+.1)},
 {id:'gun',title:'強化彈藥',desc:'攻擊傷害提升 12 點。',price:30,apply:p=>p.damage+=12},
 {id:'truth',title:'🔥真理🔥',desc:'每次取得，所有最終造成的傷害增加 100%。',price:120,apply:p=>{p.truthLevel=(p.truthLevel||0)+1;p.truthUnlocked=true}},
-{id:'speed',title:'👟跑鞋',desc:'移動速度提升 20%。',price:25,apply:p=>{p.speed*=1.2;p.speedCap=Math.max(p.speedCap,p.speed)}},
+{id:'speed',title:'👟跑鞋',desc:'移動速度提升 20%。',price:25,apply:p=>{
+  p.speed*=1.2;
+  if(p.speedLock > 0) {
+    p.speedCap = Math.min(p.speedCap, p.speedLock);
+    p.speed = Math.min(p.speed, p.speedLock);
+  } else {
+    p.speedCap = Math.max(p.speedCap, p.speed);
+  }
+}},
 {id:'attack',title:'快速連射',desc:'攻擊間隔減少 10%。',price:35,apply:p=>p.attackSpeed*=.9},
 {id:'vampire',title:'吸血之刃',desc:'每次命中恢復 0.2 生命。',price:40,apply:p=>p.vampire+=.2},
 {id:'maxhp',title:'🫀生命補給',desc:'最大生命與目前生命 +35。',price:30,apply:p=>{p.maxHp+=35;p.hp+=35}},
@@ -640,15 +691,15 @@ function startTimer(){if(timerInterval)clearInterval(timerInterval);timerInterva
 function startGame(){
   initAudio();try{localStorage.removeItem(SAVE_KEY)}catch(e){}
   gameMode='solo';player2=null;wave=1;kills=0;enemySpawnCounter=0;shopRerollCount=0;pendingPetUpgrades=0;
-  player=newPlayer(classId);player.weaponId=weaponId;
+  player=newPlayer(classId);player.weaponId=weaponId;player.speedLock=settings.speedLock;
   enemies=[];bullets=[];materials=[];particles=[];damageNumbers=[];slashes=[];turrets=[];lightningBeams=[];eliteFlashes=[];bossCircles=[];bossZones=[];bossBeams=[];bossBullets=[];skillFrame=0;bossIntro=null;
   clampPlayerSpeed();initWave();showMenu('none');updateStatsDisplay();updateHUD();
 }
 function startDual(mode,p1Levels,p2Levels){
   initAudio();try{localStorage.removeItem(SAVE_KEY)}catch(e){}
   gameMode=mode;pvpWinner=0;wave=1;kills=0;enemySpawnCounter=0;shopRerollCount=0;
-  player=newPlayer(dualClassId1,p1Levels);player.weaponId=dualWeaponId1;
-  player2=newPlayer(dualClassId2,p2Levels);player2.weaponId=dualWeaponId2;
+  player=newPlayer(dualClassId1,p1Levels);player.weaponId=dualWeaponId1;player.speedLock=settings.speedLock;
+  player2=newPlayer(dualClassId2,p2Levels);player2.weaponId=dualWeaponId2;player2.speedLock=settings.speedLock;
   player2.speedCap=player.speedCap=4;
   enemies=[];bullets=[];materials=[];particles=[];damageNumbers=[];slashes=[];turrets=[];lightningBeams=[];eliteFlashes=[];bossCircles=[];bossZones=[];bossBeams=[];bossBullets=[];skillFrame=0;bossIntro=null;
   if(mode==='pvp'){
@@ -673,7 +724,7 @@ function triggerShop(){
   }
   renderShop();document.getElementById('shopMenu').style.display='flex';updateHUD();saveGame();
 }
-function currentRerollCost(){return SHOP_REROLL_BASE_COST+shopRerollCount*SHOP_REROLL_COST_STEP}
+function currentRerollCost(){return Math.min(100, SHOP_REROLL_BASE_COST+shopRerollCount*SHOP_REROLL_COST_STEP)}
 function rerollShop(){
   const cost=currentRerollCost();
   if(gameState!=='SHOP')return;
@@ -857,7 +908,7 @@ function updateStatsDisplay(){
   const w=weapons.find(x=>x.id===player.weaponId)||weapons[3];
   const ws=weaponStats(w,player.customLevels);
   const rate=60/Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32)),dmg=player.damage*ws.damage*(w.kind==='melee'?c.melee:c.range),critChance=1-(1-clamp(player.critChance,0,1))*(1-clamp(c.crit,0,1)),critMult=player.critDamage+c.critDamage,expected=dmg*(1+critChance*(critMult-1)),finalMultiplier=truthDamageMultiplier(player)*petDamageMultiplier(player);
-  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id,player.customLevels)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DEFENSE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
+  const groups={basic:[['職業',`${c.name} Lv.${cLevel(c.id,player.customLevels)}`],['技能',`${c.skillName}`],['武器',`${w.name} Lv.${ws.level}${ws.evolved?'(進化)':''}`],['材質',WEAPON_TIER_NAMES[ws.level-1]],['金幣',`${player.gold}`],['擊殺數',`${kills}`]],combat:[['單次基礎傷害',dmg.toFixed(1)],['最終傷害倍率',`x${finalMultiplier.toFixed(2)}`],['預期傷害',(expected*finalMultiplier).toFixed(1)],['攻擊速度',`${rate.toFixed(2)} 次／秒`],['攻擊距離',`${Math.round(ws.range)} px`],['暴擊機率',`${(critChance*100).toFixed(1)}%`],['暴擊傷害',`${critMult.toFixed(2)} 倍`],['召喚傷害',`${player.summonDamage.toFixed(1)} 基礎值`],['寵物等級',player.petUnlocked?`${player.petLevel||0}`:'未解鎖']],survival:[['生命值',`${Math.max(0,Math.floor(player.hp))} / ${player.maxHp}`],['生命恢復',`${player.hpRegen.toFixed(1)} 生命／秒`],['防禦',`${(clamp(player.armor,0,MAX_DEFENSE_RATE)*100).toFixed(1)}% 減傷`],['閃避機率',`${(clamp(player.dodgeChance,0,MAX_DODGE_RATE)*100).toFixed(1)}%`],['可復活次數',`${player.revives} 次`],['反傷傷害',`${(player.reflect*100).toFixed(0)}%`],['移動速度',`${player.speed.toFixed(2)} px／幀`]],economy:[['對局收益加成',`${(player.incomeBonus*100).toFixed(0)}%`],['命中吸血',`${player.vampire.toFixed(2)} 生命／次命中`],['吸收範圍',`${player.attractionRange} px`],['攻擊間隔',`${Math.max(7,Math.round(player.attackSpeed*ws.cooldown/32))} 幀`]]};
   const metaGroups=[{title:'基本',items:groups.basic},{title:'戰鬥',items:groups.combat},{title:'生存',items:groups.survival},{title:'收益',items:groups.economy}];
   document.getElementById('statsGrid').innerHTML=metaGroups.map(g=>`<div class="stats-group"><div class="stats-group-title">${g.title}</div>${g.items.map(([k,v])=>`<div class="stat-item"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`).join('');
 }
@@ -866,7 +917,7 @@ function togglePause(){if(gameState==='PLAYING'||gameState==='BOSS_INTRO'){gameS
 /* ===== 存檔 ===== */
 function saveGame(){if(!['PLAYING','PAUSE','SHOP','BOSS_INTRO'].includes(gameState))return;if(gameMode!=='solo')return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:6,gameState,wave,waveTimer,kills,player,enemies,bullets,materials,particles,damageNumbers,slashes,classId,weaponId,shopChoiceIds,purchasedItemIds,shopRerollCount,turrets,isBossWave}))}catch(e){}}
 function hasSave(){try{return!!localStorage.getItem(SAVE_KEY)}catch(e){return false}}
-function loadSavedGame(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));if(!s||![2,3,4,5,6].includes(s.version))throw Error('invalid save');gameMode='solo';player2=null;wave=s.wave||1;waveTimer=Math.min(100,s.waveTimer||0);kills=s.kills||0;classId=s.classId||'archer';weaponId=s.weaponId||'bow';shopRerollCount=Math.max(0,Number(s.shopRerollCount)||0);isBossWave=s.isBossWave||false;player={...newPlayer(classId),...s.player};player.pendingPetUpgrades=Math.max(0,Number(player.pendingPetUpgrades)||0);player.truthLevel=Math.max(0,Number(player.truthLevel)||(player.truthUnlocked?1:0));player.truthUnlocked=player.truthLevel>0;player.armor=clamp(Number(player.armor)||0,0,MAX_DEFENSE_RATE);player.dodgeChance=clamp(Number(player.dodgeChance)||0,0,MAX_DEFENSE_RATE);player.skillCd=player.skillCd||0;clampPlayerSpeed();enemies=s.enemies||[];bullets=s.bullets||[];materials=s.materials||[];particles=s.particles||[];damageNumbers=s.damageNumbers||[];slashes=s.slashes||[];turrets=s.turrets||[];shopChoiceIds=s.shopChoiceIds||[];purchasedItemIds=s.purchasedItemIds||[];bossBullets=[];bossIntro=null;if(s.gameState==='SHOP'){gameState='SHOP';document.getElementById('shopMenu').style.display='flex';renderShop()}else if(s.gameState==='PAUSE'){gameState='PAUSE';document.getElementById('pauseMenu').style.display='flex'}else{gameState='PLAYING';startInvulnerability();startTimer()}updateHUD();updateStatsDisplay()}catch(e){try{localStorage.removeItem(SAVE_KEY)}catch(_e){}}}
+function loadSavedGame(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));if(!s||![2,3,4,5,6].includes(s.version))throw Error('invalid save');gameMode='solo';player2=null;wave=s.wave||1;waveTimer=Math.min(100,s.waveTimer||0);kills=s.kills||0;classId=s.classId||'archer';weaponId=s.weaponId||'bow';shopRerollCount=Math.max(0,Number(s.shopRerollCount)||0);isBossWave=s.isBossWave||false;player={...newPlayer(classId),...s.player};player.pendingPetUpgrades=Math.max(0,Number(player.pendingPetUpgrades)||0);player.truthLevel=Math.max(0,Number(player.truthLevel)||(player.truthUnlocked?1:0));player.truthUnlocked=player.truthLevel>0;player.armor=clamp(Number(player.armor)||0,0,MAX_DEFENSE_RATE);player.dodgeChance=clamp(Number(player.dodgeChance)||0,0,MAX_DODGE_RATE);player.skillCd=player.skillCd||0;player.speedLock=settings.speedLock;clampPlayerSpeed();enemies=s.enemies||[];bullets=s.bullets||[];materials=s.materials||[];particles=s.particles||[];damageNumbers=s.damageNumbers||[];slashes=s.slashes||[];turrets=s.turrets||[];shopChoiceIds=s.shopChoiceIds||[];purchasedItemIds=s.purchasedItemIds||[];bossBullets=[];bossIntro=null;if(s.gameState==='SHOP'){gameState='SHOP';document.getElementById('shopMenu').style.display='flex';renderShop()}else if(s.gameState==='PAUSE'){gameState='PAUSE';document.getElementById('pauseMenu').style.display='flex'}else{gameState='PLAYING';startInvulnerability();startTimer()}updateHUD();updateStatsDisplay()}catch(e){try{localStorage.removeItem(SAVE_KEY)}catch(_e){}}}
 
 /* ===== 繪製 ===== */
 function getBossSprite(e){
@@ -1169,7 +1220,7 @@ function damagePlayer(amount,source,target){
   const p=target||player;
   if(p.dead)return;
   if(p.invulnerabilityFrames>0)return;
-  if(Math.random()<clamp(p.dodgeChance,0,MAX_DEFENSE_RATE)){addDamageNumber(p.x,p.y-28,'閃避','#7af0ff');return}
+  if(Math.random()<clamp(p.dodgeChance,0,MAX_DODGE_RATE)){addDamageNumber(p.x,p.y-28,'閃避','#7af0ff');return}
   const actual=Math.max(1,amount*(1-clamp(p.armor,0,MAX_DEFENSE_RATE)));
   p.hp-=actual;
   if(currentSkinId==='maid_skin') spawnParticles(p.x,p.y,'#00b4d8',12,1.2);
@@ -1261,21 +1312,19 @@ function trySkill(p){
         const t=nearestTarget(p.x,p.y,900,targets);
         a = t ? Math.atan2(t.y-p.y,t.x-p.x) : 0;
       }
-      bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*7,vy:Math.sin(a)*7,damage:p.damage*3.2*(job.summon||1)*(1+lv*0.05),radius:14+lv,color:lv>=10?'#ff0000':'#ff734d',shape:'orb',crit:false,life:150,splash:110+lv*10,owner:p,tgt:targets});
+      bullets.push({x:p.x,y:p.y,vx:Math.cos(a)*7,vy:Math.sin(a)*7,damage:p.damage*4.0*(job.summon||1)*(1+lv*0.05),radius:14+lv,color:lv>=10?'#ff0000':'#ff734d',shape:'orb',crit:false,life:150,splash:140+lv*15,owner:p,tgt:targets});
       if(lv>=10)bossZones.push({x:p.x,y:p.y,r:100,t:0,dur:30,dmg:0,owner:p,color:'#ff734d',fired:false});
       playSound('coin');break;
     }
     
     case 'blink':{
       let targetX = p.x, targetY = p.y;
-      if(hasMoveDir) {
-        // 如果有移动方向，瞬移向那个方向固定距离
-        targetX = clamp(p.x + Math.cos(moveAngle)*250, 20, innerWidth-20);
-        targetY = clamp(p.y + Math.sin(moveAngle)*250, 20, innerHeight-20);
-      } else {
-        // 没移动就锁定敌人
-        const t=nearestTarget(p.x,p.y,600,targets);
-        if(t) { targetX = t.x - 40; targetY = t.y - 40; }
+      const t=nearestTarget(p.x,p.y,600,targets);
+      if(t) { // 優先鎖定敵人
+        targetX = t.x - 40; targetY = t.y - 40; 
+      } else if(hasMoveDir) { // 沒敵人則朝移動方向瞬移
+        targetX = clamp(p.x + Math.cos(moveAngle)*250, 20, innerWidth-20); 
+        targetY = clamp(p.y + Math.sin(moveAngle)*250, 20, innerHeight-20); 
       }
       
       if(lv>=5){
@@ -1563,10 +1612,10 @@ function update(){
     updateHUD();return;
   }
 
-  const spawnRate=Math.max(20,80-wave*4)/(player2?1.5:1);
+  const spawnRate=Math.max(30,100-wave*5)/(player2?1.5:1);
   if(!isBossWave&&++enemySpawnCounter>=spawnRate){
     enemySpawnCounter=0;
-    const count=Math.min(player2?12:9,2+Math.floor((wave-1)/2))*(player2?1.5:1);
+    const count=Math.min(player2?12:9,1+Math.floor((wave-1)/2))*(player2?1.5:1);
     for(let n=0;n<count;n++){
       const eliteChance=wave>=3?Math.min(.25,.08+(wave-3)*.012):0,fastChance=Math.min(.4,.2+wave*.005),roll=Math.random();
       spawnEnemy(roll<eliteChance?'elite':roll<eliteChance+fastChance?'fast':'normal');
@@ -1856,12 +1905,25 @@ function loadUiPositions() {
 loadUiPositions();
 
 /* ===== 設定同步 ===== */
-function syncSettings(){soundToggle.checked=settings.sound;volumeSlider.value=Math.round(settings.volume*100);volumeText.textContent=`${Math.round(settings.volume*100)}%`;fxSlider.value=Math.round(settings.effects*100);fxText.textContent=`${Math.round(settings.effects*100)}%`;player.speed=clamp(Number(player.speed)||0,0,player.speedCap);speedValueInput.max=player.speedCap;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`}
+function syncSettings(){soundToggle.checked=settings.sound;volumeSlider.value=Math.round(settings.volume*100);volumeText.textContent=`${Math.round(settings.volume*100)}%`;fxSlider.value=Math.round(settings.effects*100);fxText.textContent=`${Math.round(settings.effects*100)}%`;player.speed=clamp(Number(player.speed)||0,0,player.speedCap);speedValueInput.max=player.speedCap;speedValueInput.value=player.speed;speedValueText.textContent=`${speedValueLabel(player.speed)}`;speedLockInput.value=settings.speedLock||0;}
 function storeSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings))}catch(e){}}
 soundToggle.onchange=e=>{settings.sound=e.target.checked;storeSettings()};
 volumeSlider.oninput=e=>{settings.volume=Number(e.target.value)/100;volumeText.textContent=`${e.target.value}%`;storeSettings()};
 fxSlider.oninput=e=>{settings.effects=Number(e.target.value)/100;fxText.textContent=`${e.target.value}%`;storeSettings()};
 speedValueInput.oninput=e=>{const value=clamp(Number(e.target.value)||0,0,player.speedCap||0);player.speed=value;speedValueText.textContent=`${speedValueLabel(value)}`};
+speedLockInput.oninput=e=>{
+  settings.speedLock = Number(e.target.value) || 0;
+  storeSettings();
+  for(const p of activePlayers()){
+    p.speedLock = settings.speedLock;
+    if(p.speedLock > 0){
+      p.speedCap = Math.min(p.speedCap, p.speedLock);
+      p.speed = Math.min(p.speed, p.speedLock);
+    } else {
+      p.speedCap = PLAYER_SPEED_CAP_MAX;
+    }
+  }
+};
 
 /* ===== 雙搖桿觸控 ===== */
 const controlsLayer=document.getElementById('controlsLayer');
